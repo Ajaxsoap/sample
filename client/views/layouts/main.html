@@ -1,0 +1,59 @@
+<template name="mainLayout">
+  {{#if currentUser}}
+    <!-- Wrapper-->
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        {{> navigation }}
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg">
+
+            <!-- Page wrapper -->
+            {{> topNavbar }}
+
+            <!-- Main view  -->
+            {{> yield}}
+
+            <!-- Footer -->
+            {{> footer }}
+
+        </div>
+        <!-- End page wrapper-->
+
+    </div>
+    <!-- End wrapper-->
+    {{else}}
+    {{> login}}
+    {{/if}}
+</template>
+
+<template name="SmallContentOffset">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      {{> yield }}
+    </div>
+  </div>
+</template>
+
+<template name="MediumContentOffset">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1">
+      {{> yield }}
+    </div>
+  </div>
+</template>
+
+<template name="ContentContainer">
+  <div class="">
+    {{> yield }}
+  </div>
+</template>
+
+<template name="Tabs">
+
+    {{# each items }}
+      <a class="btn btn-lg {{ class }}">{{ title }}</a>
+    {{/ each }}
+
+</template>

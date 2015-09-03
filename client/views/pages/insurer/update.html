@@ -1,0 +1,47 @@
+<template name="insurerUpdate">
+    {{# Layout template="pageHeading" }}
+      <span class="fa fa-pencil"></span>&nbsp;{{i18n 'collections.update.title' collection.singularName }}
+    {{/ Layout }}
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ibox">
+            <div class="ibox-title">
+              <h4></h4>
+            </div>
+            <div class="ibox-content">
+              {{#if Template.subscriptionsReady}}
+                {{# if item.canShowUpdate }}
+                  <p>
+                    Loan cycle:
+                    <select class='form-control'>
+                      {{> version}}
+                    </select>
+                  </p>
+                  {{> quickForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }}
+                  <br>
+                  <div class="buttons text-right">
+                    <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
+                    {{# if item.canShowRemove }}
+                      <a class="btn btn-danger" href="{{ collection.deletePath item._id }}">{{i18n 'global.delete' }}</a>
+                    {{/ if }}
+                    <a class="btn btn-primary save-btn">{{ i18n 'global.save' }}</a>
+                  </div>
+                {{/ if }}
+              {{/ if }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
+
+<template name="cycle">
+  {{#each versions}}
+    <option value="option">{{_version}}</option>
+  {{/each}}
+</template>
+
+<template name="version">
+  <option value="option">{{_version}}</option>
+</template>

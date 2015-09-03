@@ -1,0 +1,23 @@
+<template name="insurerIndex">
+  {{# Layout template="pageHeading" }}
+    <span class="fa fa-check"></span>&nbsp;{{ collection.title }}
+  {{/ Layout }}
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox-title">
+          {{# if collection.canShowCreate }}
+            <a href="{{ collection.createPath }}" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span>&nbsp;Add Insurer</a>
+          {{/ if }}
+        </div>
+        <div class="ibox-content">
+          {{# if collection.canIndex }}
+            {{# if showTable }}
+              {{> tabular table=collection.tabularTable class="table index-table" }}
+            {{/ if }}
+          {{/ if }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

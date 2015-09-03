@@ -1,0 +1,46 @@
+# Meteor packages used by this project, one per line.Error: No such function: isActiveRoute
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+orionjs:core
+orionjs:relationships
+momentjs:moment
+fortawesome:fontawesome
+orionjs:bootstrap
+ian:accounts-ui-bootstrap-3
+iron:router
+twbs:bootstrap
+standard-app-packages
+dburles:collection-helpers
+aldeed:autoform-bs-datepicker
+rajit:bootstrap3-datepicker
+# audit-argument-checks
+# orionjs:summernote
+orionjs:file-attribute
+orionjs:filesystem
+aldeed:autoform
+less
+orionjs:image-attribute
+nicolaslopezj:orion-exporter
+lee:countdown
+orionjs:config
+meteorhacks:kadira
+nilsdannemann:pdfmake
+brightbind:orion-gridfs
+vsivsi:orion-file-collection
+#perak:joins
+mickaelfm:vermongo
+cfs:standard-packages
+cfs:filesystem
+dsyko:meteor-node-csv
+meteorhacks:npm
+cfs:gridfs
+
+
+npm-container
+#mpowaga:autoform-autocomplete
+#loredanacirstea:meteor-tabular-filter
+jameslefrere:madewithmeteor

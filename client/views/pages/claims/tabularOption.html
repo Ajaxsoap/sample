@@ -1,0 +1,13 @@
+<template name="status">
+  {{#if statusPending}}
+    <label class="btn btn-warning btn-xs">{{ status }}</label>
+  {{/if}}
+
+  {{#if statusApproved}}
+    <label class="btn btn-primary btn-xs">{{ status }}</label>
+  {{/if}}
+
+  {{#if statusDenied}}
+    <label class="btn btn-danger btn-xs">{{ status }}</label>
+  {{/if}}
+</template>

@@ -1,0 +1,31 @@
+<template name="config">
+  {{# Layout template="pageHeading" }} {{ i18n 'config.update.title' }} {{/ Layout }}
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-lg-12">
+        {{# Layout template="MediumContentOffset" }}
+        <div class="ibox float-e-margins">
+          {{# Layout template="ContentContainer" }}
+          <div class="ibox-title">
+            {{> reactiveTemplate template="tabs" data=getDataForTabs }}
+          </div>
+          <div class="ibox-content">
+            {{# autoForm collection="orion.config.collection" id="updateConfigForm" type="update" doc=getDoc }}
+              {{# if getFields }}
+                {{# each afFieldNames fields=getFields }}
+                  {{> afQuickField name=this.name options=afOptionsFromSchema }}
+                {{/ each}}
+              {{/ if }}
+            <br>
+            <div class="text-right">
+              <button class="btn btn-primary">{{ i18n 'global.save' }}</button>
+            </div>
+            {{/ autoForm }}
+          </div>
+          {{/ Layout }}
+        </div>
+        {{/ Layout }}
+      </div>
+    </div>
+  </div>
+</template>
