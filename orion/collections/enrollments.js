@@ -68,7 +68,7 @@ Enrollments.attachSchema(new SimpleSchema({
       optional: true,
       autoform: {
         afFormGroup: {
-          'formgroup-class': 'col-xs-7 col-sm-5'
+          'formgroup-class': 'col-xs-12 col-sm-12'
         }
       }
     },
@@ -115,7 +115,7 @@ Enrollments.attachSchema(new SimpleSchema({
       optional: true,
       autoform: {
         afFormGroup: {
-        'formgroup-class': 'col-xs-9 col-sm-6'
+        'formgroup-class': 'col-xs-12 col-sm-12'
         }
       }
     },
@@ -159,7 +159,7 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    'address.phone': {
+    phone: {
       type: Number,
       label: "Phone",
       optional: true,
@@ -170,7 +170,7 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    'address.address': {
+    address: {
       type: String,
       optional: true,
       blackbox: true,
@@ -180,7 +180,7 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    'address.city':{
+    city:{
       type: String,
       optional: true,
       blackbox: true,
@@ -190,22 +190,22 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    // beneficiary: {
-    //   type: Array,
-    //   optional: true,
-    //   blackbox: true
-    // },
-    // 'beneficiary.$': {
-    //   type: Object,
-    //   optional: true,
-    //   blackbox: true,
-    //   autoform: {
-    //     afObjectField: {
-    //       'formgroup-class': 'col-xs-6 col-sm-4'
-    //     }
-    //   }
-    // },
-    'beneficiary.$.name':{
+    beneficiary: {
+      type: Array,
+      optional: true,
+      blackbox: true
+    },
+    'beneficiary.$': {
+      type: Object,
+      optional: true,
+      blackbox: true,
+      autoform: {
+        afObjectField: {
+          'formgroup-class': 'col-xs-6 col-sm-4'
+        }
+      }
+    },
+    'beneficiary.$.name': {
       type: String,
       label: "Name",
       optional: true,
@@ -215,16 +215,16 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    // policyDetails: {
-    //   type:Object,
-    //   optional: true,
-    //   blackbox: true,
-    //   autoform: {
-    //     afObjectField: {
-    //       bodyClass: 'container-fluid row'
-    //     }
-    //   }
-    // },
+    policyDetails: {
+      type:Object,
+      optional: true,
+      blackbox: true,
+      autoform: {
+        afObjectField: {
+          bodyClass: 'container-fluid row'
+        }
+      }
+    },
     'policyDetails.effectivityDate': {
       type: Date,
       label: "Effectivity Date",
@@ -249,11 +249,16 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    // civilStatus :{
-    //   type: Object,
-    //   optional: true,
-    //   blackbox: true
-    // },
+    civilStatus :{
+      type: Object,
+      optional: true,
+      blackbox: true,
+      autoform: {
+        afObjectField: {
+          bodyClass: 'container-fluid row'
+        }
+      }
+    },
     'civilStatus.maritalStatus': {
       type: String,
       label: "Marital Status",
@@ -302,11 +307,16 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    // children: {
-    //   type: Array,
-    //   optional: true,
-    //   blackbox: true
-    // },
+    children: {
+      type: Array,
+      optional: true,
+      blackbox: true,
+      autoform: {
+        afObjectField: {
+          bodyClass: 'container-fluid row'
+        }
+      }
+    },
     'children.$': {
       type: Object,
       optional: true,
@@ -353,21 +363,21 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    // parent: {
-    //   type: Array,
-    //   optional: true,
-    //   blackbox: true,
-    // },
-    // 'parent.$': {
-    //   type: Object,
-    //   optional: true,
-    //   blackbox: true,
-    //   autoform: {
-    //     afObjectField: {
-    //       bodyClass: 'row'
-    //     }
-    //   }
-    // },
+    parent: {
+      type: Array,
+      optional: true,
+      blackbox: true
+    },
+    'parent.$': {
+      type: Object,
+      optional: true,
+      blackbox: true,
+      autoform: {
+        afObjectField: {
+          bodyClass: 'container-fluid row'
+        }
+      }
+    },
     'parent.$.name': {
       type: String,
       label: "Parent Name",
@@ -404,21 +414,21 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    // sibling: {
-    //   type: Array,
-    //   optional: true,
-    //   blackbox: true
-    // },
-    // 'sibling.$': {
-    //   type: Object,
-    //   optional: true,
-    //   blackbox: true,
-    //   autoform: {
-    //     afObjectField: {
-    //       bodyClass: 'container-fluid row'
-    //     }
-    //   }
-    // },
+    sibling: {
+      type: Array,
+      optional: true,
+      blackbox: true
+    },
+    'sibling.$': {
+      type: Object,
+      optional: true,
+      blackbox: true,
+      autoform: {
+        afObjectField: {
+          bodyClass: 'container-fluid row'
+        }
+      }
+    },
     'sibling.$.name': {
       type: String,
       label: "Sibling Name",
