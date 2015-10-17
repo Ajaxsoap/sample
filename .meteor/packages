@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 orionjs:core
 orionjs:relationships
 momentjs:moment
@@ -18,29 +17,43 @@ dburles:collection-helpers
 aldeed:autoform-bs-datepicker
 rajit:bootstrap3-datepicker
 # audit-argument-checks
-# orionjs:summernote
+orionjs:summernote
 orionjs:file-attribute
 orionjs:filesystem
 aldeed:autoform
 less
 orionjs:image-attribute
-nicolaslopezj:orion-exporter
 lee:countdown
 orionjs:config
 meteorhacks:kadira
-nilsdannemann:pdfmake
+#nilsdannemann:pdfmake
 brightbind:orion-gridfs
 vsivsi:orion-file-collection
-#perak:joins
 mickaelfm:vermongo
 cfs:standard-packages
 cfs:filesystem
 dsyko:meteor-node-csv
 meteorhacks:npm
 cfs:gridfs
+reactive-dict
+#ongoworks:pdf
+baysao:autoform-bs-daterangepicker
+reywood:publish-composite
+meteorhacks:unblock
+tmeasday:publish-counts
+gabrielengel:konecty-mongo-counter
 
-
-npm-container
-#mpowaga:autoform-autocomplete
-#loredanacirstea:meteor-tabular-filter
-jameslefrere:madewithmeteor
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+random
+ejson
+spacebars
+check

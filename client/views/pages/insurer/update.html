@@ -12,12 +12,7 @@
             <div class="ibox-content">
               {{#if Template.subscriptionsReady}}
                 {{# if item.canShowUpdate }}
-                  <p>
-                    Loan cycle:
-                    <select class='form-control'>
-                      {{> version}}
-                    </select>
-                  </p>
+
                   {{> quickForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }}
                   <br>
                   <div class="buttons text-right">
@@ -34,14 +29,4 @@
         </div>
       </div>
     </div>
-</template>
-
-<template name="cycle">
-  {{#each versions}}
-    <option value="option">{{_version}}</option>
-  {{/each}}
-</template>
-
-<template name="version">
-  <option value="option">{{_version}}</option>
 </template>

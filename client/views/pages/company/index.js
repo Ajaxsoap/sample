@@ -20,6 +20,8 @@ Template.companiesIndex.onRendered(function() {
     Meteor.defer(function () {
       Session.set('orionBootstrapCollectionsIndex_showTable', true);
     });
+    Meteor.subscribe("company");
+    Meteor.subscribe("branch");
   });
 });
 

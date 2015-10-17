@@ -36,9 +36,11 @@
                         PAIS
                     </div>
                 </li>
+
                 <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
                     <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
                 </li>
+                
                 {{# each adminLinks }}
                   {{> paisSidebarLink }}
                 {{/ each }}
@@ -50,6 +52,7 @@
     </nav>
 </template>
 <template name="paisSidebarLink">
+
   {{# if childs }}
     <li>
       {{# if routeName }}

@@ -1,4 +1,7 @@
-Meteor.subscribe('companies','name');
+Tracker.autorun(function(){
+  Meteor.subscribe('company');
+});
+
 
 Template.claimApproval.helpers({
   approvalLetterSchema: function() {
@@ -25,7 +28,7 @@ Template.claimApproval.events({
             width: 150
           },
           {
-            text: ['Date: ',today],
+            text: ['Date: ','today'],
             style: 'date'
           },
           {
@@ -42,7 +45,7 @@ Template.claimApproval.events({
           },
           {
 
-          	text: ['Dear ', company],
+          	text: ['Dear ', 'company'],
             style:'greeting',
           	bold: false
 
@@ -56,8 +59,8 @@ Template.claimApproval.events({
           	style: 'tableData',
           	table: {
           		body: [
-          			['Claim Number:', claimNumber],
-          			['Name of Insured: ', name],
+          			['Claim Number:', 'claimNumber'],
+          			['Name of Insured: ', 'name'],
                 ['Client Type: ', 'clientType'],
           			['Coverage Period: ', 'December 01, 2014 – June 01, 2015'],
                 ['Date of Death: ', 'deathDate'],

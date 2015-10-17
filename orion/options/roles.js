@@ -1,37 +1,59 @@
 //  Headquarters role
-companyHQ = new Roles.Role('HQ');
-companyHQ.allow('collections.enrollments.index', true);
-companyHQ.allow('collections.enrollments.insert', true);
-companyHQ.allow('collections.enrollments.showCreate', true);
-companyHQ.allow('collections.enrollments.showUpdate', true);
-companyHQ.helper('collections.enrollments.indexFilter', function(){
-  var collections = Enrollments.find({companyId:_id});
-  return collections;
+Roles.registerAction('showDashboard', true);
+// Roles.registerAction('showHQDashboard', 'HQ');
+
+HQ = new Roles.Role('HQ');
+HQ.allow('collections.enrollments.index', true);
+HQ.allow('collections.enrollments.insert', true);
+HQ.allow('collections.enrollments.update', true);
+HQ.allow('collections.enrollments.showCreate', true);
+HQ.allow('collections.enrollments.showUpdate', true);
+HQ.helper('collections.enrollments.indexFilter', function() {
+  var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+  var roles = Roles.userHasRole( this.userId, "HQ" );
+  if ( roles ) {
+    return { company: user.profile.company };
+  } else {
+    return { branch: user.profile.branch };
+  }
 });
 
-companyHQ.allow('collections.claims.index', true);
-companyHQ.allow('collections.claims.insert',true);
-companyHQ.allow('collections.claims.showCreate', true);
-companyHQ.allow('collections.claims.showUpdate', true);
-companyHQ.helper('collections.claims.indexFilter', function(){
-  var collections = Enrollments.find({companyId:_id});
-  return collections;
+HQ.allow('collections.claims.index', true);
+HQ.allow('collections.claims.insert',true);
+HQ.allow('collections.claims.update', true);
+HQ.allow('collections.claims.showCreate', true);
+HQ.allow('collections.claims.showUpdate', true);
+HQ.helper('collections.claims.indexFilter', function() {
+  var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+  var roles = Roles.userHasRole( this.userId, "HQ" );
+  if ( roles ) {
+    return { companyUser: user.profile.company };
+  } else {
+    return { branchUser: user.profile.branch };
+  }
 });
+
 //  branch role
-companyBranch = new Roles.Role('Branch');
-companyBranch.allow('collections.enrollments.index', true);
-companyBranch.allow('collections.enrollments.insert', true);
-companyBranch.allow('collections.enrollments.showCreate', true);
-companyBranch.deny('collections.enrollments.showUpdate', true);
-companyBranch.helper('collections.enrollments.indexFilter', function() {
+Branch = new Roles.Role('Branch');
+Branch.allow('collections.enrollments.index', true);
+Branch.allow('collections.enrollments.insert', true);
+Branch.allow('collections.enrollments.update', true);
+Branch.allow('collections.enrollments.showCreate', true);
+Branch.allow('collections.enrollments.showUpdate', function() {
+  return { createdBy: this.userId };
+});
+Branch.helper('collections.enrollments.indexFilter', function() {
   return { createdBy: this.userId };
 });
 
-companyBranch.allow('collections.claims.index', true);
-companyBranch.allow('collections.claims.insert', true);
-companyBranch.allow('collections.claims.showCreate', true);
-companyBranch.deny('collections.claims.showUpdate', true);
-companyBranch.helper('collections.claims.indexFilter', function() {
+Branch.allow('collections.claims.index', true);
+Branch.allow('collections.claims.insert', true);
+Branch.allow('collections.claims.update', true);
+Branch.allow('collections.claims.showCreate', true);
+Branch.allow('collections.claims.showUpdate', function() {
+  return { createdBy: this.userId };
+});
+Branch.helper('collections.claims.indexFilter', function() {
   return { createdBy: this.userId };
 });
 
@@ -41,7 +63,16 @@ insurer.allow('collections.enrollments.index', true);
 insurer.helper('collections.enrollments.indexFilter', {});
 
 insurer.allow('collections.claims.index', true);
-insurer.helper('collections.claims.indexFilter', function(){
-  return Collection.find({"status":"Pending"});
-
+insurer.allow('collections.claims.update', true);
+insurer.allow('collections.claims.showUpdate', true);
+insurer.helper('collections.claims.indexFilter', function() {
+  // var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+  var insuredCompany = Insurers.findOne(company);
+  var roles = Roles.userHasRole( this.userId, "insurer" );
+  if ( roles ) {
+    console.log(roles);
+    return { companyUser: insuredCompany.company };
+  } else {
+    return { };
+  }
 });

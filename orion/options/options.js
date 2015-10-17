@@ -37,11 +37,3 @@ ReactiveTemplates.set('pages.index', 'pagesIndex');
 ReactiveTemplates.set('pages.create', 'pagesCreate');
 ReactiveTemplates.set('pages.update', 'pagesUpdate');
 ReactiveTemplates.set('pages.delete', 'pagesDelete');
-
-// sidebar reorder
-// orion.links._collection.update({ identifier: 'collections-companies' }, { $set: { index: 1 } });
-// orion.links._collection.update({ identifier: 'collections-branches' }, { $set: { index: 2 } });
-// orion.links._collection.update({ identifier: 'collections-products' }, { $set: { index: 3 } });
-// orion.links._collection.update({ identifier: 'collections-enrollments' }, { $set: { index: 4 } });
-// orion.links._collection.update({ identifier: 'collections-claims' }, { $set: { index: 5 } });
-// orion.links._collection.update({ identifier: 'collections-accounts' }, { $set: { index: 6 } });

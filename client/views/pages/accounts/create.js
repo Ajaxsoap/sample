@@ -1,8 +1,3 @@
-// Template.AccountsCreate.onRendered = function(){
-//   $('.i-checks').iCheck({
-//     checkboxClass: 'icheckbox_square-green'
-//   });
-// };
 AutoForm.addHooks('AccountsCreate', {
   onSuccess: function() {
     setTimeout(function() {

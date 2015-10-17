@@ -13,10 +13,10 @@
               {{#if Template.subscriptionsReady}}
                 {{# if item.canShowUpdate }}
                   <p>
-                    Loan cycle:
-                    <select class='form-control'>
-                      {{> loancycle}}
-                    </select>
+                    Loan cycle:{{ versions }}
+                    <!-- <select class='form-control'>
+                      {{> docVersion}}
+                    </select> -->
                   </p>
                   {{> quickForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }}
                   <br>
@@ -37,11 +37,11 @@
 </template>
 
 <template name="loancycle">
-  {{#each versions}}
-    {{> docVersion}}
-  {{/each}}
+  <!-- {{#each versions}} -->
+    {{_versions}}
+  <!-- {{/each}} -->
 </template>
 
 <template name="docVersion">
-  <option value="option">{{_version}}</option>
+  <option value="option">{{versions}}</option>
 </template>

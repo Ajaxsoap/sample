@@ -3,13 +3,11 @@ Branches = new orion.collection('branches', {
   singularName: 'branch',
   pluralName: 'branches',
   link: {
-    title: 'Branch',
-    $set: { index: 2 }
+    title: 'Branch'
   },
   tabular: {
     columns: [
-      {data: "branch", title: "Branch"},
-      //orion.attributeColumn('createdBy', 'createdBy', 'Created By')
+      {data: "branch", title: "Branch"}
     ]
   }
 });
@@ -21,5 +19,3 @@ Branches.attachSchema(new SimpleSchema({
   },
   createdBy: orion.attribute('createdBy')
 }));
-
-// orion.links._collection.update({ identifier: 'collections-branches' }, { $set: { index: 2 } });

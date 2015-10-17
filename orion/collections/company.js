@@ -1,3 +1,4 @@
+// Products collection
 Products = new orion.collection('products', {
   singularName: 'product',
   pluralName: 'products',
@@ -19,7 +20,7 @@ Products.attachSchema(new SimpleSchema({
     label: "Insurance Type",
     autoform: {
         afFormGroup: {
-          'formgroup-class': 'col-xs-12 col-sm-12'
+          'formgroup-class': 'col-xs-6 col-sm-4'
         }
     }
   },
@@ -41,20 +42,21 @@ Products.attachSchema(new SimpleSchema({
         }
     }
   },
-  grossPremium: {
-    type: Number,
-    label: "Premium",
-    optional: true,
-    autoform: {
-        afFormGroup: {
-          'formgroup-class': 'col-xs-6 col-sm-4'
-        }
-    }
-  },
+
   createdBy: orion.attribute('createdBy')
 }));
 
 
+Products.helpers({
+  premium: function(){
+    var grossPremium = this.grossPremium;
+    grossPremium = this.netPremium + this.grossProfit;
+    return grossPremium;
+  }
+});
+
+
+//Company collection
 Companies = new orion.collection('companies', {
   singularName: 'company',
   pluralName: 'companies',
@@ -64,7 +66,7 @@ Companies = new orion.collection('companies', {
   tabular: {
     columns: [
       {data: "name", title: "Company Name"},
-      orion.attributeColumn('hasOne','productId.0.name','Product Type')
+      orion.attributeColumn('hasMany','productId','Product Type')
     ]
   }
 });
@@ -109,13 +111,91 @@ Companies.attachSchema(new SimpleSchema ({
     publicationName: 'branchPub'
   }
   ),
+  // insurerId: orion.attribute('hasMany', {
+  //   label: "Insurer",
+  //   autoform: {
+  //       afFormGroup: {
+  //         'formgroup-class': 'col-xs-6 col-sm-4'
+  //       }
+  //   }
+  // },
+  // {
+  //   collection: Insurers,
+  //   titleField: 'name',
+  //   additionalFields:['active'],
+  //   publicationName: 'InsurersPub'
+  // }
+  // ),
   createdBy: orion.attribute('createdBy')
 }));
 
-Products.helpers({
-  premium: function(){
-    var grossPremium = this.grossPremium;
-    grossPremium = this.netPremium + this.grossProfit;
-    return grossPremium;
+// Insurer collection
+Insurers = new orion.collection('insurers', {
+  singularName: 'insurer',
+  pluralName: 'insurers',
+  link: {
+    title: 'Insurers'
+  },
+  tabular: {
+    columns: [
+      {data:'name', title: 'Insurer Name'},
+      orion.attributeColumn('hasMany', 'productId', 'Insurance Type'),
+      orion.attributeColumn('hasMany', 'company', 'Insured Company')
+    ]
+  }
+});
+
+
+Insurers.attachSchema(new SimpleSchema({
+  name: {
+    type: String,
+    label: "Insurer Name",
+    autoform: {
+        afFormGroup: {
+          'formgroup-class': 'col-xs-6 col-sm-4'
+        }
+    }
+  },
+  productId: orion.attribute('hasMany', {
+    label: "Product Type",
+    autoform: {
+        afFormGroup: {
+          'formgroup-class': 'col-xs-6 col-sm-4'
+        }
+    }
+  },
+  {
+    collection: Products,
+    titleField: 'name',
+    additionalFields:['active'],
+    publicationName: 'insuranceProduct'
+  }
+  ),
+  // company: orion.attribute('hasMany', {
+  //   label: "Company",
+  //   autoform: {
+  //     afFormGroup: {
+  //       'formgroup-class': 'col-xs-6 col-sm-4'
+  //     }
+  //   }
+  // },
+  // {
+  //   collection: Companies,
+  //   titleField: 'name',
+  //   additionalFields: ['active'],
+  //   publicationName: 'companyServe'
+  // }
+  // )
+}));
+
+Insurers.allow({
+  insert: function(){
+    return true;
+  },
+  update: function(){
+    return true;
+  },
+  remove: function(){
+    return true;
   }
 });

@@ -1,3 +1,7 @@
+Tracker.autorun(function(){
+   Meteor.subscribe("versions");
+});
+
 Template.enrollmentsUpdate.events({
   'click .save-btn': function () {
     $('#orionBootstrapCollectionsUpdateForm').submit();
@@ -31,7 +35,9 @@ AutoForm.addHooks('orionBootstrapCollectionsUpdateForm', {
 });
 
 Template.loancycle.helpers({
-  versions: function() {
-    return Enrollments.findOne(this._id).version();
+  versions: function(_version) {
+    var docVersion = Enrollments.findOne({"_id":_version}).versions().count();
+    console.log(docVersion);
+    return docVersion;
   }
 });

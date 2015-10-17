@@ -4,7 +4,6 @@ Template.branchCreate.events({
   }
 });
 
-
 AutoForm.addHooks('orionBootstrapCollectionsCreateForm', {
   onSuccess: function() {
     Router.go(this.collection.indexPath());

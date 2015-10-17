@@ -1,5 +1,3 @@
-Meteor.subscribe("insurers");
-
 Template.insurerIndex.events({
   'click tr': function(event) {
     if (!$(event.target).is('td')) return;
@@ -22,6 +20,7 @@ Template.insurerIndex.onRendered(function() {
     Meteor.defer(function () {
       Session.set('orionBootstrapCollectionsIndex_showTable', true);
     });
+    Meteor.subscribe("insurers");
   });
 });
 

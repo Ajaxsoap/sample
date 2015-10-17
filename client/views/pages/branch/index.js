@@ -1,3 +1,4 @@
+
 Template.branchIndex.events({
   'click tr': function(event) {
     if (!$(event.target).is('td')) return;
@@ -20,6 +21,7 @@ Template.branchIndex.onRendered(function() {
     Meteor.defer(function () {
       Session.set('orionBootstrapCollectionsIndex_showTable', true);
     });
+    Meteor.subscribe("branch");
   });
 });
 
