@@ -1,12 +1,12 @@
-Tracker.autorun(function(){
-  Meteor.subscribe("enrollments", 5);
-  console.log("Enrollments count: ", Counts.get("enrollmentsCount"));
-  Meteor.subscribe("claim", 5);
-  console.log("Claims count: ", Counts.get("claimsCount"));
-  Meteor.subscribe('companies');
-  Meteor.subscribe('branches');
-  Meteor.subscribe("userProfile");
-});
+// Tracker.autorun(function(){
+//   Meteor.subscribe("enrollments", 5);
+//   console.log("Enrollments count: ", Counts.get("enrollmentsCount"));
+//   Meteor.subscribe("claim", 5);
+//   console.log("Claims count: ", Counts.get("claimsCount"));
+//   Meteor.subscribe('companies');
+//   Meteor.subscribe('branches');
+//   Meteor.subscribe("userProfile");
+// });
 
 var Session = new ReactiveDict();
 

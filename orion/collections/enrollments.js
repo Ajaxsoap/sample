@@ -509,6 +509,9 @@ Claim = new orion.collection('claims', {
 Claim.attachSchema(new SimpleSchema ({
   dateFiled: {
     type: Date,
+    autoform: {
+      'formgroup-class': 'hidden col-xs-6 col-sm-4'
+    },
     autoValue: function() {
       if (this.isInsert) {
         return new Date();
@@ -518,10 +521,42 @@ Claim.attachSchema(new SimpleSchema ({
         this.unset();  // Prevent user from supplying their own value
       }
     },
-    autoform: {
-      class: "hidden"
-    }
+
   },
+  companyUser: {
+    type: String,
+    optional: true,
+    autoform: {
+      'formgroup-class': 'hidden col-xs-6 col-sm-4'
+    },
+    autoValue: function() {
+    if (this.isInsert) {
+      var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+      if (user) {
+        return user && user.profile.company;
+      }
+    } else {
+      this.unset();  // Prevent user from supplying their own value
+    }
+  }
+  },
+  branchUser: {
+    type: String,
+    optional: true,
+    autoform: {
+      'formgroup-class': 'hidden col-xs-6 col-sm-4'
+    },
+    autoValue: function() {
+    if (this.isInsert) {
+      var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+      if (user) {
+        return user && user.profile.branch;
+      }
+    } else {
+      this.unset();  // Prevent user from supplying their own value
+    }
+  }
+},
   claimNumber: {
     type: String,
     label: "Claim Number",
@@ -551,13 +586,18 @@ Claim.attachSchema(new SimpleSchema ({
     publicationName: 'enrolledClaim',
     filter: function(userId) {
       var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
-      var roles = Roles.userHasRole(userId, 'HQ');
-      if ( roles ) {
+      var admin = Roles.userHasRole(userId, "admin");
+      var hq = Roles.userHasRole(userId, 'HQ');
+      var branch = Roles.userHasRole(userId, 'Branch');
+      if ( admin ) {
+        console.log( "Hello Admin" );
+        return {};
+      } else if ( hq ) {
         console.log( "Hello HQ" );
-        return { createdBy: userId };
-      } else {
+        return { company: user.profile.company };
+      } else if ( branch ) {
         console.log( "Hello Branch" );
-        return { createdBy: userId };
+        return { company: user.profile.branch };
       }
 
       }
@@ -637,47 +677,14 @@ Claim.attachSchema(new SimpleSchema ({
 
     }
   },
-  companyUser: {
-    type: String,
-    optional: true,
-    autoform: {
-      class: 'hidden col-xs-2 col-sm-2'
-    },
-    autoValue: function() {
-    if (this.isInsert) {
-      var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
-      if (user) {
-        return user && user.profile.company;
-      }
-    } else {
-      this.unset();  // Prevent user from supplying their own value
-    }
-  }
-  },
-  branchUser: {
-    type: String,
-    optional: true,
-    autoform: {
-      class: 'hidden col-xs-2 col-sm-2'
-    },
-    autoValue: function() {
-    if (this.isInsert) {
-      var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
-      if (user) {
-        return user && user.profile.branch;
-      }
-    } else {
-      this.unset();  // Prevent user from supplying their own value
-    }
-  }
-},
+
   remarks: {
     type: String,
     label: "Remarks",
     optional: true,
     autoform: {
       rows: 4,
-      'formgroup-class': 'col-xs-12 col-sm-12'
+      'formgroup-class': 'col-xs-8 col-sm-8'
     }
   },
   file: orion.attribute('file',{
@@ -685,7 +692,7 @@ Claim.attachSchema(new SimpleSchema ({
     //title:"My File",
     optional: true,
     autoform: {
-      'formgroup-class': 'col-xs-6 col-sm-4'
+      'formgroup-class': 'col-xs-4 col-sm-4'
     }
   }),
   createdBy: orion.attribute('createdBy')

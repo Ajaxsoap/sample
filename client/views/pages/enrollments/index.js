@@ -58,12 +58,14 @@ Template.enrollmentsIndex.helpers({
   showTable: function() {
     return Session.get('orionBootstrapCollectionsIndex_showTable');
   },
-  company: function () {
-    var companyEnrollee = Enrollments.findOne({_id:company});
-    console.log(companyEnrollee);
-    return companyEnrollee && companyEnrollee;
-
-  }
+  // monthCount: function() {
+  //   var self = this;
+  //   var dateNow = null;
+  //   var dateMaturity = Enrollments.find(policyDetails.maturityDate);
+  //   var monthLeft = countdown(dateNow, dateMaturity, countdown.MONTHS | countdown.DAYS, 2);
+  //   var message = monthLeft.toHTML("label");
+  //   return message;
+  // },
 });
 
 
