@@ -37,10 +37,21 @@
                     </div>
                 </li>
 
+                {{#if userHasPermission 'Dashboard'}}
                 <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
                     <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
                 </li>
-                
+                {{/if}}
+                {{#if userHasPermission 'showHQDashboard'}}
+                <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
+                    <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
+                </li>
+                {{/if}}
+                {{#if userHasPermission 'showBranchDashboard'}}
+                <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
+                    <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
+                </li>
+                {{/if}}
                 {{# each adminLinks }}
                   {{> paisSidebarLink }}
                 {{/ each }}

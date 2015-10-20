@@ -36,12 +36,9 @@ dsyko:meteor-node-csv
 meteorhacks:npm
 cfs:gridfs
 reactive-dict
-#ongoworks:pdf
 baysao:autoform-bs-daterangepicker
-reywood:publish-composite
 meteorhacks:unblock
 tmeasday:publish-counts
-gabrielengel:konecty-mongo-counter
 
 standard-minifiers
 meteor-base

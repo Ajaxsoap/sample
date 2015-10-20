@@ -557,25 +557,12 @@ Claim.attachSchema(new SimpleSchema ({
     }
   }
 },
-  claimNumber: {
-    type: String,
-    label: "Claim Number",
-    autoform: {
-      afFieldInput: {
-        //type: 'autocomplete-input',
-        placeholder: 'CompanyName-ProductType-Year-XXXX',
-        //var user = Roles.userHasRole('');
-      },
-      afFormGroup: {
-        'formgroup-class': 'col-xs-6'
-      }
-    }
-  },
+
   enrollmentId: orion.attribute('hasOne', {
     label: "Insured Name",
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6'
+        'formgroup-class': 'col-xs-12 col-sm-12'
       }
     }
   },
@@ -597,7 +584,7 @@ Claim.attachSchema(new SimpleSchema ({
         return { company: user.profile.company };
       } else if ( branch ) {
         console.log( "Hello Branch" );
-        return { company: user.profile.branch };
+        return { createdBy: userId };
       }
 
       }
@@ -677,16 +664,30 @@ Claim.attachSchema(new SimpleSchema ({
 
     }
   },
-
+  claimNumber: {
+    type: String,
+    label: "Claim Number",
+    autoform: {
+      afFieldInput: {
+        //type: 'autocomplete-input',
+        placeholder: 'CompanyName-ProductType-Year-XXXX',
+        //var user = Roles.userHasRole('');
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-6 col-sm-4'
+      }
+    }
+  },
   remarks: {
     type: String,
     label: "Remarks",
     optional: true,
     autoform: {
       rows: 4,
-      'formgroup-class': 'col-xs-8 col-sm-8'
+      'formgroup-class': 'col-xs-6 col-sm-4'
     }
   },
+
   file: orion.attribute('file',{
     label: "Attachments",
     //title:"My File",

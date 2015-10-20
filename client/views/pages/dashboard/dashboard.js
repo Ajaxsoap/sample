@@ -1,12 +1,12 @@
-// Tracker.autorun(function(){
-//   Meteor.subscribe("enrollments", 5);
-//   console.log("Enrollments count: ", Counts.get("enrollmentsCount"));
-//   Meteor.subscribe("claim", 5);
-//   console.log("Claims count: ", Counts.get("claimsCount"));
-//   Meteor.subscribe('companies');
-//   Meteor.subscribe('branches');
-//   Meteor.subscribe("userProfile");
-// });
+Tracker.autorun(function(){
+  Meteor.subscribe("enrollments");
+  console.log("Enrollments count: ", Counts.get("enrollmentsCount"));
+  Meteor.subscribe("claims");
+  console.log("Claims count: ", Counts.get("claimsCount"));
+  Meteor.subscribe('companies');
+  Meteor.subscribe('branches');
+  Meteor.subscribe("userProfile");
+});
 
 var Session = new ReactiveDict();
 
@@ -154,25 +154,21 @@ Template.dashboard.rendered = function(){
  });
 
 Template.companyEnrolleesDashboard.helpers({
-  "branchEnrolleesList": function(userId){
+  branchEnrolleesList: function(branch){
     var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
-    var roles = Roles.userHasRole( this.userId, "HQ" );
-    var branch = Companies.find({},{ "_id":branchId });
-    if ( roles ) {
-      console.log(roles);
-      return { branch: user.profile.company };
-    } else {
-      return "No branch available";
+    var Branch = Branches.find();
+      if ( Branch ){
+        return Branch && Branch.branch;
+      }
     }
 
-  },
-  "branchName": function(branch) {
-    var branchE = Branches.findOne( { "_id":branch } );
-    if ( branchE ){
-      console.log(branchE);
-      return branchE && branchE.branch;
-    }
-   },
+  // branchName: function(branch) {
+  //   var branchE = Branches.findOne( { "_id":branch } );
+  //   if ( branchE ){
+  //     console.log(branchE);
+  //     return branchE && branchE.branch;
+  //   }
+  //  },
 });
  Template.enolledTable.events({
    // use keyup to implement dynamic filtering

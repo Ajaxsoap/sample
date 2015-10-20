@@ -106,8 +106,9 @@
           </div>
         </div>
     </div>
-    {{ else }}
+    {{/if}}
 
+    {{# if userHasPermission 'showHQDashboard'}}
     <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
             <div class="col-lg-3">
@@ -163,6 +164,40 @@
         </div>
     </div>
     {{/if}}
+
+    {{# if userHasPermission 'showBranchDashboard'}}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.index' }}" class="label label-primary">Enrollments</a></span>
+                        <h5>Enrollments</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{ enrollmentsCompanyCount }}</h1>
+                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.create' }}" class="label label-primary"><span class="fa fa-plus"></span>&nbsp;Add Enrollee</a></span>
+                        <small>Total Enrollments</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.index' }}" class="label label-info">Claims</a></span>
+                        <h5>Claims</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{ claimsCompanyCount }}</h1>
+                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.create' }}" class="label label-info"><span class="fa fa-plus"></span>&nbsp;Add Claims</a></span>
+                        <small>Total Claims</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
 </template>
 
 <template name="enolledTable">
@@ -337,7 +372,7 @@
     <tbody>
       {{#each branchEnrolleesList}}
       <tr>
-        <td>{{ branchId }}</td>
+        <td>{{ branch }}</td>
         <td></td>
       </tr>
       {{/each}}

@@ -6,7 +6,7 @@ Options.set('profileSchema', {
     type: String,
     label: orion.helpers.getTranslation('accounts.schema.profile.name') // leave it like this to keep the translation
   },
-  company: orion.attribute('hasOne',{
+  company: orion.attribute('hasMany',{
     label: "Company"
   },
   {
