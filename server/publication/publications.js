@@ -1,8 +1,9 @@
 function getQuery(user) {
-  var userProfile  = Meteor.users.findOne({"_id": user}, {fields:{profile: 1}});
+  var userProfile  = Meteor.users.findOne({_id: user._id}, {fields:{profile: 1}});
   var adminRole = Roles.userHasRole(user._id, "admin");
   var hqRole = Roles.userHasRole(user._id, "HQ");
   var branchRole = Roles.userHasRole(user._id, "Branch");
+  var insurerRole = Roles.userHasRole(user._id, "insurer");
 
   if ( adminRole )
     return {};
@@ -10,6 +11,8 @@ function getQuery(user) {
     return {company: userProfile.profile.company};
   else if ( branchRole )
     return {createdBy: user._id};
+  else if ( insurerRole )
+    return {};
   else
     throw new Error('getQuery:  unknown role for user (' + user._id + ')');
 }
@@ -17,7 +20,6 @@ function getQuery(user) {
 Meteor.publish("enrollments", function (limit) {
   var user  = Meteor.users.findOne({"_id": this.userId}, {fields:{profile: 1}});
   var query = getQuery(user);
-
   Counts.publish(this, 'enrollmentsCount', Enrollments.find(query), {noReady: true});
   if (limit) {
     return Enrollments.find(query);

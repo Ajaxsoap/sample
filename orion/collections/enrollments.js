@@ -523,7 +523,7 @@ Claim.attachSchema(new SimpleSchema ({
     },
 
   },
-  companyUser: {
+  company: {
     type: String,
     optional: true,
     autoform: {
@@ -540,7 +540,7 @@ Claim.attachSchema(new SimpleSchema ({
     }
   }
   },
-  branchUser: {
+  branch: {
     type: String,
     optional: true,
     autoform: {
@@ -576,6 +576,7 @@ Claim.attachSchema(new SimpleSchema ({
       var admin = Roles.userHasRole(userId, "admin");
       var hq = Roles.userHasRole(userId, 'HQ');
       var branch = Roles.userHasRole(userId, 'Branch');
+      var insurer = Roles.userHasRole(userId, 'insurer');
       if ( admin ) {
         console.log( "Hello Admin" );
         return {};
@@ -585,9 +586,11 @@ Claim.attachSchema(new SimpleSchema ({
       } else if ( branch ) {
         console.log( "Hello Branch" );
         return { createdBy: userId };
+      } else if ( insurer ) {
+        console.log( "Hello Insurer" );
+        return { company: user.profile.company };
       }
-
-      }
+    }
   }),
   clientType: {
     type: String,
@@ -684,7 +687,7 @@ Claim.attachSchema(new SimpleSchema ({
     optional: true,
     autoform: {
       rows: 4,
-      'formgroup-class': 'col-xs-6 col-sm-4'
+      'formgroup-class': 'col-xs-12 col-sm-12'
     }
   },
 

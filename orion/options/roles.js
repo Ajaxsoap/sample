@@ -32,9 +32,9 @@ HQ.helper('collections.claims.indexFilter', function() {
   var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
   var roles = Roles.userHasRole( this.userId, "HQ" );
   if ( roles ) {
-    return { companyUser: user.profile.company };
+    return { company: user.profile.company };
   } else {
-    return { branchUser: user.profile.branch };
+    return { branch: user.profile.branch };
   }
 });
 
@@ -68,28 +68,25 @@ Branch.helper('collections.claims.indexFilter', function() {
 
 // Insurer role
 insurer = new Roles.Role('insurer');
+insurer.deny('showDashboard', true);
+insurer.deny('showBranchDashboard', true);
+insurer.deny('showHQDashboard', true);
+
 insurer.allow('collections.enrollments.index', true);
 insurer.helper('collections.enrollments.indexFilter', function() {
-  var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
-  var roles = Roles.userHasRole( this.userId, "insurer" );
+  var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { profile: 1 }});
+  var insurerName = Insurer.find({ company: 1 });
+  var roles = Roles.userHasRole( this.userId, 'insurer');
   if ( roles ) {
-    console.log(user.profile.company);
-    return { company: user.profile.company };
+    console.log(roles);
+    return { company: insurerName };
   } else {
-    return [];
+    console.log("this an else statement");
+    return "No data available";
   }
 });
 
 insurer.allow('collections.claims.index', true);
 insurer.allow('collections.claims.update', true);
 insurer.allow('collections.claims.showUpdate', true);
-insurer.helper('collections.claims.indexFilter', function() {
-  var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
-  var roles = Roles.userHasRole( this.userId, "insurer" );
-  if ( roles ) {
-
-    return { company: user.profile.company };
-  } else {
-    return [];
-  }
-});
+insurer.helper('collections.claims.indexFilter', {});

@@ -37,7 +37,7 @@
                     </div>
                 </li>
 
-                {{#if userHasPermission 'Dashboard'}}
+                {{#if userHasPermission 'showDashboard'}}
                 <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
                     <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
                 </li>
