@@ -1,5 +1,5 @@
 ReactiveTemplates.set('layout', 'mainLayout');
-ReactiveTemplates.set('login', 'login');
+ReactiveTemplates.set('admin.login', 'paisLogin');
 ReactiveTemplates.set('configUpdate', 'config');
 ReactiveTemplates.set('dictionaryUpdate', 'myDictionaryUpdate');
 ReactiveTemplates.set('accounts.index', 'AccountsIndex');

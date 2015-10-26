@@ -12,7 +12,7 @@ function getQuery(user) {
   else if ( branchRole )
     return {createdBy: user._id};
   else if ( insurerRole )
-    return {};
+    return {insurer: userProfile.profile.insurer};
   else
     throw new Error('getQuery:  unknown role for user (' + user._id + ')');
 }
@@ -49,7 +49,15 @@ Meteor.publish("versions", function(){
 });
 
 Meteor.publish("companies", function(){
-	return Companies.find({},{name: 1, branchId: 1});
+  return Companies.find();
+  // var user  = Meteor.users.findOne({"_id": this.userId}, {fields:{profile: 1}});
+  // var query = getQuery(user);
+  // Counts.publish(this, 'branchCount', Companies.find(query), {noReady: true});
+  // if ( limit ) {
+  //   return Companies.find(query);
+  // } else {
+  //   return Companies.find(query), {limit: limit};
+  // }
 });
 
 Meteor.publish("branches", function(){

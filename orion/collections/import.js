@@ -1,6 +1,6 @@
 Uploads = new FS.Collection('uploads', {
-	stores:[new FS.Store.FileSystem("uploads",{path: "~/Documents/Meteor-Labs/Marvin/orion-unicorn/imports"})] //local path
-	// stores:[new FS.Store.FileSystem("uploads",{path: "imports"})] // remote path
+	// stores:[new FS.Store.FileSystem("uploads",{path: "~/Documents/Meteor-Labs/Marvin/orion-unicorn/imports"})] //local path
+	stores: [new FS.Store.FileSystem("uploads",{path: "imports"})] // remote path
 });
 
 Uploads.allow({

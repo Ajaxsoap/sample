@@ -19,6 +19,17 @@ this.DashboardController = RouteController.extend({
 	isReady: function() {
 
       var subs = [
+				Meteor.subscribe("enrollments",function () {
+					console.log('enrollments count: ', Counts.get('enrollmentsCount'));
+				}),
+				Meteor.subscribe("claims", function(){
+					console.log("Claims count: ", Counts.get("claimsCount"));
+				}),
+				Meteor.subscribe("companies", function() {
+					console.log("Branches count: ", Counts.get("branchCount"));
+				}),
+				Meteor.subscribe("branches"),
+				Meteor.subscribe("userProfile")
 		];
 		var ready = true;
 		_.each(subs, function(sub) {

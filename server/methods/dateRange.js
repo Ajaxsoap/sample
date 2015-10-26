@@ -1,7 +1,8 @@
 Meteor.methods({
   dataEnrolled:function(doc){
     check(doc, DateRangeSchema);
-    var start = Enrollments.find("policyDetails.effectivityDate");
+    var start = Enrollments.findOne({},{"policyDetails.effectivityDate": 1});
+    console.log(start);
     this.unblock();
     DateRangeSchema({
       startDate: start

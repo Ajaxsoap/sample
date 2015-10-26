@@ -10,14 +10,26 @@
               <div class="ibox-title">
               </div>
               <div class="ibox-content">
-            {{# autoForm schema=getSchema id="updateMyProfileForm" collection="Meteor.users" type="update" doc=getDoc }}
-              {{> afQuickFields name='profile' }}
-              <br>
-              <div class="text-right">
-                <a class="btn btn-default" href="{{ RouterLayerPathFor 'myAccount.index' }}">{{ i18n 'global.cancel' }}</a>
-                <button class="btn btn-primary">{{ i18n 'global.save' }}</button>
-              </div>
-            {{/ autoForm }}
+            {{# if userHasPermission 'AccountProfile'}}
+              {{# autoForm schema=getSchema id="updateMyProfileForm" collection="Meteor.users" type="update" doc=getDoc }}
+                {{> afQuickFields name='profile' }}
+                <br>
+                <div class="text-right">
+                  <a class="btn btn-default" href="{{ RouterLayerPathFor 'myAccount.index' }}">{{ i18n 'global.cancel' }}</a>
+                  <button class="btn btn-primary">{{ i18n 'global.save' }}</button>
+                </div>
+              {{/ autoForm }}
+
+            {{else}}
+              {{# autoForm schema=getSchema id="updateMyProfileForm" collection="Meteor.users" type="disabled" doc=getDoc }}
+                {{> afQuickFields name='profile' }}
+                <br>
+                <!-- <div class="text-right">
+                  <a class="btn btn-default" href="{{ RouterLayerPathFor 'myAccount.index' }}">{{ i18n 'global.cancel' }}</a>
+                  <button class="btn btn-primary">{{ i18n 'global.save' }}</button>
+                </div> -->
+              {{/ autoForm }}
+            {{/if}}
           </div>
         </div>
       </div>

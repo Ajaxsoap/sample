@@ -110,6 +110,23 @@ Enrollments.attachSchema(new SimpleSchema({
       }
     }
     },
+    insurer: {
+      type: String,
+      optional: true,
+      autoform: {
+        'formgroup-class': 'hidden col-xs-6 col-sm-4'
+      },
+      autoValue: function() {
+        if (this.isInsert) {
+          var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+          if (user) {
+            return user && user.profile.insurer;
+          }
+        } else {
+          this.unset();  // Prevent user from supplying their own value
+        }
+      }
+    },
     productId: orion.attribute('hasOne', {
       label: "Insurance Type",
       optional: true,
@@ -557,6 +574,23 @@ Claim.attachSchema(new SimpleSchema ({
     }
   }
 },
+insurer: {
+  type: String,
+  optional: true,
+  autoform: {
+    'formgroup-class': 'hidden col-xs-6 col-sm-4'
+  },
+  autoValue: function() {
+    if (this.isInsert) {
+      var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+      if (user) {
+        return user && user.profile.insurer;
+      }
+    } else {
+      this.unset();  // Prevent user from supplying their own value
+    }
+  }
+},
 
   enrollmentId: orion.attribute('hasOne', {
     label: "Insured Name",
@@ -588,7 +622,7 @@ Claim.attachSchema(new SimpleSchema ({
         return { createdBy: userId };
       } else if ( insurer ) {
         console.log( "Hello Insurer" );
-        return { company: user.profile.company };
+        return { insurer: user.profile.insurer };
       }
     }
   }),
@@ -672,9 +706,7 @@ Claim.attachSchema(new SimpleSchema ({
     label: "Claim Number",
     autoform: {
       afFieldInput: {
-        //type: 'autocomplete-input',
         placeholder: 'CompanyName-ProductType-Year-XXXX',
-        //var user = Roles.userHasRole('');
       },
       afFormGroup: {
         'formgroup-class': 'col-xs-6 col-sm-4'
@@ -692,8 +724,7 @@ Claim.attachSchema(new SimpleSchema ({
   },
 
   file: orion.attribute('file',{
-    label: "Attachments",
-    //title:"My File",
+    label: "Upload File Attachments",
     optional: true,
     autoform: {
       'formgroup-class': 'col-xs-4 col-sm-4'

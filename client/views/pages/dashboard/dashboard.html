@@ -12,7 +12,7 @@
                         <h5>Enrollments</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">{{enrollmentsCount}}</h1>
+                        <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
                         <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.create' }}" class="label label-primary"><span class="fa fa-plus"></span>&nbsp;Add Enrollee</a></span>
                         <small>Total Enrollments</small>
                     </div>
@@ -25,7 +25,7 @@
                         <h5>Claims</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">{{claimsCount}}</h1>
+                        <h1 class="no-margins">{{getPublishedCount 'claimsCount'}}</h1>
                         <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.create' }}" class="label label-info"><span class="fa fa-plus"></span>&nbsp;Add Claims</a></span>
                         <small>Total Claims</small>
                     </div>
@@ -118,7 +118,7 @@
                         <h5>Enrollments</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">{{ enrollmentsCompanyCount }}</h1>
+                        <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
                         <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.create' }}" class="label label-primary"><span class="fa fa-plus"></span>&nbsp;Add Enrollee</a></span>
                         <small>Total Enrollments</small>
                     </div>
@@ -131,7 +131,7 @@
                         <h5>Claims</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">{{ claimsCompanyCount }}</h1>
+                        <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
                         <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.create' }}" class="label label-info"><span class="fa fa-plus"></span>&nbsp;Add Claims</a></span>
                         <small>Total Claims</small>
                     </div>
@@ -140,7 +140,7 @@
 
         </div>
         <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-6">
             <div class="ibox-title">
               Enrollments per branch
             </div>
@@ -148,12 +148,12 @@
               {{> companyEnrolleesDashboard }}
             </div>
           </div>
-        </div>
+        <!-- </div>
         <p>
           &nbsp;
         </p>
-        <div class="row">
-          <div class="col-lg-12">
+        <div class="row"> -->
+          <div class="col-lg-6">
             <div class="ibox-title">
               Claims per branch
             </div>
@@ -175,7 +175,7 @@
                         <h5>Enrollments</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">{{ enrollmentsCompanyCount }}</h1>
+                        <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
                         <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.create' }}" class="label label-primary"><span class="fa fa-plus"></span>&nbsp;Add Enrollee</a></span>
                         <small>Total Enrollments</small>
                     </div>
@@ -188,8 +188,40 @@
                         <h5>Claims</h5>
                     </div>
                     <div class="ibox-content">
-                        <h1 class="no-margins">{{ claimsCompanyCount }}</h1>
+                        <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
                         <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.create' }}" class="label label-info"><span class="fa fa-plus"></span>&nbsp;Add Claims</a></span>
+                        <small>Total Claims</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+    {{# if userHasPermission 'showInsurerDashboard'}}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.index' }}" class="label label-primary">Enrollments</a></span>
+                        <h5>Enrollments</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
+                        <!-- <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.create' }}" class="label label-primary"><span class="fa fa-plus"></span>&nbsp;Add Enrollee</a></span> -->
+                        <small>Total Enrollments</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.index' }}" class="label label-info">Claims</a></span>
+                        <h5>Claims</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
+                        <!-- <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.create' }}" class="label label-info"><span class="fa fa-plus"></span>&nbsp;Add Claims</a></span> -->
                         <small>Total Claims</small>
                     </div>
                 </div>
@@ -202,13 +234,13 @@
 
 <template name="enolledTable">
   <div class="row">
-    <div class="col col-lg-3">
+    <!-- <div class="col col-lg-3">
       <span>
         {{#autoForm schema=dateSchema id="dateRangeSchema" type="method" meteormethod="dataEnrolled"}}
           {{> afQuickField name="dateRange"}}
         {{/autoForm}}
       </span>
-    </div>
+    </div> -->
 
     <div class="col col-lg-4 pull-right">
       <div class="col col-lg-2">
@@ -256,7 +288,7 @@
         {{> paginationButton }}
         {{/each}}
       </div>
-      <span class="btn btn-primary">Total of <strong>{{enrollmentsCount}}</strong> enrollments</span>
+      <span class="btn btn-primary">Total of <strong>{{ getPublishedCount 'enrollmentsCount' }}</strong> enrollments</span>
     </div>
     <div class="pull-right col col-md-6">
       <div class="pull-right btn-group">
@@ -270,13 +302,13 @@
 </template>
 <template name="claimedTable">
   <div class="row">
-    <div class="col col-lg-3">
+    <!-- <div class="col col-lg-3">
       <span>
         {{#autoForm schema=dateSchema id="dateRangeSchema" type="method" meteormethod="dataClaimed"}}
           {{> afQuickField name="dateRange"}}
         {{/autoForm}}
       </span>
-    </div>
+    </div> -->
     <div class="col col-lg-4 pull-right">
       <div class="col col-lg-2">
         <a id="exportClaims" class='export-csv btn btn-warning'>Export</a>
@@ -326,7 +358,7 @@
         {{> paginationButton2 }}
         {{/each}}
       </div>
-      <span class="btn btn-info">Total of <strong>{{claimsCount}}</strong> claims</span>
+      <span class="btn btn-info">Total of <strong>{{ getPublishedCount 'claimsCount' }}</strong> claims</span>
     </div>
 
     <div class="pull-right col col-md-6">
@@ -370,14 +402,17 @@
       </tr>
     </thead>
     <tbody>
-      {{#each branchEnrolleesList}}
-      <tr>
-        <td>{{ branch }}</td>
-        <td></td>
-      </tr>
+      {{#each branchEnrolleesList }}
+        {{> branchList }}
       {{/each}}
     </tbody>
   </table>
+</template>
+<template name="branchList">
+  <tr>
+    <td>{{branchName branch }}</td>
+    <td>{{getPublishedCount 'enrollmentsCount' }}</td>
+  </tr>
 </template>
 <template name="companyClaimsDashboard">
   <table id="branchClaimTable" class=" table table-striped tablesorter">
@@ -389,11 +424,14 @@
     </thead>
     <tbody>
       {{#each branchClaimsList}}
-      <tr>
-        <td>{{ branches }}</td>
-        <td>{{ companyClaimCount }}</td>
-      </tr>
+        {{> claimList}}
       {{/each}}
     </tbody>
   </table>
+</template>
+<template name="claimList">
+  <tr>
+    <td>{{ branchClaimName branch }}</td>
+    <td>{{ getPublishedCount 'claimsCount' }}</td>
+  </tr>
 </template>

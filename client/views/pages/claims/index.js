@@ -1,3 +1,8 @@
+Tracker.autorun(function(){
+  Meteor.subscribe("enrollments");
+  Meteor.subscribe("claims");
+});
+
 Template.claimsIndex.events({
   'click tr': function(event) {
     if (!$(event.target).is('td')) return;
@@ -20,10 +25,6 @@ Template.claimsIndex.onRendered(function() {
     Meteor.defer(function () {
       Session.set('orionBootstrapCollectionsIndex_showTable', true);
     });
-    Meteor.subscribe("enrollments");
-    Meteor.subscribe("claims");
-    Meteor.subscribe("company");
-    Meteor.subscribe("branch");
   });
 });
 

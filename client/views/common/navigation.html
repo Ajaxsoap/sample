@@ -52,6 +52,11 @@
                     <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
                 </li>
                 {{/if}}
+                {{#if userHasPermission 'showInsurerDashboard'}}
+                <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
+                    <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
+                </li>
+                {{/if}}
                 {{# each adminLinks }}
                   {{> paisSidebarLink }}
                 {{/ each }}

@@ -1,3 +1,3 @@
-Meteor.publish("insurers", function(argument){
+Meteor.publish("insurers", function(){
   return Insurers.find();
 });

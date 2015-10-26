@@ -1,3 +1,8 @@
+Tracker.autorun(function(){
+  Meteor.subscribe("enrollments");
+  Meteor.subscribe("claims");
+});
+
 Template.claimsUpdate.events({
   'click .save-btn': function () {
     $('#orionBootstrapCollectionsUpdateForm').submit();

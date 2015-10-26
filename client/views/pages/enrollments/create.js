@@ -1,3 +1,8 @@
+Tracker.autorun(function(){
+  Meteor.subscribe("enrollments");
+  Meteor.subscribe("claims");
+});
+
 Template.enrollmentsCreate.events({
   'click .create-btn': function () {
     $('#orionBootstrapCollectionsCreateForm').submit();

@@ -1,13 +1,18 @@
-//  Headquarters role
+//  Custom Roles action
 Roles.registerAction('showDashboard', true);
 Roles.registerAction('showHQDashboard', 'HQ');
 Roles.registerAction('showBranchDashboard', 'Branch');
+Roles.registerAction('showInsurerDashboard', 'Insurer');
+Roles.registerAction('AccountProfile', true);
 
+
+//  Headquarters role
 HQ = new Roles.Role('HQ');
 HQ.deny('showDashboard', true);
 HQ.deny('showBranchDashboard', true);
 HQ.allow('showHQDashboard', true);
 
+// HQ.deny('AccountProfile', true);
 HQ.allow('collections.enrollments.index', true);
 HQ.allow('collections.enrollments.insert', true);
 HQ.allow('collections.enrollments.update', true);
@@ -19,7 +24,7 @@ HQ.helper('collections.enrollments.indexFilter', function() {
   if ( roles ) {
     return { company: user.profile.company };
   } else {
-    return { branch: user.profile.branch };
+    return "No data Available";
   }
 });
 
@@ -44,6 +49,7 @@ Branch.deny('showDashboard', true);
 Branch.allow('showBranchDashboard', true);
 Branch.deny('showHQDashboard', true);
 
+// Branch.deny('AccountProfile', true);
 Branch.allow('collections.enrollments.index', true);
 Branch.allow('collections.enrollments.insert', true);
 Branch.allow('collections.enrollments.update', true);
@@ -71,17 +77,17 @@ insurer = new Roles.Role('insurer');
 insurer.deny('showDashboard', true);
 insurer.deny('showBranchDashboard', true);
 insurer.deny('showHQDashboard', true);
+insurer.allow('showInsurerDashboard', true);
 
+// insurer.deny('AccountProfile', true);
 insurer.allow('collections.enrollments.index', true);
 insurer.helper('collections.enrollments.indexFilter', function() {
   var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { profile: 1 }});
-  var insurerName = Insurer.find({ company: 1 });
   var roles = Roles.userHasRole( this.userId, 'insurer');
   if ( roles ) {
-    console.log(roles);
-    return { company: insurerName };
+    // console.log(roles);
+    return { insurer: user.profile.insurer };
   } else {
-    console.log("this an else statement");
     return "No data available";
   }
 });
@@ -89,4 +95,13 @@ insurer.helper('collections.enrollments.indexFilter', function() {
 insurer.allow('collections.claims.index', true);
 insurer.allow('collections.claims.update', true);
 insurer.allow('collections.claims.showUpdate', true);
-insurer.helper('collections.claims.indexFilter', {});
+insurer.helper('collections.claims.indexFilter', function() {
+  var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { profile: 1 }});
+  var roles = Roles.userHasRole( this.userId, 'insurer');
+  if ( roles ) {
+    // console.log(roles);
+    return { insurer: user.profile.insurer };
+  } else {
+  return "No data available";
+  }
+});

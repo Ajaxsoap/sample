@@ -92,36 +92,11 @@ Products.helpers({
 Companies.attachSchema(new SimpleSchema ({
   name: {
     type: String,
-    label: "Company Name",
-    autoform: {
-        afFormGroup: {
-          'formgroup-class': 'col-xs-6 col-sm-4'
-        }
-    }
+    label: "Company Name"
   },
-  productId: orion.attribute('hasMany', {
-    label: "Product Type",
-    autoform: {
-        afFormGroup: {
-          'formgroup-class': 'col-xs-6 col-sm-4'
-        }
-    }
-  },
-  {
-    collection: Products,
-    titleField: 'name',
-    additionalFields:['active'],
-    publicationName: 'Produkto'
-  }
-  ),
   branchId: orion.attribute('hasMany', {
     label: "Branches",
-    optional: true,
-    autoform: {
-        afFormGroup: {
-          'formgroup-class': 'col-xs-6 col-sm-4'
-        }
-    }
+    optional: true
   },
   {
     collection: Branches,
@@ -130,14 +105,19 @@ Companies.attachSchema(new SimpleSchema ({
     publicationName: 'branchPub'
   }
   ),
+  productId: orion.attribute('hasMany', {
+    label: "Product Type"
+  },
+  {
+    collection: Products,
+    titleField: 'name',
+    additionalFields:['active'],
+    publicationName: 'Produkto'
+  }
+  ),
   insurerId: orion.attribute('hasMany', {
     label: "Insurer",
-    optional: true,
-    autoform: {
-        afFormGroup: {
-          'formgroup-class': 'col-xs-6 col-sm-4'
-        }
-    }
+    optional: true
   },
   {
     collection: Insurers,

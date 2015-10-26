@@ -1,5 +1,9 @@
 Tracker.autorun(function(){
    Meteor.subscribe("versions");
+   Meteor.subscribe('enrollments');
+   Meteor.subscribe('companies');
+   Meteor.subscribe('branches');
+   Meteor.subscribe("userProfile");
 });
 
 Template.enrollmentsUpdate.events({

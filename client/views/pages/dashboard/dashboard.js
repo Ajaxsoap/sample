@@ -1,16 +1,4 @@
-Tracker.autorun(function(){
-  Meteor.subscribe("enrollments");
-  console.log("Enrollments count: ", Counts.get("enrollmentsCount"));
-  Meteor.subscribe("claims");
-  console.log("Claims count: ", Counts.get("claimsCount"));
-  Meteor.subscribe('companies');
-  Meteor.subscribe('branches');
-  Meteor.subscribe("userProfile");
-});
-
 var Session = new ReactiveDict();
-
-// Counts.get(companyEnrolledCount);
 
 Session.setDefault('searchFilter', '');
 Session.setDefault('searchFilter2', '');
@@ -25,41 +13,6 @@ Session.setDefault('skipCount2', 0);
 
 Session.setDefault('receivedData', false);
 Session.setDefault('receivedData2', false);
-
-  function exportTableToCSV($table, filename){
-    var $rows = $table.find('tr:has(td)'),
-    // Temporary delimiter characters unlikely to be typed by keyboard
-    // This is to avoid accidentally splitting the actual contents
-    tmpColDelim = String.fromCharCode(11), // vertical tab character
-    tmpRowDelim = String.fromCharCode(0), // null character
-
-    // actual delimiter characters for CSV format
-    colDelim = '","',
-    rowDelim = '"\r\n"',
-
-    // Grab text from table into CSV formatted string
-    csv = '"' + $rows.map(function (i, row) {
-      var $row = $(row),
-      $cols = $row.find('td');
-      return $cols.map(function (j, col) {
-        var $col = $(col),
-        text = $col.text();
-        return text.replace('/"/g', '""'); // escape double quotes
-      }).get().join(tmpColDelim);
-    }).get().join(tmpRowDelim)
-      .split(tmpRowDelim).join(rowDelim)
-      .split(tmpColDelim).join(colDelim) + '"',
-
-      // Data URI
-      csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
-        $(this)
-          .attr({
-          'download': filename,
-          'href': csvData,
-          'target': '_blank'
-        });
-  }
-
 
 Template.dashboard.rendered = function(){
   // Options, data for charts
@@ -145,31 +98,89 @@ Template.dashboard.rendered = function(){
    "updated": function(){
      return new Date().toDateString();
    },
-   "enrollmentsCompanyCount": function(){
-     return Counts.get("enrollmentsCount");
-   },
-   "claimsCompanyCount": function(userId){
-     return Counts.get("claimsCount");
-   }
+  //  "enrollmentsCompanyCount": function(){
+  //    return Counts.get("enrollmentsCount");
+  //  },
+  //  "claimsCompanyCount": function(userId){
+  //    return Counts.get("claimsCount");
+  //  }
  });
 
 Template.companyEnrolleesDashboard.helpers({
-  branchEnrolleesList: function(branch){
+  branchEnrolleesList: function(){
     var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
-    var Branch = Branches.find();
-      if ( Branch ){
-        return Branch && Branch.branch;
-      }
-    }
+    var roles = Roles.userHasRole( this.userId, "HQ");
+    var branchEnrollee =  Enrollments.find({},{createdBy: 1});
+    return branchEnrollee;
+  },
 
-  // branchName: function(branch) {
-  //   var branchE = Branches.findOne( { "_id":branch } );
-  //   if ( branchE ){
-  //     console.log(branchE);
-  //     return branchE && branchE.branch;
-  //   }
-  //  },
 });
+Template.branchList.helpers({
+  branchName: function(branch) {
+    var Branch = Branches.findOne(branch);
+    if ( Branch ){
+      return Branch && Branch.branch;
+    }
+  },
+  // branchCount: function() {
+  //   return Counts.get("enrollmentsCount");
+  // }
+});
+Template.companyClaimsDashboard.helpers({
+  branchClaimsList: function(){
+    var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+    var roles = Roles.userHasRole( this.userId, "HQ");
+    var branchClaim =  Claim.find({},{createdBy: 1});
+
+    return branchClaim;
+  },
+
+});
+Template.claimList.helpers({
+  branchClaimName: function(branch) {
+    var Branch = Branches.findOne(branch);
+    if ( Branch ){
+      return Branch && Branch.branch;
+    }
+  },
+  // branchClaimCount: function() {
+  //   return Counts.get("claimsCount");
+  // }
+});
+
+function exportTableToCSV($table, filename){
+  var $rows = $table.find("tr:has(td)"),
+  // Temporary delimiter characters unlikely to be typed by keyboard
+  // This is to avoid accidentally splitting the actual contents
+  tmpColDelim = String.fromCharCode(11), // vertical tab character
+  tmpRowDelim = String.fromCharCode(0), // null character
+
+  // actual delimiter characters for CSV format
+  colDelim = '","',
+  rowDelim = '"\r\n"',
+
+  // Grab text from table into CSV formatted string
+  csv = '"' + $rows.map(function (i, row) {
+    var $row = $(row),
+    $cols = $row.find('td');
+    return $cols.map(function (j, col) {
+      var $col = $(col),
+      text = $col.text();
+      return text.replace('/"/g', '""'); // escape double quotes
+    }).get().join(tmpColDelim);
+  }).get().join(tmpRowDelim)
+    .split(tmpRowDelim).join(rowDelim)
+    .split(tmpColDelim).join(colDelim) + '"',
+
+    // Data URI
+    csvData = 'data:application/octetstream' + encodeURIComponent(csv);
+      $(this)
+        .attr({
+        'download': filename,
+        'href': csvData,
+        'target': '_blank'
+      });
+}
  Template.enolledTable.events({
    // use keyup to implement dynamic filtering
    // keyup is preferred to keypress because of end-of-line issues
@@ -200,9 +211,6 @@ Template.companyEnrolleesDashboard.helpers({
  });
 
  Template.enolledTable.helpers({
-   "enrollmentsCount": function(){
-    return Enrollments.find().count();
-   },
    dateSchema: function(){
      return DateRangeSchema;
    },
@@ -244,15 +252,15 @@ Template.companyEnrolleesDashboard.helpers({
      }
    );
    },
-   rendered: function() {
-     // step A:  initialize the table sorting functionality
-     Tracker.autorun(function() {
-       console.log(Session.get('receivedData'));
-       setTimeout(function() {
-         $("#enrollmentsTable").trigger("update");
-       }, 200);
-     });
-   },
+  //  rendered: function() {
+  //    // step A:  initialize the table sorting functionality
+  //    Tracker.autorun(function() {
+  //      console.log(Session.get('receivedData'));
+  //      setTimeout(function() {
+  //        $("#enrollmentsTable").trigger("update");
+  //      }, 200);
+  //    });
+  //  },
    getPaginationCount: function() {
      return Session.get('paginationCount');
    },
@@ -359,11 +367,9 @@ Template.companyEnrolleesDashboard.helpers({
  });
 
  Template.claimedTable.helpers({
-   "claimsCount": function(){
-     return Claim.find().count();
-   },
    dateSchema: function(){
-     return DateRangeSchema;
+     var session = Session.get('searchFilter2');
+     return session.DateRangeSchema;
    },
    claimsList: function() {
      // this triggers a refresh of data elsewhere in the table

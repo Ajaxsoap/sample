@@ -7,11 +7,13 @@
 // Session.setDefault('skipCount', 0);
 // Session.setDefault('receivedData', false);
 
-
+Tracker.autorun(function(){
   Meteor.subscribe('enrollments');
   Meteor.subscribe('companies');
   Meteor.subscribe('branches');
   Meteor.subscribe("userProfile");
+});
+
 
 
 Template.enrollmentsIndex.events({
