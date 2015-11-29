@@ -1,5 +1,6 @@
 ReactiveTemplates.set('layout', 'mainLayout');
 ReactiveTemplates.set('admin.login', 'paisLogin');
+ReactiveTemplates.set('login', 'paisLogin');
 ReactiveTemplates.set('configUpdate', 'config');
 ReactiveTemplates.set('dictionaryUpdate', 'myDictionaryUpdate');
 ReactiveTemplates.set('accounts.index', 'AccountsIndex');
@@ -37,3 +38,5 @@ ReactiveTemplates.set('pages.index', 'pagesIndex');
 ReactiveTemplates.set('pages.create', 'pagesCreate');
 ReactiveTemplates.set('pages.update', 'pagesUpdate');
 ReactiveTemplates.set('pages.delete', 'pagesDelete');
+
+// Meteor.call('nicolaslopezj_roles_migrate');

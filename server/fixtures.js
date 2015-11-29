@@ -1,6 +1,6 @@
 // var adminId = Accounts.createUser({
 //     profile: {
-//       name: 'Marvin'
+//       name: 'PAIS Admin'
 //     },
 //     username: "admin",
 //     email: "admin@admin.com",

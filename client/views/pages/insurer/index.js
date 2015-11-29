@@ -20,7 +20,6 @@ Template.insurerIndex.onRendered(function() {
     Meteor.defer(function () {
       Session.set('orionBootstrapCollectionsIndex_showTable', true);
     });
-    Meteor.subscribe("insurers");
   });
 });
 

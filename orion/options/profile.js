@@ -12,7 +12,7 @@ Options.set('profileSchema', {
   {
     collection: Companies,
     titleField: 'name',
-    additionalFields: ['active'],
+    // additionalFields: ['_id'],
     publicationName: 'CompanyName'
   }),
   branch: orion.attribute('hasOne', {
@@ -21,38 +21,22 @@ Options.set('profileSchema', {
     {
       collection: Branches,
       titleField: 'branch',
-      additionalFields: ['active'],
       publicationName: 'BranchName'
     }
   ),
-  insurer: orion.attribute('hasOne', {
+  insurer: orion.attribute('hasMany', {
     label: "Insurer",
     optional: true,
-    blackbox:true,
-    autoform: {
-      afFieldInput: {
-        placeholder: 'You don\'t have to do anything here, for admin only.',
-      },
-    }
   },
   {
-    collection: Insurers,
+    collection: Companies,
     titleField: 'name',
-    //additionalFields: ['name'],
-    publicationName: 'insurerName',
-    filter: function(userId) {
-      var option = {'formgroup-class': 'hidden'};
-      if (!Roles.userHasRole(userId, "admin") ) {        
-        return option;
-      } else {
-        return {};
-      }
-    }
+    // additionalFields: ['_id'],
+    publicationName: 'insurerName'
   }
   ),
   picture: orion.attribute('file', {
     label: "Upload Profile Picture",
     optional: true
   })
-
 });

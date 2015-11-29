@@ -1,22 +1,21 @@
-Template.topNavbar.rendered = function(){
+Template.topNavbar.onRendered (function(){
   $(document).ready(function() {
-          setTimeout(function() {
-              toastr.options = {
-                  closeButton: true,
-                  progressBar: true,
-                  showMethod: 'slideDown',
-                  timeOut: 4000
-              };
-              toastr.success('Insurance Monitoring System', 'Welcome to PinoyAko EasyIMS');
-
-          }, 1300);
-        });
+    setTimeout(function() {
+      toastr.options = {
+        closeButton: true,
+        progressBar: true,
+        showMethod: 'slideDown',
+        timeOut: 4000
+      };
+      toastr.success('Insurance Monitoring System', 'Welcome to PinoyAko EasyIMS');
+    }, 1300);
+  });
     // FIXED TOP NAVBAR OPTION
     // Uncomment this if you want to have fixed top navbar
     // $('body').addClass('fixed-nav');
     // $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
 
-};
+});
 
 Template.topNavbar.helpers({
   items: function () {
@@ -29,37 +28,34 @@ Template.orionBootstrapTabs.events({
     this.onClick();
   }
 });
+
 Template.topNavbar.events({
   'click .logout': function() {
     Meteor.logout();
   },
     // Toggle left navigation
     'click #navbar-minimalize': function(event){
-
         event.preventDefault();
-
         // Toggle special class
         $("body").toggleClass("mini-navbar");
-
         // Enable smoothly hide/show menu
         if (!$('body').hasClass('mini-navbar') || $('body').hasClass('body-small')) {
-            // Hide menu in order to smoothly turn on when maximize menu
-            $('#side-menu').hide();
-            // For smoothly turn on menu
-            setTimeout(
-                function () {
-                    $('#side-menu').fadeIn(500);
-                }, 100);
+          // Hide menu in order to smoothly turn on when maximize menu
+          $('#side-menu').hide();
+          // For smoothly turn on menu
+          setTimeout(
+            function () {
+              $('#side-menu').fadeIn(500);
+            }, 100);
         } else if ($('body').hasClass('fixed-sidebar')) {
-            $('#side-menu').hide();
-            setTimeout(
-                function () {
-                    $('#side-menu').fadeIn(500);
-                }, 300);
+          $('#side-menu').hide();
+          setTimeout(
+            function () {
+              $('#side-menu').fadeIn(500);
+            }, 300);
         } else {
-            // Remove all inline style from jquery fadeIn function to reset menu state
-            $('#side-menu').removeAttr('style');
+          // Remove all inline style from jquery fadeIn function to reset menu state
+          $('#side-menu').removeAttr('style');
         }
     }
-
 });

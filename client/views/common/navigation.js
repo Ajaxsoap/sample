@@ -1,6 +1,6 @@
 Template.navigation.rendered = function(){
   this.autorun(function() {
-    var depend = orion.links._collection.find().fetch();
+    var depend = orion.links._collection.find();
     $('.orion-links a[data-toggle="collapse"]').collapse();
   });
     // Initialize metisMenu

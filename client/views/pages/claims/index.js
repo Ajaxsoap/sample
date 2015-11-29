@@ -1,7 +1,7 @@
-Tracker.autorun(function(){
-  Meteor.subscribe("enrollments");
-  Meteor.subscribe("claims");
-});
+// Tracker.autorun(function(){
+//   Meteor.subscribe("enrollments");
+//   Meteor.subscribe("claims");
+// });
 
 Template.claimsIndex.events({
   'click tr': function(event) {

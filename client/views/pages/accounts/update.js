@@ -1,3 +1,8 @@
+Template.AccountsUpdate.onCreated( function() {
+  this.subscribe('companies');
+  this.subscribe('branches');
+});
+
 AutoForm.addHooks('AccountsUpdate', {
   onSuccess: function() {
     setTimeout(function() {

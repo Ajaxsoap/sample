@@ -1,6 +1,6 @@
-Tracker.autorun(function(){
-  Meteor.subscribe('company');
-});
+// Tracker.autorun(function(){
+//   Meteor.subscribe('company');
+// });
 
 
 Template.claimApproval.helpers({

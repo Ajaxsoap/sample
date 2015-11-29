@@ -3,7 +3,7 @@
         <div class="sidebar-collapse">
             <!-- Close canvas menu used only on OffCanvas page -->
             <!-- You can remove this tag if you dont use offCanvas menu -->
-            <a class="close-canvas-menu"><i class="fa fa-times"></i></a>
+            <!-- <a class="close-canvas-menu"><i class="fa fa-times"></i></a> -->
             <!-- End offCanvas menu toggle -->
 
             <ul class="nav" id="side-menu">
@@ -36,27 +36,9 @@
                         PAIS
                     </div>
                 </li>
-
-                {{#if userHasPermission 'showDashboard'}}
-                <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
+                <li>
                     <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
                 </li>
-                {{/if}}
-                {{#if userHasPermission 'showHQDashboard'}}
-                <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
-                    <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
-                </li>
-                {{/if}}
-                {{#if userHasPermission 'showBranchDashboard'}}
-                <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
-                    <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
-                </li>
-                {{/if}}
-                {{#if userHasPermission 'showInsurerDashboard'}}
-                <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
-                    <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
-                </li>
-                {{/if}}
                 {{# each adminLinks }}
                   {{> paisSidebarLink }}
                 {{/ each }}

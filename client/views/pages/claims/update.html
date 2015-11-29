@@ -12,18 +12,48 @@
             <div class="ibox-content">
               {{#if Template.subscriptionsReady}}
                 {{# if item.canShowUpdate }}
-                  {{> quickForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }}
+                  {{#autoForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }}
+                  <!-- {{# if userHasPermission 'updateDoc'}} -->
+                  {{> afQuickField name="enrollmentId" disabled=true}}
+                  {{> afQuickField name="clientType" options="allowed" select=true template="bootstrap3-inline" disabled=true}}
+                    {{#if afFieldValueIs name="clientType" value="Dependent-Children" disabled=true}}
+                      {{> afQuickField name="childrenId" disabled=true}}
+                    {{/if}}
+                    {{#if afFieldValueIs name="clientType" value="Dependent-Spouse" disabled=true}}
+                      {{> afQuickField name="spouseId" disabled=true}}
+                    {{/if}}
+                    {{#if afFieldValueIs name="clientType" value="Dependent-Parent" disabled=true}}
+                      {{> afQuickField name="parentId" disabled=true}}
+                    {{/if}}
+                    {{#if afFieldValueIs name="clientType" value="Dependent-Sibling" disabled=true}}
+                      {{> afQuickField name="siblingId" disabled=true}}
+                  {{/if}}
+                  <!-- {{/if}} -->
+                  {{> afQuickField name="status" }}
+                  {{> afQuickField name="causeOfDeath" }}
+                  {{> afQuickField name="amountPaid" data-mask="Php 99,999.99" }}
+                  {{> afQuickField name="medical" }}
+                  {{> afQuickField name="partialPayment" data-mask="Php 99,999.99" }}
+                  {{> afQuickField name="claimNumber" }}
+                  {{> afQuickField name="remarks" rows=2 }}
+                  {{> afQuickField name="remarksCompany" rows=2 }}
+                  {{> afQuickField name="file" }}
                   <p>&nbsp;</p>
                   <div class="buttons text-right">
                     <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
                     {{# if item.canShowRemove }}
-                      <a class="btn btn-danger" href="{{ collection.deletePath item._id }}">{{i18n 'global.delete' }}</a>
+                    <a class="btn btn-danger" href="{{ collection.deletePath item._id }}">{{i18n 'global.delete' }}</a>
                     {{/ if }}
-                    <a class="btn btn-primary save-btn">{{ i18n 'global.save' }}</a>
+                    <button class="btn btn-primary save-btn">{{ i18n 'global.save' }}</button>
                   </div>
+                  {{/autoForm}}
                 {{/ if }}
+              {{ else }}
+                  <p>
+                    <strong>Loading...</strong>
+                  </p>
               {{/ if }}
-            </div>
+            </div><br class="clear">
           </div>
         </div>
       </div>

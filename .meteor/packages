@@ -26,7 +26,6 @@ orionjs:image-attribute
 lee:countdown
 orionjs:config
 meteorhacks:kadira
-#nilsdannemann:pdfmake
 brightbind:orion-gridfs
 vsivsi:orion-file-collection
 mickaelfm:vermongo
@@ -36,10 +35,10 @@ dsyko:meteor-node-csv
 meteorhacks:npm
 cfs:gridfs
 reactive-dict
-baysao:autoform-bs-daterangepicker
 meteorhacks:unblock
 tmeasday:publish-counts
-
+meteorhacks:aggregate
+msavin:mongol
 standard-minifiers
 meteor-base
 mobile-experience
@@ -54,3 +53,4 @@ random
 ejson
 spacebars
 check
+simple:reactive-method

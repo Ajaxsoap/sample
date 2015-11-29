@@ -2,6 +2,7 @@
   {{# Layout template="pageHeading" }}
   <i class="fa fa-pencil"></i>&nbsp;{{ i18n 'accounts.update.title' }}
   {{/ Layout }}
+  {{#if Template.subscriptionsReady}}
   <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
       <div class="col-md-6">
@@ -102,8 +103,10 @@
       </div>
     </div>
 
+
     <br>
     <br>
     <br>
   </div>
+  {{/if}}
 </template>

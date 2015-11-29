@@ -10,14 +10,63 @@
             <h5></h5>
           </div>
           <div class="ibox-content">
-            {{> quickForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" buttonContent=false }}
+            {{#if Template.subscriptionsReady}}
+            <!-- {{> quickForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" buttonContent=false }} -->
+            {{#autoForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" }}
+            <fieldset>
+              <legend>Personal Information</legend>
+              {{> afQuickField name="fullName" }}
+              {{> afQuickField name="productId" }}
+              {{> afQuickField name="tin" data-mask="99-9999999" }}
+              {{> afQuickField name="birthdate" }}
+              {{> afQuickField name="ageOfEnrollee" }}
+              {{> afQuickField name="gender" }}
+              {{> afQuickField name="phone" data-mask="(999) 999-9999"}}
+              {{> afQuickField name="address" }}
+              {{> afQuickField name="city" }}
+            </fieldset>
+            {{> afQuickField name="beneficiary" }}
+            <fieldset class="form-group">
+              <legend>Policy Details</legend>
+              {{> afQuickField name="effectivityDate" }}
+              {{> afQuickField name="maturityDate" }}
+            </fieldset>
+            <fieldset>
+              <legend>Civil Status</legend>
+              {{> afQuickField name="maritalStatus" options="allowed" select=true template="bootstrap3-inline"}}
+                {{#if afFieldValueIs name="maritalStatus" value="Married" }}
+                  {{> afQuickField name="spouseName" }}
+                  {{> afQuickField name="spouseDateOfBirth" }}
+                  {{> afQuickField name="spouseAge" }}
+                  {{> afQuickField name="children" }}
+                {{/if}}
+                {{#if afFieldValueIs name="maritalStatus" value="Widow" }}
+                  {{> afQuickField name="spouseName" }}
+                  {{> afQuickField name="spouseDateOfBirth" }}
+                  {{> afQuickField name="spouseAge" }}
+                  {{> afQuickField name="children" }}
+                {{/if}}
+                {{#if afFieldValueIs name="maritalStatus" value="Annuled" }}
+                  {{> afQuickField name="spouseName" }}
+                  {{> afQuickField name="spouseDateOfBirth" }}
+                  {{> afQuickField name="spouseAge" }}
+                  {{> afQuickField name="children" }}
+                {{/if}}
+            </fieldset>
+            {{> afQuickField name="parent" }}
+            {{> afQuickField name="sibling" }}
             <br>
             <div class="buttons text-right">
               <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
               <a class="btn btn-primary create-btn">{{ i18n 'global.create' }}</a>
-            </div>
-
-          </div>
+            </div><br class="clear">
+            {{/autoForm}}
+            {{ else }}
+              <p>
+                <strong>Loading...</strong>
+              </p>
+            {{/if}}
+          </div><br class="clear">
 
         </div>
       </div>

@@ -10,13 +10,44 @@
             <h5></h5>
           </div>
           <div class="ibox-content">
-            {{> quickForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" buttonContent=false }}
+            {{#if Template.subscriptionsReady }}
+            {{#autoForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" buttonContent=false }}
+
+            {{> afQuickField name="enrollmentId" }}
+              {{> afQuickField name="clientType" options="allowed" select=true template="bootstrap3-inline"}}
+              {{#if afFieldValueIs name="clientType" value="Dependent-Children"}}
+                {{> afQuickField name="childrenId"}}
+              {{/if}}
+              {{#if afFieldValueIs name="clientType" value="Dependent-Spouse"}}
+                {{> afQuickField name="spouseId"}}
+              {{/if}}
+              {{#if afFieldValueIs name="clientType" value="Dependent-Parent"}}
+                {{> afQuickField name="parentId"}}
+              {{/if}}
+              {{#if afFieldValueIs name="clientType" value="Dependent-Sibling"}}
+                {{> afQuickField name="siblingId"}}
+              {{/if}}
+            {{> afQuickField name="status" }}
+            {{> afQuickField name="causeOfDeath" }}
+            {{> afQuickField name="ammountPaid" data-mask="Php 99,999.99" }}
+            {{> afQuickField name="medical" }}
+            {{> afQuickField name="partialPayment" data-mask="Php 99,999.99" }}
+            {{> afQuickField name="claimNumber" }}
+            <!-- {{> afQuickField name="remarks" rows=4 }}
+            {{> afQuickField name="file" }} -->
             <p>&nbsp;</p><br class="clear">
             <div class="buttons text-right">
               <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
               <a class="btn btn-primary create-btn">{{ i18n 'global.create' }}</a>
             </div>
+            {{/autoForm}}
+            {{ else }}
+              <p>
+                <strong>Loading...</strong>
+              </p>
+            {{/if}}  
           </div><br class="clear">
+
 
         </div>
       </div>

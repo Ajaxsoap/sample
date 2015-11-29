@@ -11,7 +11,7 @@ Enrollments = new orion.collection('enrollments', {
       orion.attributeColumn('createdAt','createdAt','Enrolled Date'),
       {data: "fullName", title: "Name"},
       {
-        data: "policyDetails.effectivityDate",
+        data: "effectivityDate",
         title:"Effectivity Date",
         render: function (val, type, doc) {
           if (val instanceof Date) {
@@ -22,7 +22,7 @@ Enrollments = new orion.collection('enrollments', {
         }
       },
       {
-        data: "policyDetails.maturityDate",
+        data: "maturityDate",
         title:"Maturity Date",
         render: function (val, type, doc) {
           if (val instanceof Date) {
@@ -68,7 +68,7 @@ Enrollments.attachSchema(new SimpleSchema({
       optional: true,
       autoform: {
         afFormGroup: {
-          'formgroup-class': 'col-xs-12 col-sm-12'
+          'formgroup-class': 'col-xs-10 col-sm-6'
         }
       }
     },
@@ -119,31 +119,46 @@ Enrollments.attachSchema(new SimpleSchema({
       autoValue: function() {
         if (this.isInsert) {
           var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
-          if (user) {
-            return user && user.profile.insurer;
+          var insurerName = user.profile.insurer;
+          if ( insurerName ) {
+            return insurerName[0];
           }
         } else {
           this.unset();  // Prevent user from supplying their own value
         }
       }
     },
-    productId: orion.attribute('hasOne', {
-      label: "Insurance Type",
-      optional: true,
+    productId: orion.attribute('hasMany', {
+      label: 'Insurance Type',
       autoform: {
-        afFormGroup: {
-        'formgroup-class': 'col-xs-12 col-sm-12'
-        }
-      }
+        'formgroup-class': 'col-xs-8 col-sm-6'
+      },
     },
     {
       collection: Products,
       titleField: 'name',
-      additionalFields: ['active'],
-      publicationName: 'prodEnrollee',
-
-    }
-    ),
+      publicationName: 'userProducts',
+      // filter: function(userId) {
+      //   var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
+      //   var profile = user.profile.name;
+      //   if ( Roles.userHasRole(userId, "admin") ) {
+      //     console.log("Admin");
+      //     return {};
+      //   } else if ( Roles.userHasRole(userId, "HQ") ) {
+      //     console.log();
+      //     return {};
+      //   } else if ( Roles.userHasRole(userId, "Branch") ) {
+      //     return { productId: user.profile.productId };
+      //   }
+      // }
+    }),
+    tin: {
+      type: String,
+      label: 'Tax Identification Number',
+      autoform: {
+        'formgroup-class': 'col-xs-6 col-sm-4'
+      }
+    },
     birthdate: {
       type: Date,
       label: "Birthday",
@@ -171,13 +186,20 @@ Enrollments.attachSchema(new SimpleSchema({
       allowedValues: ["Male","Female"],
       optional: true,
       autoform: {
+        type: "select",
+        options: function(){
+          return [
+            {label:'Male', value: "Male"},
+            {label:'Female', value: 'Female'},
+          ];
+        },
         afFormGroup: {
           'formgroup-class': 'col-xs-6 col-sm-4'
         }
       }
     },
     phone: {
-      type: Number,
+      type: String,
       label: "Phone",
       optional: true,
       blackbox: true,
@@ -210,7 +232,10 @@ Enrollments.attachSchema(new SimpleSchema({
     beneficiary: {
       type: Array,
       optional: true,
-      blackbox: true
+      blackbox: true,
+      autoform: {
+        group: "3. Beneficiary",
+      }
     },
     'beneficiary.$': {
       type: Object,
@@ -232,63 +257,49 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    policyDetails: {
-      type:Object,
-      optional: true,
-      blackbox: true,
-      autoform: {
-        afObjectField: {
-          bodyClass: 'container-fluid row'
-        }
-      }
-    },
-    'policyDetails.effectivityDate': {
+    effectivityDate: {
       type: Date,
       label: "Effectivity Date",
-      optional: true,
-      blackbox: true,
       autoform: {
         type: "bootstrap-datepicker",
         afFormGroup: {
-          'formgroup-class': 'col-xs-6 col-sm-4'
+          'formgroup-class': 'col-xs-9 col-sm-6'
         }
       }
     },
-    'policyDetails.maturityDate': {
+    maturityDate: {
       type: Date,
       label: "Maturity Date",
-      optional: true,
-      blackbox: true,
       autoform: {
         type: "bootstrap-datepicker",
         afFormGroup: {
-          'formgroup-class': 'col-xs-6 col-sm-4'
+          'formgroup-class': 'col-xs-9 col-sm-6'
         }
       }
     },
-    civilStatus :{
-      type: Object,
-      optional: true,
-      blackbox: true,
-      autoform: {
-        afObjectField: {
-          bodyClass: 'container-fluid row'
-        }
-      }
-    },
-    'civilStatus.maritalStatus': {
+
+    maritalStatus: {
       type: String,
       label: "Marital Status",
       optional: true,
       blackbox: true,
       allowedValues:['Single','Married','Widow','Annuled'],
       autoform: {
+        type: "select",
+        options: function(){
+          return [
+            {label:'Single', value: "Single"},
+            {label:'Married', value: 'Married'},
+            {label:'Widow', value:'Widow'},
+            {label:'Annuled', value: 'Annuled'}
+          ];
+        },
         afFormGroup: {
           'formgroup-class': 'col-xs-12'
         }
       }
     },
-    'civilStatus.spouseName': {
+    spouseName: {
       type: String,
       label: "Spouse Name",
       optional: true,
@@ -299,7 +310,7 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    'civilStatus.spouseDateOfBirth': {
+    spouseDateOfBirth: {
       type: Date,
       label: "Spouse Birthdate",
       optional: true,
@@ -311,7 +322,7 @@ Enrollments.attachSchema(new SimpleSchema({
         }
       }
     },
-    'civilStatus.spouseAge': {
+    spouseAge: {
       type: Number,
       label: "Spouse Age",
       optional: true,
@@ -383,7 +394,10 @@ Enrollments.attachSchema(new SimpleSchema({
     parent: {
       type: Array,
       optional: true,
-      blackbox: true
+      blackbox: true,
+      autoform: {
+        group: "6. Parents",
+      }
     },
     'parent.$': {
       type: Object,
@@ -434,7 +448,7 @@ Enrollments.attachSchema(new SimpleSchema({
     sibling: {
       type: Array,
       optional: true,
-      blackbox: true
+      blackbox: true,
     },
     'sibling.$': {
       type: Object,
@@ -583,52 +597,49 @@ insurer: {
   autoValue: function() {
     if (this.isInsert) {
       var user = Meteor.users.findOne({ "_id": this.userId }, { fields: { "profile": 1 } });
-      if (user) {
-        return user && user.profile.insurer;
-      }
+      var insurerName = user.profile.insurer;
+      if ( insurerName ) {
+        return insurerName[0];
     } else {
       this.unset();  // Prevent user from supplying their own value
     }
   }
+}
 },
-
-  enrollmentId: orion.attribute('hasOne', {
-    label: "Insured Name",
+enrollmentId: orion.attribute('hasOne', {
+    label: "Principal Name",
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-12 col-sm-12'
+        'formgroup-class': 'col-xs-6 col-sm-4'
       }
     }
   },
   {
     collection: Enrollments,
     titleField: 'fullName',
-    additionalFields:['company'],
+    additionalFields:['_id'],
     publicationName: 'enrolledClaim',
     filter: function(userId) {
       var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
-      var admin = Roles.userHasRole(userId, "admin");
-      var hq = Roles.userHasRole(userId, 'HQ');
-      var branch = Roles.userHasRole(userId, 'Branch');
-      var insurer = Roles.userHasRole(userId, 'insurer');
-      if ( admin ) {
+      if ( Roles.userHasRole(userId, "admin") ) {
         console.log( "Hello Admin" );
         return {};
-      } else if ( hq ) {
-        console.log( "Hello HQ" );
+      } else if ( Roles.userHasRole(userId, 'HQ') ) {
+        // console.log( "Hello HQ" );
         return { company: user.profile.company };
-      } else if ( branch ) {
-        console.log( "Hello Branch" );
+      } else if ( Roles.userHasRole(userId, 'Branch') ) {
+        // console.log( "Hello Branch" );
         return { createdBy: userId };
-      } else if ( insurer ) {
-        console.log( "Hello Insurer" );
-        return { insurer: user.profile.insurer };
+      } else if ( Roles.userHasRole(userId, 'insurer') ) {
+        // console.log( "Hello Insurer" );
+        return {};
       }
     }
   }),
   clientType: {
     type: String,
     label: "Client Type",
+    optional: true,
     allowedValues: [
       'Principal',
       'Dependent-Children',
@@ -637,24 +648,173 @@ insurer: {
       'Dependent-Parent'
     ],
     autoform: {
+      type: "select",
+      options: function(){
+        return [
+          {label:'Principal', value: "Principal"},
+          {label:'Dependent-Children', value: 'Dependent-Children'},
+          {label:'Dependent-Spouse', value:'Dependent-Spouse'},
+          {label:'Dependent-Parent', value: 'Dependent-Parent'}
+        ];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-6 col-sm-4'
       }
     }
   },
+  childrenId: orion.attribute('hasMany', {
+      label: "Dependent-Children",
+      optional: true,
+      autoform: {
+        afFormGroup: {
+          'formgroup-class': 'col-xs-6 col-sm-4'
+        }
+      }
+    },
+    {
+      collection: Enrollments,
+      titleField: 'children.name',
+      // additionalFields:['_id'],
+      publicationName: 'childrenClaim',
+      filter: function(userId) {
+        var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
+        if ( Roles.userHasRole(userId, "admin") ) {
+          console.log( "Hello Admin" );
+          return {};
+        } else if ( Roles.userHasRole(userId, 'HQ') ) {
+          console.log( "Hello HQ" );
+          return { company: user.profile.company };
+        } else if ( Roles.userHasRole(userId, 'Branch') ) {
+          console.log( "Hello Branch" );
+          return { createdBy: userId };
+        } else if ( Roles.userHasRole(userId, 'insurer') ) {
+          console.log( "Hello Insurer" );
+          return {};
+        }
+      }
+    }),
+    spouseId: orion.attribute('hasOne', {
+        label: "Dependent-Spouse",
+        optional: true,
+        autoform: {
+          afFormGroup: {
+            'formgroup-class': 'col-xs-6 col-sm-4'
+          }
+        }
+      },
+      {
+        collection: Enrollments,
+        titleField: 'spouseName',
+        additionalFields:['_id'],
+        publicationName: 'spouseClaim',
+        filter: function(userId) {
+          var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
+          if ( Roles.userHasRole(userId, "admin") ) {
+            console.log( "Hello Admin" );
+            return {};
+          } else if ( Roles.userHasRole(userId, 'HQ') ) {
+            console.log( "Hello HQ" );
+            return { company: user.profile.company };
+          } else if ( Roles.userHasRole(userId, 'Branch') ) {
+            console.log( "Hello Branch" );
+            return { createdBy: userId };
+          } else if ( Roles.userHasRole(userId, 'insurer') ) {
+            console.log( "Hello Insurer" );
+            return {};
+          }
+        }
+      }),
+    parentId: orion.attribute('hasMany', {
+        label: "Dependent-Parent",
+        optional: true,
+        autoform: {
+          afFormGroup: {
+            'formgroup-class': 'col-xs-6 col-sm-4'
+          }
+        }
+      },
+      {
+        collection: Enrollments,
+        titleField: 'parent.name',
+        additionalFields:['_id'],
+        publicationName: 'parentClaim',
+        filter: function(userId) {
+          var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
+          if ( Roles.userHasRole(userId, "admin") ) {
+            console.log( "Hello Admin" );
+            return {};
+          } else if ( Roles.userHasRole(userId, 'HQ') ) {
+            console.log( "Hello HQ" );
+            return { company: user.profile.company };
+          } else if ( Roles.userHasRole(userId, 'Branch') ) {
+            console.log( "Hello Branch" );
+            return { createdBy: userId };
+          } else if ( Roles.userHasRole(userId, 'insurer') ) {
+            console.log( "Hello Insurer" );
+            return {};
+          }
+        }
+      }),
+      siblingId: orion.attribute('hasMany', {
+          label: "Dependent-Sibling",
+          optional: true,
+          autoform: {
+            afFormGroup: {
+              'formgroup-class': 'col-xs-6 col-sm-4'
+            }
+          }
+        },
+        {
+          collection: Enrollments,
+          titleField: 'sibling.name',
+          additionalFields:['_id'],
+          publicationName: 'siblingClaim',
+          filter: function(userId) {
+            var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
+            if ( Roles.userHasRole(userId, "admin") ) {
+              console.log( "Hello Admin" );
+              return {};
+            } else if ( Roles.userHasRole(userId, 'HQ') ) {
+              console.log( "Hello HQ" );
+              return { company: user.profile.company };
+            } else if ( Roles.userHasRole(userId, 'Branch') ) {
+              console.log( "Hello Branch" );
+              return { createdBy: userId };
+            } else if ( Roles.userHasRole(userId, 'insurer') ) {
+              console.log( "Hello Insurer" );
+              return {};
+            }
+          }
+        }),
   status: {
     type: String,
     allowedValues: ['Pending','Approved','Denied'],
     defaultValue: 'Pending',
+    autoform: {
+      type: "select",
+      options: function(){
+        return [
+          {label:'Pending', value: "Pending"},
+          {label:'Approved', value: 'Approved'},
+          {label:'Denied', value:'Denied'},
+        ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-6 col-sm-4'
+      }
+    }
+  },
+  amountPaid: {
+    type: String,
+    optional: true,
     autoform: {
       afFormGroup: {
         'formgroup-class': 'col-xs-6 col-sm-4'
       }
     }
   },
-  ammountPaid: {
-    type: Number,
-    label: "Amount Paid",
+  partialPayment: {
+    type: String,
     optional: true,
     autoform: {
       afFormGroup: {
@@ -673,11 +833,24 @@ insurer: {
       'Accident',
       'Diabetes',
       'Animal/Insect bite',
-      'liver illness',
+      'Liver illness',
       'others'
     ],
     optional: true,
     autoform: {
+      type: "select",
+      options: function(){
+        return [
+          {label:'Cardiovascular', value: "Cardiovascular"},
+          {label:'Respiratory', value: 'Respiratory'},
+          {label:'Renal failure', value:'Renal failure'},
+          {label:'Cancer', value:'Cancer'},
+          {label:'Accident', value:'Accident'},
+          {label:'Diabetes', value:'Diabetes'},
+          {label:'Liver illness', value:'Liver illness'},
+          {label:'others', value:'others'},
+        ];
+      },
       'formgroup-class': 'col-xs-6 col-sm-4',
 
     }
@@ -692,18 +865,32 @@ insurer: {
       'CVA,Chronic Kidney disease',
       'Abration',
       'Hypersensitivity',
-      'community acquired pneumonia',
+      'Community acquired pneumonia',
       'others'
     ],
     optional: true,
     autoform: {
+      type: "select",
+      options: function(){
+        return [
+          {label:'Animal/Insect bite', value: "Animal/Insect bite"},
+          {label:'Hypertension', value: 'Hypertension'},
+          {label:'Diabetes', value:'Diabetes'},
+          {label:'Cancer', value:'Cancer'},
+          {label:'CVA,Chronic Kidney disease', value:'CVA,Chronic Kidney disease'},
+          {label:'Abration', value:'Abration'},
+          {label:'Hypersensitivity', value:'Hypersensitivity'},
+          {label:'Community acquired pneumonia', value:'Community acquired pneumonia'},
+          {label:'others', value:'others'},
+        ];
+      },
       'formgroup-class': 'col-xs-6 col-sm-4',
-
     }
   },
   claimNumber: {
     type: String,
     label: "Claim Number",
+    optional: true,
     autoform: {
       afFieldInput: {
         placeholder: 'CompanyName-ProductType-Year-XXXX',
@@ -715,10 +902,17 @@ insurer: {
   },
   remarks: {
     type: String,
-    label: "Remarks",
+    label: "Remarks - (For Insurer)",
     optional: true,
     autoform: {
-      rows: 4,
+      'formgroup-class': 'col-xs-12 col-sm-12'
+    }
+  },
+  remarksCompany: {
+    type: String,
+    label: "Remarks - (Company)",
+    optional: true,
+    autoform: {
       'formgroup-class': 'col-xs-12 col-sm-12'
     }
   },
@@ -764,7 +958,7 @@ Enrollments.helpers({
   monthCount: function() {
     var self = this;
     var dateNow = null;
-    var dateMaturity = this.policyDetails.maturityDate;
+    var dateMaturity = this.maturityDate;
     var monthLeft = countdown(dateNow, dateMaturity, countdown.MONTHS | countdown.DAYS, 2);
     var message = monthLeft.toHTML("label");
     return message;
@@ -784,4 +978,12 @@ Claim.helpers({
     //console.log(daysCount);
     return daysCount;
   }
+});
+
+Enrollments.before.insert(function(userId, doc){
+  doc.createdAt = moment().toDate();
+});
+
+Claim.before.insert(function(userId, doc){
+  doc.createdAt = moment().toDate();
 });

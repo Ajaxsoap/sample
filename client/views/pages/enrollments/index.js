@@ -1,20 +1,7 @@
-// var Session = new ReactiveDict();
-//
-// Session.setDefault('searchFilter', '');
-// Session.setDefault('tableLimit', 20);
-// Session.setDefault('paginationCount', 1);
-// Session.setDefault('selectedPagination', 0);
-// Session.setDefault('skipCount', 0);
-// Session.setDefault('receivedData', false);
-
-Tracker.autorun(function(){
-  Meteor.subscribe('enrollments');
-  Meteor.subscribe('companies');
-  Meteor.subscribe('branches');
-  Meteor.subscribe("userProfile");
+Template.enrollmentsIndex.onCreated( function() {
+  this.subscribe("companies");
+  this.subscribe("branches");
 });
-
-
 
 Template.enrollmentsIndex.events({
   'click tr': function(event) {
@@ -29,26 +16,22 @@ Template.enrollmentsIndex.events({
       }
     }
   },
-  // "click td": function(e, t) {
-	// 	e.preventDefault();
-	// 	Router.go("collections.enrollments.update", {_id: this._id});
-	// 	return false;
-	// },
-  "change .myFileInput": function(evt, tmpl){
-		FS.Utility.eachFile(evt,function(file){
-			var theFile = new FS.File(file);
-			Uploads.insert(theFile,function(err,fileObj){
-				if(!err){
-					Meteor.call('importFile',fileObj._id,file.name);
-				}
-			});
-		});
-	}
+
+  // "change .myFileInput": function(evt, tmpl){
+	// 	FS.Utility.eachFile(evt,function(file){
+	// 		var theFile = new FS.File(file);
+	// 		Uploads.insert(theFile,function(err,fileObj){
+	// 			if(!err){
+	// 				Meteor.call('importFile',fileObj._id,file.name);
+	// 			}
+	// 		});
+	// 	});
+	// }
 });
 
 Template.enrollmentsIndex.onRendered(function() {
   this.autorun(function () {
-    RouterLayer.isActiveRoute('');
+    // RouterLayer.isActiveRoute('');
     Session.set('orionBootstrapCollectionsIndex_showTable', false);
     Meteor.defer(function () {
       Session.set('orionBootstrapCollectionsIndex_showTable', true);
@@ -59,15 +42,7 @@ Template.enrollmentsIndex.onRendered(function() {
 Template.enrollmentsIndex.helpers({
   showTable: function() {
     return Session.get('orionBootstrapCollectionsIndex_showTable');
-  },
-  // monthCount: function() {
-  //   var self = this;
-  //   var dateNow = null;
-  //   var dateMaturity = Enrollments.find(policyDetails.maturityDate);
-  //   var monthLeft = countdown(dateNow, dateMaturity, countdown.MONTHS | countdown.DAYS, 2);
-  //   var message = monthLeft.toHTML("label");
-  //   return message;
-  // },
+  }
 });
 
 

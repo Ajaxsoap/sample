@@ -1,4 +1,4 @@
-AutoForm.addHooks('updateMyProfileForm', {
+AutoForm.addHooks('accountsUpdateProfileForm', {
   onSuccess: function() {
     setTimeout(function() {
       toastr.options = {
