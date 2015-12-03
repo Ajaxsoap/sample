@@ -5,7 +5,7 @@ var getQuery = function(user) {
   }  else if ( Roles.userHasRole( user._id, 'HQ' ) ) {
     return { company: userProfile.profile.company };
   } else if ( Roles.userHasRole( user._id, 'Branch' ) ) {
-    return { createdBy: userId };
+    return { createdBy: user._id };
   } else if ( Roles.userHasRole( user._id, 'insurer' ) ) {
     return { insurer: userProfile.profile.insurer[0] };
   } else
@@ -43,8 +43,6 @@ Meteor.publish('userProfile', function(userId) {
 Meteor.publish("versions", function(){
 	return enrolleeVersion.find();
 });
-
-
 
 Meteor.publish("companies", function(){
   return Companies.find();

@@ -3,7 +3,9 @@ Template.Dashboard.onRendered(function() {
   this.autorun(function() {
     var life = Claim.find({},{dateFiled: 1, causeOfDeath: 1});
     var nonLife = Claim.find({},{dateFiled: 1, medical: 1});
-
+    var year2016 = Enrollments.find({effectivityDate: new Date('2016')});
+    
+    // enrollments chart
     var JanClaim = (Claim.find({
       dateFiled: {
         $gt: new Date('01/01/2016'),
@@ -77,74 +79,75 @@ Template.Dashboard.onRendered(function() {
       }
     }).count());
 
+// enrollments chart
     var JanEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('01/01/2016'),
         $lt: new Date('02/01/2016')
       }
     }).count());
     var FebEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('02/01/2016'),
         $lt: new Date('03/01/2016')
       }
     }).count());
     var MarEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('03/01/2016'),
         $lt: new Date('04/01/2016')
       }
     }).count());
     var AprEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('04/01/2016'),
         $lt: new Date('05/01/2016')
       }
     }).count());
     var MayEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('05/01/2016'),
         $lt: new Date('06/01/2016')
       }
     }).count());
     var JuneEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('06/01/2015'),
         $lt: new Date('07/01/2015')
       }
     }).count());
     var JulyEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('07/01/2015'),
         $lt: new Date('08/01/2015')
       }
     }).count());
     var AugEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('08/01/2015'),
         $lt: new Date('09/01/2015')
       }
     }).count());
     var SeptEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('09/01/2015'),
         $lt: new Date('10/01/2015')
       }
     }).count());
     var OctEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('10/01/2015'),
         $lt: new Date('11/01/2015')
       }
     }).count());
     var NovEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('11/01/2015'),
         $lt: new Date('12/01/2015')
       }
     }).count());
     var DecEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('12/01/2015'),
         $lt: new Date('01/01/2016')
       }
@@ -331,73 +334,73 @@ Template.claimedTable.onRendered(function() {
     }).count());
 
     var JanEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('01/01/2016'),
         $lt: new Date('02/01/2016')
       }
     }).count());
     var FebEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('02/01/2016'),
         $lt: new Date('03/01/2016')
       }
     }).count());
     var MarEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('03/01/2016'),
         $lt: new Date('04/01/2016')
       }
     }).count());
     var AprEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('04/01/2016'),
         $lt: new Date('05/01/2016')
       }
     }).count());
     var MayEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('05/01/2016'),
         $lt: new Date('06/01/2016')
       }
     }).count());
     var JuneEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('06/01/2015'),
         $lt: new Date('07/01/2015')
       }
     }).count());
     var JulyEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('07/01/2015'),
         $lt: new Date('08/01/2015')
       }
     }).count());
     var AugEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('08/01/2015'),
         $lt: new Date('09/01/2015')
       }
     }).count());
     var SeptEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('09/01/2015'),
         $lt: new Date('10/01/2015')
       }
     }).count());
     var OctEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('10/01/2015'),
         $lt: new Date('11/01/2015')
       }
     }).count());
     var NovEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('11/01/2015'),
         $lt: new Date('12/01/2015')
       }
     }).count());
     var DecEnroll = (Enrollments.find({
-      "effectivityDate": {
+      effectivityDate: {
         $gt: new Date('12/01/2015'),
         $lt: new Date('01/01/2016')
       }

@@ -27,12 +27,14 @@
               {{#if afFieldValueIs name="clientType" value="Dependent-Sibling"}}
                 {{> afQuickField name="siblingId"}}
               {{/if}}
+          {{# if userHasPermission 'UpdateDoc'}}
             {{> afQuickField name="status" }}
             {{> afQuickField name="causeOfDeath" }}
-            {{> afQuickField name="ammountPaid" data-mask="Php 99,999.99" }}
+            {{> afQuickField name="amountPaid" data-mask="Php 99,999.99" }}
             {{> afQuickField name="medical" }}
             {{> afQuickField name="partialPayment" data-mask="Php 99,999.99" }}
             {{> afQuickField name="claimNumber" }}
+          {{/if}}
             <!-- {{> afQuickField name="remarks" rows=4 }}
             {{> afQuickField name="file" }} -->
             <p>&nbsp;</p><br class="clear">
@@ -45,7 +47,7 @@
               <p>
                 <strong>Loading...</strong>
               </p>
-            {{/if}}  
+            {{/if}}
           </div><br class="clear">
 
 

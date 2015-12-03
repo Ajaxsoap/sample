@@ -4,7 +4,7 @@ Roles.registerAction('showHQDashboard');
 Roles.registerAction('showBranchDashboard');
 Roles.registerAction('showInsurerDashboard');
 Roles.registerAction('AccountProfile', true);
-Roles.registerAction('UpdateDoc');
+Roles.registerAction('UpdateDoc', true);
 
 //  Headquarters role
 HQ = new Roles.Role('HQ');
@@ -53,6 +53,7 @@ Branch = new Roles.Role('Branch');
 Branch.deny('showDashboard', true);
 Branch.allow('showBranchDashboard', true);
 Branch.deny('showHQDashboard', true);
+Branch.deny('UpdateDoc', true);
 
 
 // Branch.deny('AccountProfile', true);
@@ -84,7 +85,7 @@ insurer.deny('showDashboard', true);
 insurer.deny('showBranchDashboard', true);
 insurer.deny('showHQDashboard', true);
 insurer.allow('showInsurerDashboard', true);
-
+insurer.deny('UpdateDoc', true);
 
 // insurer.deny('AccountProfile', true);
 insurer.allow('collections.enrollments.index', true);

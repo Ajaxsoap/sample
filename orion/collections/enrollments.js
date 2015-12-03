@@ -64,6 +64,7 @@ enrolleeVersion = Enrollments.getVersionCollection();
 Enrollments.attachSchema(new SimpleSchema({
     fullName: {
       type: String,
+      label: 'Fullname - (First Name Middle Initial, Last Name )',
       max: 50,
       optional: true,
       autoform: {
@@ -172,7 +173,7 @@ Enrollments.attachSchema(new SimpleSchema({
     },
     ageOfEnrollee: {
       type: Number,
-      label: "Age",
+      label: "Age - (Between 18 - 65 years old)",
       max: 65,
       optional: true,
       autoform: {
@@ -324,7 +325,7 @@ Enrollments.attachSchema(new SimpleSchema({
     },
     spouseAge: {
       type: Number,
-      label: "Spouse Age",
+      label: "Spouse Age - (Between 18 - 65 years old)",
       optional: true,
       blackbox: true,
       min:18,
@@ -339,6 +340,8 @@ Enrollments.attachSchema(new SimpleSchema({
       type: Array,
       optional: true,
       blackbox: true,
+      minCount: 0,
+      maxCount: 10,
       autoform: {
         afObjectField: {
           bodyClass: 'container-fluid row'
@@ -380,7 +383,7 @@ Enrollments.attachSchema(new SimpleSchema({
     },
     'children.$.age': {
       type: Number,
-      label: "Age of Child",
+      label: "Age of Child - (Between 1 - 22 years old)",
       optional: true,
       blackbox: true,
       min: 1,
@@ -394,7 +397,8 @@ Enrollments.attachSchema(new SimpleSchema({
     parent: {
       type: Array,
       optional: true,
-      blackbox: true,
+      minCount: 0,
+      maxCount: 2,
       autoform: {
         group: "6. Parents",
       }
@@ -434,7 +438,7 @@ Enrollments.attachSchema(new SimpleSchema({
     },
     'parent.$.age': {
       type: Number,
-      label: "Age of Parent",
+      label: "Age of Parent - (Maximum of 65 years old)",
       optional: true,
       blackbox: true,
       min: 18,
@@ -449,6 +453,8 @@ Enrollments.attachSchema(new SimpleSchema({
       type: Array,
       optional: true,
       blackbox: true,
+      minCount: 0,
+      maxCount: 10,
     },
     'sibling.$': {
       type: Object,
@@ -485,7 +491,7 @@ Enrollments.attachSchema(new SimpleSchema({
     },
     'sibling.$.age': {
       type: Number,
-      label: "Sibling Age",
+      label: "Sibling Age - (Between 18 - 22 years old)",
       optional: true,
       blackbox: true,
       min: 1,
@@ -606,6 +612,7 @@ insurer: {
   }
 }
 },
+
 enrollmentId: orion.attribute('hasOne', {
     label: "Principal Name",
     autoform: {
@@ -622,7 +629,7 @@ enrollmentId: orion.attribute('hasOne', {
     filter: function(userId) {
       var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
       if ( Roles.userHasRole(userId, "admin") ) {
-        console.log( "Hello Admin" );
+        // console.log( "Hello Admin" );
         return {};
       } else if ( Roles.userHasRole(userId, 'HQ') ) {
         // console.log( "Hello HQ" );
@@ -669,28 +676,34 @@ enrollmentId: orion.attribute('hasOne', {
         afFormGroup: {
           'formgroup-class': 'col-xs-6 col-sm-4'
         }
-      }
+      },
+      // autoValue:function(){
+      //   if (this.insert) {
+      //     var enrollee = this.siblingField("_id").value;
+      //     if ( enrollee ) {
+      //       return { children: enrollee };
+      //     }
+      //   }
+      // }
     },
     {
       collection: Enrollments,
       titleField: 'children.name',
-      // additionalFields:['_id'],
+      additionalFields:['fullName'],
       publicationName: 'childrenClaim',
       filter: function(userId) {
-        var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
-        if ( Roles.userHasRole(userId, "admin") ) {
-          console.log( "Hello Admin" );
-          return {};
-        } else if ( Roles.userHasRole(userId, 'HQ') ) {
-          console.log( "Hello HQ" );
-          return { company: user.profile.company };
-        } else if ( Roles.userHasRole(userId, 'Branch') ) {
-          console.log( "Hello Branch" );
-          return { createdBy: userId };
-        } else if ( Roles.userHasRole(userId, 'insurer') ) {
-          console.log( "Hello Insurer" );
-          return {};
-        }
+        var enrollee = Enrollments.findOne({fullName: 1, children: 1});
+        return { children: enrollee };
+        // var user = Meteor.users.findOne({"_id": userId},{fields: {profile: 1}});
+        // if ( Roles.userHasRole(userId, "admin" ) ) {
+        //   return {};
+        // } else if ( Roles.userHasRole(userId, 'HQ' ) ) {
+        //   return { company: user.profile.company };
+        // } else if ( Roles.userHasRole(userId, 'Branch' ) ) {
+        //   return { createdBy: userId };
+        // } else if ( Roles.userHasRole(userId, 'insurer' ) ) {
+        //   return "No Data";
+        // }
       }
     }),
     spouseId: orion.attribute('hasOne', {
@@ -806,6 +819,7 @@ enrollmentId: orion.attribute('hasOne', {
   },
   amountPaid: {
     type: String,
+    label: 'Amount Paid',
     optional: true,
     autoform: {
       afFormGroup: {

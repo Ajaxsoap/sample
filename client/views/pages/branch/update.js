@@ -4,8 +4,8 @@ Template.branchUpdate.events({
   }
 });
 
-AutoForm.addHooks('orionBootstrapCollectionsUpdateForm', {
-  onSuccess: function() {
-    RouterLayer.go(this.collection.indexPath());
-  }
-});
+// AutoForm.addHooks('orionBootstrapCollectionsUpdateForm', {
+//   onSuccess: function() {
+//     RouterLayer.go(this.collection.indexPath());
+//   }
+// });
