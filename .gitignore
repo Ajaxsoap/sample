@@ -3,3 +3,5 @@ mup.json
 packages.json
 settings.json
 accounts.js
+server/kadira.js
+server/publication/fixtures.js
