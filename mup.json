@@ -1,11 +1,9 @@
 {
-  "servers": [
-    {
-        "host": "128.199.212.85",
-        "username": "root",
-        "pem": "~/.ssh/id_rsa"
-    }
-  ],
+  "servers": [ {
+    "host": "128.199.212.85",
+    "username": "root",
+    "pem": "~/.ssh/id_rsa"
+  } ],
   "setupMongo": false,
   "setupNode": true,
   "nodeVersion": "0.10.40",
@@ -15,7 +13,7 @@
   "app": ".",
   "env": {
     "ROOT_URL": "http://128.199.212.85",
-    "MONGO_URL": "mongodb://paisadmin:PaIS2o15@c22.galaga.2.mongolayer.com:10022,galaga.2.mongolayer.com:10022,galaga.3.mongolayer.com:10026/pais?replicaSet=set-56560be72a7c680f1b001369"
+    "MONGO_URL": "mongodb://pinoyAdmin:LekGo326@galaga.2.mongolayer.com:10022,galaga.3.mongolayer.com:10026/pais?replicaSet=set-56560be72a7c680f1b001369"
   },
   "deployCheckWaitTime": 120
 }

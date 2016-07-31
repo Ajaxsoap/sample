@@ -1,12 +1,12 @@
-Template.companyUpdate.onCreated( function() {
-  this.subscribe('products');
-});
+Template.companyUpdate.onCreated( function () {
+  this.subscribe( 'products' );
+} );
 
-Template.companyUpdate.events({
+Template.companyUpdate.events( {
   'click .save-btn': function () {
-    $('#orionBootstrapCollectionsUpdateForm').submit();
+    $( '#orionBootstrapCollectionsUpdateForm' ).submit();
   }
-});
+} );
 
 // AutoForm.addHooks('orionBootstrapCollectionsUpdateForm', {
 //   onSuccess: function() {

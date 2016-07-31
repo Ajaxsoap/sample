@@ -1,11 +1,11 @@
-Template.companyCreate.events({
+Template.companyCreate.events( {
   'click .create-btn': function () {
-    $('#orionBootstrapCollectionsCreateForm').submit();
+    $( '#orionBootstrapCollectionsCreateForm' ).submit();
   }
-});
+} );
 
-AutoForm.addHooks('orionBootstrapCollectionsCreateForm', {
-  onSuccess: function() {
-    RouterLayer.go(this.collection.indexPath());
-  },
-});
+// AutoForm.addHooks('orionBootstrapCollectionsCreateForm', {
+//   onSuccess: function() {
+//     RouterLayer.go(this.collection.indexPath());
+//   },
+// });

@@ -12,7 +12,20 @@
             <div class="ibox-content">
               {{#if Template.subscriptionsReady}}
                 {{# if item.canShowUpdate }}
-                  {{> quickForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }}
+                  <!-- {{> quickForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }} -->
+                  {{#autoForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }}
+                  <fieldset>
+                    <legend>Product Identity</legend>
+                    {{> afQuickField name="name" }}
+                    {{> afQuickField name="productOffering" }}
+                    {{> afQuickField name="productRange" }}
+                  </fieldset>
+                  <fieldset>
+                    <legend>Product Computation</legend>
+                    {{> afQuickField name="netPremium" }}
+                    {{> afQuickField name="grossProfit" }}
+                    {{> afQuickField name="premium" }}
+                  </fieldset>
                   <br>
                   <div class="buttons text-right">
                     <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
@@ -21,11 +34,16 @@
                     {{/ if }}
                     <a class="btn btn-primary save-btn">{{ i18n 'global.save' }}</a>
                   </div>
+
+                 {{/autoForm}}
+
                 {{/ if }}
-              {{/ if }}
+                {{else}}
+                {{> loader}}
+              {{/if }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 </template>

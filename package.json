@@ -1,0 +1,28 @@
+{
+  "name": "pais",
+  "version": "1.0.0",
+  "description": "pais enrollments and claims monitoring system",
+  "main": "accounts.js",
+  "dependencies": {
+    "numbro": "^1.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ajaxsoap/sample.git"
+  },
+  "keywords": [
+    "pais",
+    "micro",
+    "insurance"
+  ],
+  "author": "Marvin Villanueva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ajaxsoap/sample/issues"
+  },
+  "homepage": "https://github.com/Ajaxsoap/sample#readme"
+}

@@ -1,6 +1,6 @@
 <template name="claimsUpdate">
     {{# Layout template="pageHeading" }}
-      <span class="fa fa-pencil"></span>&nbsp;{{i18n 'collections.update.title' collection.singularName }}
+      <span class="fa fa-pencil"></span>&nbsp;Claim Status
     {{/ Layout }}
     <div class="wrapper wrapper-content animated fadeInRight">
       <div class="row">
@@ -9,53 +9,188 @@
             <div class="ibox-title">
               <!-- <span class="pull-right">&nbsp;<a href="{{ RouterLayerPathFor 'claimApproval' }}" class='btn btn-sm btn-warning'><span class="fa fa-file-pdf-o"></span>&nbsp;Generate Approval Letter</a> </span> -->
             </div>
+
             <div class="ibox-content">
-              {{#if Template.subscriptionsReady}}
-                {{# if item.canShowUpdate }}
-                  {{#autoForm collection=collection doc=item id="orionBootstrapCollectionsUpdateForm" type="update" buttonContent=false }}
-                  <!-- {{# if userHasPermission 'updateDoc'}} -->
-                  {{> afQuickField name="enrollmentId" disabled=true}}
-                  {{> afQuickField name="clientType" options="allowed" select=true template="bootstrap3-inline" disabled=true}}
-                    {{#if afFieldValueIs name="clientType" value="Dependent-Children" disabled=true}}
-                      {{> afQuickField name="childrenId" disabled=true}}
+              {{# if item.canShowUpdate }}
+                  <!-- Admin view  -->
+                  {{#if userHasPermission 'showDashboard'}}
+                  {{#if Template.subscriptionsReady}}
+                  {{#autoForm collection=collection doc=item id="claimsUpdateForm" type="update" }}
+                  <fieldset>
+                    {{> afQuickField name="enrollmentId"}}
+                    {{> afQuickField name="clientType" options="allowed" template="bootstrap3-inline" }}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Children" }}
+                        {{> afQuickField name="children" options=childrenOptions isReactiveOptions=true}}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Spouse" }}
+                        {{> afQuickField name="spouseName" options=spouseOptions isReactiveOptions=true}}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Parent" }}
+                        {{> afQuickField name="parentName" options=parentOptions isReactiveOptions=true}}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Sibling" }}
+                        {{> afQuickField name="siblingName" options=siblingOptions isReactiveOptions=true}}
                     {{/if}}
-                    {{#if afFieldValueIs name="clientType" value="Dependent-Spouse" disabled=true}}
-                      {{> afQuickField name="spouseId" disabled=true}}
+                    </fieldset>
+                    <fieldset>
+                    <legend>Product Type</legend>
+                    {{> afQuickField name="products" options=productOptions}}
+                    {{> afQuickField name="status" }}
+                  </fieldset>
+                  <fieldset>
+                    <legend></legend>
+                    {{> afQuickField name="causeOfDeath" }}
+                    {{> afQuickField name="medical" }}
+                    </fieldset>
+                    <fieldset>
+                      {{> afQuickField name="amountPaid" }}
+                      {{> afQuickField name="partialPayment" }}
+                      {{> afQuickField name="claimNumber" }}
+                    </fieldset>
+                    <fieldset>
+                      <legend>Remarks</legend>
+                    {{> afQuickField name="remarks" rows=2 }}
+                    {{> afQuickField name="remarksCompany" rows=2 }}
+                    {{#if userHasPermission 'filesystem.upload'}}
+                      {{> afQuickField name="file" }}
                     {{/if}}
-                    {{#if afFieldValueIs name="clientType" value="Dependent-Parent" disabled=true}}
-                      {{> afQuickField name="parentId" disabled=true}}
-                    {{/if}}
-                    {{#if afFieldValueIs name="clientType" value="Dependent-Sibling" disabled=true}}
-                      {{> afQuickField name="siblingId" disabled=true}}
+                    </fieldset>
+                    <p>&nbsp;</p>
+                    <div class="buttons text-right">
+                      <a class="btn btn-default" href="{{ collection.indexPath }}">Cancel</a>
+                      {{# if item.canShowRemove }}
+                        <a class="btn btn-danger" href="{{ collection.deletePath item._id }}">Delete</a>
+                      {{/ if }}
+                      <a class="btn btn-primary update-btn">Update &amp; Close</a>
+                    </div>
+                    {{/autoForm}}
+                    {{ else }}
+                        {{> loader}}
+                    {{/if }}
                   {{/if}}
-                  <!-- {{/if}} -->
-                  {{> afQuickField name="status" }}
-                  {{> afQuickField name="causeOfDeath" }}
-                  {{> afQuickField name="amountPaid" data-mask="Php 99,999.99" }}
-                  {{> afQuickField name="medical" }}
-                  {{> afQuickField name="partialPayment" data-mask="Php 99,999.99" }}
-                  {{> afQuickField name="claimNumber" }}
-                  {{> afQuickField name="remarks" rows=2 }}
-                  {{> afQuickField name="remarksCompany" rows=2 }}
-                  {{> afQuickField name="file" }}
-                  <p>&nbsp;</p>
-                  <div class="buttons text-right">
-                    <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
-                    {{# if item.canShowRemove }}
-                    <a class="btn btn-danger" href="{{ collection.deletePath item._id }}">{{i18n 'global.delete' }}</a>
-                    {{/ if }}
-                    <button class="btn btn-primary save-btn">{{ i18n 'global.save' }}</button>
-                  </div>
-                  {{/autoForm}}
-                {{/ if }}
-              {{ else }}
-                  <p>
-                    <strong>Loading...</strong>
-                  </p>
+
+                  <!-- HO Branch update view  -->
+                  {{#if userHasPermission 'showHQClaimsUpdate'}}
+                  {{#if Template.subscriptionsReady}}
+                  {{#autoForm collection=collection doc=item id="claimsUpdateForm" type="update" buttonContent=false }}
+                  <fieldset>
+                    {{> afQuickField name="enrollmentId" disabled=true}}
+                    {{> afQuickField name="clientType" options="allowed" template="bootstrap3-inline" disabled=true}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Children" }}
+                        {{> afQuickField name="children" options=childrenOptions isReactiveOptions=true disabled=true }}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Spouse" }}
+                        {{> afQuickField name="spouseName" options=spouseOptions isReactiveOptions=true disabled=true }}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Parent" }}
+                        {{> afQuickField name="parentName" options=parentOptions isReactiveOptions=true disabled=true }}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Sibling" }}
+                        {{> afQuickField name="siblingName" options=siblingOptions isReactiveOptions=true disabled=true }}
+                    {{/if}}
+                    </fieldset>
+                    <fieldset>
+                    <legend>Product Type</legend>
+                    {{> afQuickField name="products" options=productOptions disabled=true}}
+                    {{> afQuickField name="status" disabled=true}}
+                  </fieldset>
+                  <fieldset>
+                    <legend></legend>
+                    {{> afQuickField name="causeOfDeath" }}
+                    {{> afQuickField name="medical" }}
+                    </fieldset>
+                    <fieldset>
+                      {{> afQuickField name="amountPaid" }}
+                      {{> afQuickField name="partialPayment" }}
+                      {{> afQuickField name="claimNumber" }}
+                    </fieldset>
+                    <fieldset>
+                      <legend>Remarks</legend>
+                    {{> afQuickField name="remarks" rows=2 disabled=true}}
+                    {{> afQuickField name="remarksCompany" rows=2 }}
+                    {{#if userHasPermission 'filesystem.upload'}}
+                    {{> afQuickField name="file" }}
+                    {{/if}}
+                    </fieldset>
+                    <p>&nbsp;</p>
+                    <div class="buttons text-right">
+                      <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
+                      <!-- {{# if item.canShowRemove }}
+                      <a class="btn btn-danger" href="{{ collection.deletePath item._id }}">{{i18n 'global.delete' }}</a>
+                      {{/ if }} -->
+                      <a class="btn btn-primary update-btn">Update &amp; Close</a>
+                    </div>
+                    {{/autoForm}}
+                    {{ else }}
+                        {{> loader}}
+                    {{/if }}
+                  {{/if}}
+
+                  <!-- Insurer view  -->
+                  {{#if userHasPermission 'showInsurerDashboard'}}
+                  {{#if Template.subscriptionsReady}}
+                  {{#autoForm collection=collection doc=item id="claimsUpdateForm" type="update" buttonContent=false }}
+                  <fieldset>
+                    {{> afQuickField name="enrollmentId" disabled=true}}
+                    {{> afQuickField name="clientType" options="allowed" template="bootstrap3-inline" disabled=true}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Children" }}
+                        {{> afQuickField name="children" options=childrenOptions isReactiveOptions=true disabled=true}}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Spouse" }}
+                        {{> afQuickField name="spouseName" options=spouseOptions disabled=true}}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Parent" }}
+                        {{> afQuickField name="parentName" options=parentOptions disabled=true}}
+                      {{/if}}
+                      {{#if afFieldValueIs name="clientType" value="Dependent-Sibling" }}
+                        {{> afQuickField name="siblingName" options=siblingOptions disabled=true}}
+                      {{/if}}
+                    </fieldset>
+                    <fieldset>
+                      <legend>Product Type</legend>
+                      {{> afQuickField name="products" options=productOptions disabled=true}}
+                      {{> afQuickField name="status" }}
+                    </fieldset>
+                    <fieldset>
+                      <legend></legend>
+                      {{> afQuickField name="causeOfDeath" disabled=true}}
+                      {{> afQuickField name="medical" disabled=true}}
+                    </fieldset>
+                    <fieldset>
+                      <legend></legend>
+                      {{> afQuickField name="amountPaid" }}
+                      {{> afQuickField name="partialPayment" }}
+                      {{> afQuickField name="claimNumber" disabled=true}}
+
+                    </fieldset>
+                    <fieldset>
+                      <legend>Remarks</legend>
+                    {{> afQuickField name="remarks" rows=2 }}
+                    {{> afQuickField name="remarksCompany" rows=2 disabled=true}}
+                    {{#if userHasPermission 'filesystem.upload'}}
+                    {{> afQuickField name="file" }}
+                    {{/if}}
+                    </fieldset>
+                    <p>&nbsp;</p>
+                    <div class="buttons text-right">
+                      <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
+                      {{# if item.canShowRemove }}
+                      <a class="btn btn-danger" href="{{ collection.deletePath item._id }}">{{i18n 'global.delete' }}</a>
+                      {{/ if }}
+                      <a class="btn btn-primary update-btn">Update &amp; Close</a>
+                    </div>
+                    {{/autoForm}}
+                    {{ else }}
+                        {{> loader}}
+                    {{/if }}
+                  {{/if}}
+
               {{/ if }}
             </div><br class="clear">
+
           </div>
         </div>
       </div>
     </div>
+
 </template>

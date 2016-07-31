@@ -1,82 +1,99 @@
 <template name="navigation">
-    <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
-            <!-- Close canvas menu used only on OffCanvas page -->
-            <!-- You can remove this tag if you dont use offCanvas menu -->
-            <!-- <a class="close-canvas-menu"><i class="fa fa-times"></i></a> -->
-            <!-- End offCanvas menu toggle -->
-
-            <ul class="nav" id="side-menu">
-              {{#if currentUser}}
-                <li class="nav-header">
-
-                  {{# with getAdminLink 'myAccount' }}
-                    <div class="dropdown profile-element" id="user-profile-dropdown">
-                      {{# if currentUser.profile.picture }}
-                          <span>
-                            <img alt="image" class="profile-picture img-circle" src="{{ currentUser.profile.picture.url }}">
-                          </span>
-                      {{/ if }}
-                      <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ currentUser.profile.name }}</strong></span>
-                          <span class="text-muted text-xs block"> {{ title }}&nbsp;<b class="caret"></b></span></span>
-                      </a>
-                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                          {{# each childs }}
-                            <li class="{{ RouterLayerIsActiveRoutePartial regex=activeRouteRegex }}">
-                              <a href="{{ RouterLayerPathFor routeName }}" class="grey-text text-darken-4">{{ title }}</a>
-                            </li>
-                            {{/ each }}
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#" class="logout"><i class="fa fa-sign-out"></i> {{ i18n 'global.logout' }}</a></li>
-                          </ul>
-                    </div>
-                  {{/ with }}
-                    <div class="logo-element">
-                        PAIS
-                    </div>
-                </li>
-                <li>
-                    <a href="{{ RouterLayerPathFor 'Dashboard' }}"><i class="fa fa-tachometer"></i><span class="nav-label">Dashboard</span></a>
-                </li>
-                {{# each adminLinks }}
-                  {{> paisSidebarLink }}
-                {{/ each }}
-                {{/if}}
-
-              </ul>
-
-        </div>
-    </nav>
+  <nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="">
+      <!-- Close canvas menu used only on OffCanvas page -->
+      <!-- You can remove this tag if you dont use offCanvas menu -->
+      <!-- <a class="close-canvas-menu">
+        <i class="fa fa-times"></i>
+      </a> -->
+      <!-- End offCanvas menu toggle -->
+      <ul class="nav metismenu" id="side-menu">
+        {{#if currentUser}}
+          <li class="nav-header">
+            {{#with getAdminLink 'myAccount' }}
+              <div class="dropdown profile-element" id="user-profile-dropdown">
+                {{#if currentUser.profile.picture }}
+                  <span>
+                    <img alt="image" class="profile-picture img-circle" src="{{ currentUser.profile.picture.url }}">
+                  </span>
+                {{/if }}
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="clear">
+                    <span class="block m-t-xs">
+                      <strong class="font-bold">{{ currentUser.profile.name }}</strong>
+                    </span>
+                    <span class="text-muted text-xs block">
+                      {{ title }}&nbsp;
+                      <b class="caret"></b>
+                    </span>
+                  </span>
+                </a>
+                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                  {{#each childs }}
+                    <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
+                      <a class="grey-text text-darken-4" href="{{ RouterLayerPathFor routeName }}">{{ title }}</a>
+                    </li>
+                  {{/each }}
+                  <li class="divider" role="separator"></li>
+                  <li>
+                    <a class="logout" href="#">
+                      <i class="fa fa-sign-out"></i>
+                      {{ i18n 'global.logout' }}</a>
+                  </li>
+                </ul>
+              </div>
+            {{/with }}
+            <div class="logo-element">
+              PAIS
+            </div>
+          </li>
+          <!-- <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
+            <a href="{{ RouterLayerPathFor 'Dashboard' }}">
+              <i class="fa fa-tachometer"></i>
+              <span class="nav-label">Dashboard</span>
+            </a>
+          </li> -->
+          {{#each adminLinks }}
+            {{> paisSidebarLink }}
+          {{/each }}
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
 </template>
 <template name="paisSidebarLink">
 
-  {{# if childs }}
-    <li>
-      {{# if routeName }}
-        <a class="collapse-link-right" data-target="#admin-links-{{ identifier }}" data-toggle="collapse">
-          <span class="caret"></span>
-        </a>
-        <a href="{{ RouterLayerPathFor routeName }}">
-          <i class="fa fa-circle-thin"></i> <span class="nav-label">{{ title }}</span>
-        </a>
+  {{#if childs }}
+  <li>
+    {{#if routeName }}
+      <a class="collapse-link-right" data-target="#admin-links-{{ identifier }}" data-toggle="collapse">
+        <span class="caret"></span>
+      </a>
+      <a href="{{ RouterLayerPathFor routeName }}">
+        <i class="fa fa-circle-thin"></i>
+        <span class="nav-label">{{ title }}</span>
+      </a>
       {{ else }}
-        <a data-target="#admin-links-{{ identifier }}" data-toggle="collapse">
-          <i class="fa fa-circle-thin"></i> <span class="nav-label">{{ title }}</span>
-          <span class="caret"></span>
-        </a>
-      {{/ if }}
-      <div class="collapse" id="admin-links-{{ identifier }}">
-        <ul class="child-links">
-          {{# each childs }}
-            {{> paisSidebarLink }}
-          {{/ each }}
-        </ul>
-      </div>
-    </li>
+      <a data-target="#admin-links-{{ identifier }}" data-toggle="collapse">
+        <i class="fa fa-circle-thin"></i>
+        <span class="nav-label">{{ title }}</span>
+        <span class="caret"></span>
+      </a>
+    {{/if }}
+    <div class="collapse" id="admin-links-{{ identifier }}">
+      <ul class="child-links">
+        {{#each childs }}
+          {{> paisSidebarLink }}
+        {{/each }}
+      </ul>
+    </div>
+  </li>
   {{ else }}
-    <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
-      <a href="{{ RouterLayerPathFor routeName }}"><i class="fa fa-circle-thin"></i> <span class="nav-label">{{ title }}</span></a>
-    </li>
-  {{/ if }}
+  <li class="{{ RouterLayerIsActiveRoutePartial activeRouteRegex }}">
+    <a href="{{ RouterLayerPathFor routeName }}">
+      <i class="fa fa-circle-thin"></i>
+      <span class="nav-label">{{ title }}</span>
+    </a>
+  </li>
+{{/ if }}
 </template>

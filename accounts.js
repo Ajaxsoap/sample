@@ -10,6 +10,3 @@
 //     placeholder: 'Field',
 //     required: true,
 // });
-
- Options.set('forbidClientAccountCreation', true);
- /* Options.set('defaultRoles', ['admin', 'role2']); */

@@ -1,88 +1,58 @@
 <template name="Dashboard">
-  {{# Layout template="pageHeading" }}
-    <span class="fa fa-check"></span>&nbsp;Welcome {{ currentUser.profile.name }}
-  {{/ Layout }}
-  {{#if Template.subscriptionsReady}}
-  {{# if userHasPermission 'showDashboard'}}
-    <div class="wrapper wrapper-content animated fadeInRight">
+  {{#Layout template="pageHeading" }}
+    <span class="fa fa-check"></span>&nbsp;Welcome
+    {{ currentUser.profile.name }}
+  {{/Layout }}
+
+    {{#if userHasPermission 'showDashboard'}}
+    {{#if Template.subscriptionsReady}}
+      <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.index' }}" class="label label-primary">Enrollments</a></span>
-                        <h5>Enrollments</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.create' }}" class="label label-primary"><span class="fa fa-plus"></span>&nbsp;Add Enrollee</a></span>
-                        <small>Total Enrollments</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.index' }}" class="label label-info">Claims</a></span>
-                        <h5>Claims</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.create' }}" class="label label-info"><span class="fa fa-plus"></span>&nbsp;Add Claims</a></span>
-                        <small>Total Claims</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="widget navy-bg no-padding">
-                <div class="p-m">
-                  <h1 class="m-xs">Php {{ lifePremium }}</h1>
-                  <h3 class="font-bold no-margins">
-                    Total Life Premium
-                  </h3>
-                  <small>Income from Life product.</small>
-                </div>
+          <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="pull-right">
+                  <a class="label label-primary" href="{{ RouterLayerPathFor 'collections.enrollments.index' }}">Enrollments</a>
+                </span>
+                <h5>Enrollments</h5>
               </div>
-            </div>
-            <div class="col-lg-3">
-              <div class="widget yellow-bg no-padding">
-                <div class="p-m">
-                  <h1 class="m-xs">Php</h1>
-                  <h3 class="font-bold no-margins">
-                    Total Non-Life Premium
-                  </h3>
-                  <small>Income from Non-Life.</small>
-                </div>
+              <div class="ibox-content">
+                <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
+                <span class="pull-right">
+                  <a class="label label-primary" href="{{ RouterLayerPathFor 'collections.enrollments.create' }}">
+                    <span class="fa fa-plus"></span>&nbsp;Add Enrollee</a>
+                </span>
+                <small>Total Enrollments</small>
               </div>
             </div>
           </div>
-        <div class="row">
-          <div class="col-lg-12">
+          <div class="col-lg-3">
             <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="pull-right">
+                  <a class="label label-info" href="{{ RouterLayerPathFor 'collections.claims.index' }}">Claims</a>
+                </span>
+                <h5>Claims</h5>
+              </div>
               <div class="ibox-content">
-                <div>
-                  <span class="pull-right text-right">
-                    <strong>Legend:</strong>&nbsp;<button class='btn btn-xs btn-default'>Claims</button>
-                    &nbsp;<button class='btn btn-xs btn-primary'>Enrollments</button>
-                    </span>
-                  <h1 class="m-b-xs">Summary of Enrollments and Claims</h1>
-                </div>
-                <div>
-                  <canvas id="lineChart" height="70"></canvas>
-                </div>
-                <div class="m-t-md">
-                  <small class="pull-right">
-                    <i class="fa fa-clock-o"> </i>
-                    Updated on {{ updated }}
-                  </small>
-                </div>
+                <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
+                <span class="pull-right">
+                  <a class="label label-info" href="{{ RouterLayerPathFor 'collections.claims.create' }}">
+                    <span class="fa fa-plus"></span>&nbsp;Add Claims</a>
+                </span>
+                <small>Total Claims</small>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
+          {{> chart}}
+        </div>
+
+        <div class="row">
           <div class="col-lg-12">
             <div class="ibox-title">
-              <h5>Enrollments</h5>
+              <h3>Enrollments</h3>
             </div>
             <div class="ibox-content">
               {{> enolledTable }}
@@ -95,144 +65,274 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="ibox-title">
-              <h5>Claims</h5>
+              <h3 class="m-b-xs">Cause of Death and Medical Claims</h3>
             </div>
             <div class="ibox-content">
-              {{> claimedTable }}
+              {{> dashboardClaimTable }}
             </div>
           </div>
         </div>
-    </div>
+      </div>
+      {{/if}}
     {{/if}}
 
-    {{# if userHasPermission 'showHQDashboard'}}
-    <div class="wrapper wrapper-content animated fadeInRight">
+    {{#if userHasPermission 'showHQDashboard'}}
+    {{#if Template.subscriptionsReady}}
+      <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.index' }}" class="label label-primary">Enrollments</a></span>
-                        <h5>Enrollments</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.create' }}" class="label label-primary"><span class="fa fa-plus"></span>&nbsp;Add Enrollee</a></span>
-                        <small>Total Enrollments</small>
-                    </div>
-                </div>
+          <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="pull-right">
+                  <a class="label label-primary" href="{{ RouterLayerPathFor 'collections.enrollments.index' }}">Enrollments</a>
+                </span>
+                <h5>Enrollments</h5>
+              </div>
+              <div class="ibox-content">
+                <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
+                <span class="pull-right">
+                  <a class="label label-primary" href="{{ RouterLayerPathFor 'collections.enrollments.create' }}">
+                    <span class="fa fa-plus"></span>&nbsp;Add Enrollee</a>
+                </span>
+                <small>Total Enrollments</small>
+              </div>
             </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.index' }}" class="label label-info">Claims</a></span>
-                        <h5>Claims</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.create' }}" class="label label-info"><span class="fa fa-plus"></span>&nbsp;Add Claims</a></span>
-                        <small>Total Claims</small>
-                    </div>
-                </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="pull-right">
+                  <a class="label label-info" href="{{ RouterLayerPathFor 'collections.claims.index' }}">Claims</a>
+                </span>
+                <h5>Claims</h5>
+              </div>
+              <div class="ibox-content">
+                <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
+                <span class="pull-right">
+                  <a class="label label-info" href="{{ RouterLayerPathFor 'collections.claims.create' }}">
+                    <span class="fa fa-plus"></span>&nbsp;Add Claims</a>
+                </span>
+                <small>Total Claims</small>
+              </div>
             </div>
+          </div>
 
+        </div>
+        <div class="row">
+          {{> chart}}
         </div>
         <div class="row">
           <div class="col-lg-6">
             <div class="ibox-title">
-              Enrollments per branch
+              <h5>Enrollments per branch</h5>
             </div>
             <div class="ibox-content">
-
               {{> companyEnrolleesDashboard }}
             </div>
           </div>
           <div class="col-lg-6">
             <div class="ibox-title">
-              Claims per branch
+              <h5>Claims per branch</h5>
             </div>
             <div class="ibox-content">
               {{> companyClaimsDashboard }}
             </div>
           </div>
         </div>
-    </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Loss Ratio</h5>
+            </div>
+            <div class="ibox-content">
+              {{> lossRatioDashBoard }}
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Total Premium for KMBI MI Principal</h5>
+            </div>
+            <div class="ibox-content">
+              {{> TotalPremiumPrincipalDashBoard}}
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Total Premium for KMBI MI Children</h5>
+            </div>
+            <div class="ibox-content">
+              {{> TotalPremiumChildrenDashBoard}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Total Premium for KMBI MI Spouse</h5>
+            </div>
+            <div class="ibox-content">
+              {{> TotalPremiumSpouseDashBoard}}
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Total Premium for KMBI MI Siblings</h5>
+            </div>
+            <div class="ibox-content">
+              {{> TotalPremiumSiblingsDashBoard}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Total Premium for KMBI MI Parents</h5>
+            </div>
+            <div class="ibox-content">
+              {{> TotalPremiumParentsDashBoard}}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      {{/if}}
     {{/if}}
 
-    {{# if userHasPermission 'showBranchDashboard' }}
-    <div class="wrapper wrapper-content animated fadeInRight">
+    {{#if userHasPermission 'showBranchDashboard' }}
+    {{#if Template.subscriptionsReady}}
+      <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.index' }}" class="label label-primary">Enrollments</a></span>
-                        <h5>Enrollments</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.create' }}" class="label label-primary"><span class="fa fa-plus"></span>&nbsp;Add Enrollee</a></span>
-                        <small>Total Enrollments</small>
-                    </div>
-                </div>
+          <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="pull-right">
+                  <a class="label label-primary" href="{{ RouterLayerPathFor 'collections.enrollments.index' }}">Enrollments</a>
+                </span>
+                <h5>Enrollments</h5>
+              </div>
+              <div class="ibox-content">
+                <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
+                <span class="pull-right">
+                  <a class="label label-primary" href="{{ RouterLayerPathFor 'collections.enrollments.create' }}">
+                    <span class="fa fa-plus"></span>&nbsp;Add Enrollee</a>
+                </span>
+                <small>Total Enrollments</small>
+              </div>
             </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.index' }}" class="label label-info">Claims</a></span>
-                        <h5>Claims</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.create' }}" class="label label-info"><span class="fa fa-plus"></span>&nbsp;Add Claims</a></span>
-                        <small>Total Claims</small>
-                    </div>
-                </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="pull-right">
+                  <a class="label label-info" href="{{ RouterLayerPathFor 'collections.claims.index' }}">Claims</a>
+                </span>
+                <h5>Claims</h5>
+              </div>
+              <div class="ibox-content">
+                <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
+                <span class="pull-right">
+                  <a class="label label-info" href="{{ RouterLayerPathFor 'collections.claims.create' }}">
+                    <span class="fa fa-plus"></span>&nbsp;Add Claims</a>
+                </span>
+                <small>Total Claims</small>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-    {{/if}}
-    {{# if userHasPermission 'showInsurerDashboard' }}
-    <div class="wrapper wrapper-content animated fadeInRight">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.enrollments.index' }}" class="label label-primary">Enrollments</a></span>
-                        <h5>Enrollments</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
-                        <small>Total Enrollments</small>
-                    </div>
-                </div>
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Enrollments per branch</h5>
             </div>
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <span class="pull-right"><a href="{{ RouterLayerPathFor 'collections.claims.index' }}" class="label label-info">Claims</a></span>
-                        <h5>Claims</h5>
-                    </div>
-                    <div class="ibox-content">
-                        <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
-                        <small>Total Claims</small>
-                    </div>
-                </div>
+            <div class="ibox-content">
+              {{> companyEnrolleesDashboard }}
             </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Claims per branch</h5>
+            </div>
+            <div class="ibox-content">
+              {{> companyClaimsDashboard }}
+            </div>
+          </div>
         </div>
-    </div>
+      </div>
+      {{/if}}
     {{/if}}
-    {{ else }}
-      loading...
+    {{#if userHasPermission 'showInsurerDashboard' }}
+    {{#if Template.subscriptionsReady}}
+      <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="pull-right">
+                  <a class="label label-primary" href="{{ RouterLayerPathFor 'collections.enrollments.index' }}">Enrollments</a>
+                </span>
+                <h5>Enrollments</h5>
+              </div>
+              <div class="ibox-content">
+                <h1 class="no-margins">{{ getPublishedCount 'enrollmentsCount' }}</h1>
+                <small>Total Enrollments</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+              <div class="ibox-title">
+                <span class="pull-right">
+                  <a class="label label-info" href="{{ RouterLayerPathFor 'collections.claims.index' }}">Claims</a>
+                </span>
+                <h5>Claims</h5>
+              </div>
+              <div class="ibox-content">
+                <h1 class="no-margins">{{ getPublishedCount 'claimsCount' }}</h1>
+                <small>Total Claims</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Enrollments per branch</h5>
+            </div>
+            <div class="ibox-content">
+              {{> companyEnrolleesDashboard }}
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="ibox-title">
+              <h5>Claims per branch</h5>
+            </div>
+            <div class="ibox-content">
+              {{> companyClaimsDashboard }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
     {{/if}}
+
 </template>
 
 <template name="enolledTable">
   <div id="data">
-    <table id="enrollmentsTable" class="table table-striped tablesorter table-responsive">
+    <table class="table table-striped tablesorter table-responsive" id="enrollmentsTable">
       <thead>
         <tr>
           <th>Date Enrolled</th>
-          <th>Name</th>
-          <th>Children</th>
+          <th>Principal Name</th>
+          <th>Products Availed</th>
+          <th>Month Left</th>
+          <th>Company</th>
+          <th>Branch</th>
           <th>Date of Birth</th>
           <th>Age</th>
           <th>Gender</th>
@@ -242,21 +342,20 @@
           <th>Beneficiary</th>
           <th>Marital status</th>
           <th>Spouse Name</th>
+          <th>Children</th>
           <th>Parent</th>
           <th>Siblings</th>
-          <th>Effectivity Date</th>
-          <th>Maturity Date</th>
-          <th>Company</th>
-          <th>Branch</th>
-          <th>Month Left</th>
-          <th>Loan Cycle</th>
+
         </tr>
       </thead>
       <tfoot>
         <tr>
           <th>Date Enrolled</th>
-          <th>Name</th>
-          <th>Children</th>
+          <th>Principal Name</th>
+          <th>Products Availed</th>
+          <th>Month Left</th>
+          <th>Company</th>
+          <th>Branch</th>
           <th>Date of Birth</th>
           <th>Age</th>
           <th>Gender</th>
@@ -266,40 +365,35 @@
           <th>Beneficiary</th>
           <th>Marital status</th>
           <th>Spouse Name</th>
+          <th>Children</th>
           <th>Parent</th>
           <th>Siblings</th>
-          <th>Effectivity Date</th>
-          <th>Maturity Date</th>
-          <th>Company</th>
-          <th>Branch</th>
-          <th>Month Left</th>
-          <th>Loan Cycle</th>
+
         </tr>
       </tfoot>
       <tbody>
         {{#each enrollmentsList}}
-        <tr>
-          <td>{{ datelll createdAt }}</td>
-          <td>{{ fullName }}</td>
-          <td>{{> children }}</td>
-          <td>{{ datell birthdate }}</td>
-          <td>{{ ageOfEnrollee }}</td>
-          <td>{{ gender }}</td>
-          <td>{{ phone }}</td>
-          <td>{{ address }}</td>
-          <td>{{ city }}</td>
-          <td>{{> beneficiaries }}</td>
-          <td>{{ maritalStatus }}</td>
-          <td>{{ spouseName }}</td>
-          <td>{{> parents }}</td>
-          <td>{{> siblings }}</td>
-          <td>{{ datell effectivityDate }}</td>
-          <td>{{ datell maturityDate }}</td>
-          <td>{{ companyName company }}</td>
-          <td>{{ branchName branch }}</td>
-          <td>{{ monthCount }}</td>
-          <td>{{ loanCycle }}</td>
-        </tr>
+          <tr>
+            <td>{{ datelll createdAt }}</td>
+            <td>{{ fullName }}</td>
+            <td>{{ productsAvailed }}</td>
+            <td>{{> countdownDashboard }}</td>
+            <td>{{ companyName company }}</td>
+            <td>{{ branchName branch }}</td>
+            <td>{{ datell birthDate }}</td>
+            <td>{{ ageOfEnrollee }}</td>
+            <td>{{ gender }}</td>
+            <td>{{ phone }}</td>
+            <td>{{ address }}</td>
+            <td>{{ city }}</td>
+            <td>{{ beneficiaryOne }}</td>
+            <td>{{ maritalStatus }}</td>
+            <td>{{ spouseName }}</td>
+            <td>{{ childrenName}}</td>
+            <td>{{ parentName }}</td>
+            <td>{{ siblingName }}</td>
+
+          </tr>
         {{/each}}
       </tbody>
     </table>
@@ -307,84 +401,61 @@
   <hr>
   <div class="row">
     <div class="col col-md-6">
-      <span class="btn btn-primary">Total of <strong>{{ getPublishedCount 'enrollmentsCount' }}</strong> enrollments</span>
+      <span class="btn btn-primary">Total of
+        <strong>{{ getPublishedCount 'enrollmentsCount' }}</strong>
+        enrollments</span>
     </div>
   </div>
 </template>
 
-<template name="children">
-  {{# each children }}
-    <tr>
-      <td>
-        {{ name }},
-      </td>
-    </tr>
-  {{/each}}
-</template>
-<template name="beneficiaries">
-  {{# each beneficiary }}
-    <tr>
-      <td>
-        {{ name }},
-      </td>
-    </tr>
-  {{/each}}
-</template>
-<template name="parents">
-  {{# each parent }}
-    <tr>
-      <td>
-        {{ name }},
-      </td>
-    </tr>
-  {{/each}}
-</template>
-<template name="siblings">
-  {{# each sibling }}
-    <tr>
-      <td>
-        {{ name }},
-      </td>
-    </tr>
-  {{/each}}
-</template>
-
-<template name="claimedTable">
+<template name="dashboardClaimTable">
   <div class="row">
     <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-content">
           <div>
-            <span class="pull-right text-right">
-              <strong>Legend:</strong>&nbsp;<button class='btn btn-xs btn-default'>Total Number of Deaths</button>
-              </span>
-            <h1 class="m-b-xs">Claims</h1>
+
           </div>
           <div>
-            <canvas id="lineClaimChart" height="70"></canvas>
+            {{> claimChartMedical}}
+          </div>
+          <div>
+            {{> claimChartDeath}}
           </div>
           <div class="m-t-md">
             <small class="pull-right">
-              <i class="fa fa-clock-o"> </i>
-              Updated on {{ updated }}
+              <i class="fa fa-clock-o"></i>
+              Updated on
+              {{ updated }}
             </small>
           </div>
+
         </div>
       </div>
     </div>
   </div>
   <hr>
+  <div class="ibox-title">
+      <span class="label label-danger btn-xs pull-right text-right">More than or equal to 10 days processed </span>
+      <span class="label label-primary btn-xs pull-right text-right">Less than 10 days processed </span>&nbsp;
+      <span class="label label-default btn-xs pull-right text-rigt">Processing Stopped</span>&nbsp;
+
+      <span class="pull-right text-right"><strong>Legend Days Processed: </strong></span>
+
+  </div>
   <div id="data">
-    <table id="claimantTable" class="table table-striped tablesorter">
+    <table class="table table-striped tablesorter" id="claimantTable">
       <thead>
         <tr>
           <th>Date Filed</th>
           <th>Days Processed</th>
           <th>Reference Number</th>
-          <th>Insured Name</th>
+          <th>Principal Name</th>
           <th>Client Type</th>
+          <th>Insured Name</th>
           <th>Status</th>
           <th>Amount Paid</th>
+          <th>Partial Payment</th>
           <th>Cause of Death</th>
           <th>Medical</th>
         </tr>
@@ -394,27 +465,31 @@
           <th>Date Filed</th>
           <th>Days Processed</th>
           <th>Reference Number</th>
-          <th>Insured Name</th>
+          <th>Principal Name</th>
           <th>Client Type</th>
+          <th>Insured Name</th>
           <th>Status</th>
           <th>Amount Paid</th>
+          <th>Partial Payment</th>
           <th>Cause of Death</th>
           <th>Medical</th>
         </tr>
       </tfoot>
       <tbody>
         {{#each claimsList }}
-        <tr>
-          <td>{{ filedDate dateFiled }}</td>
-          <td>{{ daysProcessed }}</td>
-          <td>{{ claimNumber }}</td>
-          <td>{{ insuredName enrollmentId }}</td>
-          <td>{{ clientType }}</td>
-          <td>{{> claimedStatus }}</td>
-          <td>{{ ammountPaid }}</td>
-          <td>{{ causeOfDeath }}</td>
-          <td>{{ medical }}</td>
-        </tr>
+          <tr>
+            <td>{{ filedDate dateFiled }}</td>
+            <td>{{> daysCountdownDashboard }}</td>
+            <td>{{ claimNumber }}</td>
+            <td>{{ insuredName enrollmentId }}</td>
+            <td>{{ clientType }}</td>
+            <td>{{ dependent }}</td>
+            <td>{{> claimedStatus }}</td>
+            <td>{{ amountPaid }}</td>
+            <td>{{ partialPayment }}</td>
+            <td>{{ causeOfDeath }}</td>
+            <td>{{ medical }}</td>
+          </tr>
         {{/each}}
       </tbody>
     </table>
@@ -423,66 +498,297 @@
   <hr>
   <div class="row">
     <div class="col col-md-6">
-      <span class="btn btn-info">Total of <strong>{{ getPublishedCount 'claimsCount' }}</strong> claims</span>
+      <span class="btn btn-info">Total of
+        <strong>{{ getPublishedCount 'claimsCount' }}</strong>
+        claims</span>
     </div>
   </div>
 </template>
-<template name="claimedStatus">
-  {{#if statusPending}}
-    <label class="btn btn-warning btn-xs">{{ status }}</label>
-  {{/if}}
 
-  {{#if statusApproved}}
-    <label class="btn btn-primary btn-xs">{{ status }}</label>
-  {{/if}}
+<template name="claimChartMedical">
 
-  {{#if statusDenied}}
-    <label class="btn btn-danger btn-xs">{{ status }}</label>
-  {{/if}}
+  <div id="claimChartMedical" style="min-width: 310px; height: 400px;"></div>
+
 </template>
+
+<template name="claimChartDeath">
+
+  <div id="claimChartDeath" style="min-width: 310px; height: 400px;"></div>
+
+</template>
+
 <template name="countMonth">
   <label class="label label-primary"></label>
 </template>
 
+<template name="childrenDep">
+  {{#each childColumn}}
+    <td>{{childrenName }}</td>
+  {{/each}}
+</template>
+
 <template name="companyEnrolleesDashboard">
-  <table id="branchEnrolleeTable" class=" table table-striped tablesorter">
+  <table class=" table table-striped tablesorter" id="branchEnrolleeTable">
     <thead>
       <tr>
         <th>Branches</th>
-        <th>Total number of Enrollments per Branch</th>
+        <th>Total number of Enrollments</th>
       </tr>
     </thead>
     <tbody>
-        {{> branchList }}
+      {{> branchList }}
     </tbody>
   </table>
 </template>
+
 <template name="branchList">
+  {{#if Template.subscriptionsReady}}
   {{#each branchesEnrolleeCount }}
     <tr>
       <td>{{ branchName _id }}</td>
       <td>{{ count }}</td>
     </tr>
   {{/each}}
+  {{else}}
+    {{> loader}}
+  {{/if}}
 </template>
+
 <template name="companyClaimsDashboard">
-  <table id="branchClaimTable" class=" table table-striped tablesorter">
+  <table class=" table table-striped tablesorter" id="branchClaimTable">
     <thead>
       <tr>
         <th>Branches</th>
-        <th>Total number of Claims per branch</th>
+        <th>Total Claims</th>
+        <th>Total Approved </th>
+        <th>Total Pending</th>
+        <th>Total Denied</th>
       </tr>
     </thead>
     <tbody>
-        {{> claimList }}
+      {{> claimList }}
     </tbody>
   </table>
 </template>
+
+<template name="lossRatioDashBoard">
+  <table class="table table-striped table-responsive" id="lossRatio">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <!-- <th>Total Products</th> -->
+        <th>Total Premium</th>
+        <th> / </th>
+        <th>Total Amount Paid</th>
+        <th> = </th>
+        <th>Money Retained</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{> lossRatio}}
+    </tbody>
+  </table>
+</template>
+
+<template name="TotalPremiumPrincipalDashBoard">
+  <table class="table table-striped table-responsive" id="lossRatio">
+    <thead>
+      <tr>
+        <th>Branch</th>
+        <!-- <th>Product</th> -->
+        <th>Total Premium</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{> TotalPrincipalPremium}}
+    </tbody>
+  </table>
+</template>
+
+<template name="TotalPremiumChildrenDashBoard">
+  <table class="table table-striped table-responsive" id="lossRatio">
+    <thead>
+      <tr>
+        <th>Branch</th>
+        <!-- <th>Product</th> -->
+        <th>Total Premium</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{> TotalChildrenPremium}}
+    </tbody>
+  </table>
+</template>
+
+<template name="TotalPremiumSpouseDashBoard">
+  <table class="table table-striped table-responsive" id="lossRatio">
+    <thead>
+      <tr>
+        <th>Branch</th>
+        <!-- <th>Product</th> -->
+        <th>Total Premium</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{> TotalSpousePremium}}
+    </tbody>
+  </table>
+</template>
+
+<template name="TotalPremiumSiblingsDashBoard">
+  <table class="table table-striped table-responsive" id="lossRatio">
+    <thead>
+      <tr>
+        <th>Branch</th>
+        <!-- <th>Product</th> -->
+        <th>Total Premium</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{> TotalSiblingsPremium}}
+    </tbody>
+  </table>
+</template>
+
+<template name="TotalPremiumParentsDashBoard">
+  <table class="table table-striped table-responsive" id="lossRatio">
+    <thead>
+      <tr>
+        <th>Branch</th>
+        <!-- <th>Product</th> -->
+        <th>Total Premium</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{> TotalParentsPremium}}
+    </tbody>
+  </table>
+</template>
+
+<template name="countdownDashboard">
+  <button class="btn {{buttonClass}} btn-xs">{{ monthCount }}</button>
+</template>
+
+<template name="daysCountdownDashboard">
+    <span class="label {{buttonClass}} label-xs">{{ daysProcessed }}</span>
+</template>
+
 <template name="claimList">
+  {{#if Template.subscriptionsReady}}
   {{#each branchClaimsCounts }}
-  <tr>
-    <td>{{ branchName _id }}</td>
-    <td>{{ count }}</td>
-  </tr>
+    <tr>
+      <td>{{ branchName _id }}</td>
+      <td>{{ total }}</td>
+      <td> {{ totalApproved}}  </td>
+      <td> {{ totalPending}}  </td>
+      <td>{{ totalDenied }}</td>
+    </tr>
   {{/each}}
+  {{else}}
+    {{> loader}}
+  {{/if}}
+</template>
+
+<template name="lossRatio">
+{{#if Template.subscriptionsReady}}
+{{#each products}}
+    <tr>
+      <td>{{ productName _id }}</td>
+      <!-- <td>{{totalProducts}}</td> -->
+      <td> {{ premiumPerProducts }}</td>
+
+      <td> / </td>
+
+      <td> {{ amountPaid }}</td>
+
+      <td> = </td>
+      <td>{{retainedMoney}}%</td>
+    </tr>
+    {{/each}}
+{{/if}}
+</template>
+
+<template name="TotalPrincipalPremium">
+  {{#if Template.subscriptionsReady}}
+  {{#each enrollmentsPremium}}
+      <tr>
+        <td> {{branchName branch }}</td>
+        <td> {{ totalPremium }}</td>
+        <td> {{monthName _id }}</td>
+        <td> {{ year }}</td>
+      </tr>
+      {{/each}}
+      {{else}}
+        {{> loader}}
+  {{/if}}
+</template>
+
+<template name="TotalChildrenPremium">
+  {{#if Template.subscriptionsReady}}
+  {{#each enrollmentsChildrenPremium}}
+      <tr>
+        <td> {{ branchName branch}}</td>
+        <td> {{ totalPremium }}</td>
+        <td> {{monthName _id }}</td>
+        <td> {{ year }}</td>
+      </tr>
+      {{/each}}
+      {{else}}
+        {{> loader}}
+  {{/if}}
+</template>
+
+<template name="TotalSpousePremium">
+  {{#if Template.subscriptionsReady}}
+  {{#each enrollmentsSpousePremium}}
+      <tr>
+        <td> {{ branchName branch}}</td>
+        <td> {{ totalPremium }}</td>
+        <td> {{monthName _id }}</td>
+        <td> {{ year }}</td>
+      </tr>
+      {{/each}}
+      {{else}}
+        {{> loader}}
+  {{/if}}
+</template>
+
+<template name="TotalSiblingsPremium">
+  {{#if Template.subscriptionsReady}}
+  {{#each enrollmentsSiblingsPremium}}
+      <tr>
+        <td> {{ branchName branch}}</td>
+        <td> {{ totalPremium}}</td>
+        <td> {{monthName _id }}</td>
+        <td> {{ year }}</td>
+      </tr>
+      {{/each}}
+      {{else}}
+        {{> loader}}
+  {{/if}}
+</template>
+
+<template name="TotalParentsPremium">
+  {{#if Template.subscriptionsReady}}
+  {{#each enrollmentsParentsPremium}}
+      <tr>
+        <td> {{ branchName branch}}</td>
+        <td> {{ totalPremium}}</td>
+        <td> {{monthName _id }}</td>
+        <td> {{ year }}</td>
+      </tr>
+      {{/each}}
+      {{else}}
+        {{> loader}}
+  {{/if}}
 </template>

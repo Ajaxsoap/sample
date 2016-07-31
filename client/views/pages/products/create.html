@@ -10,19 +10,32 @@
             <h5></h5>
           </div>
           <div class="ibox-content">
-            {{> quickForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" buttonContent=false }}
+            <!-- {{> quickForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" buttonContent=false }} -->
+            {{#autoForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" }}
+            <fieldset>
+              <legend>Product Identity</legend>
+              {{> afQuickField name="name" }}
+              {{> afQuickField name="productOffering" }}
+              {{> afQuickField name="productRange" }}
+            </fieldset>
+            <fieldset>
+              <legend>Product Computation</legend>
+              {{> afQuickField name="netPremium" }}
+              {{> afQuickField name="grossProfit" }}
+              {{> afQuickField name="premium" }}
+            </fieldset>
             <br>
             <div class="buttons text-right">
               <a class="btn btn-default" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
               <a class="btn btn-primary create-btn">{{ i18n 'global.create' }}</a>
             </div>
-
+          {{/autoForm}}
           </div>
 
         </div>
       </div>
     </div>
     {{else}}
-      <p><b>{{ i18n 'global.noPermission' }}</b></p>
+      {{> DeniedAccess}}
     {{/ if }}
 </template>

@@ -22,7 +22,9 @@
                     <a class="btn btn-primary save-btn">{{ i18n 'global.save' }}</a>
                   </div>
                 {{/ if }}
-              {{/ if }}
+                {{else}}
+                {{> loader}}
+              {{/if }}
             </div>
           </div>
         </div>

@@ -1,82 +1,72 @@
 <template name="AccountsCreate">
+  {{#if userHasPermission 'showDashboard'}}
   {{# Layout template="pageHeading" }}
     <span class="fa fa-user-plus"></span>&nbsp;{{ i18n 'accounts.create.title' }}
   {{/ Layout }}
   <div class="wrapper wrapper-content animated fadeInRight">
-      <div class="row">
-          <div class="col-lg-12">
-            {{# Layout template="MediumContentOffset" }}
-              {{# Layout template="ContentContainer" }}
-                <div class="ibox-content">
-                  {{# if invitationId }}
-                  <div class="alert alert-success">
-                    Invitation created successfully
-                  </div>
-                  <p>
-                    <a href="{{ RouterLayerPathFor 'registerWithInvitation' _id=invitationId }}">{{ urlFor 'registerWithInvitation' _id=invitationId }}</a>
-                  </p>
-                  <hr>
-                  <div class="buttons">
-                    <a class="btn btn-default" href="{{ RouterLayerPathFor 'accounts.index' }}">{{ i18n 'global.back' }}</a>
-                    <button class="btn btn-primary btn-invite-another">{{ i18n 'accounts.create.inviteOther' }}</button>
-                  </div>
-                {{ else }}
-                  <form class="create">
-                      <div class="i-checks">
-                        <label>
-                          <input type="radio" name="createMethod" value="invitation" checked>
-                          {{ i18n 'accounts.create.createInvitation' }}
-                        </label>
-                      </div>
-                      <div class="i-checks">
-                        <label>
-                          <input type="radio" name="createMethod" value="now"><i></i>&nbsp;
-                          {{ i18n 'accounts.create.createUserNow' }}
-                        </label>
-                      </div>
-                      <hr>
-
-                      <p>{{ i18n 'accounts.create.selectRoles' }}</p>
-                      {{# each roles }}
-                        <div class="i-checks">
-                          <label>
-                            <input type="checkbox" role="{{ this }}"><i></i>&nbsp; {{ this }}
-                          </label>
-                        </div>
-                      {{/ each }}
-                      <hr>
-
-                      <p>{{ i18n 'accounts.create.email' }} {{# if createWithInvitation }}({{ i18n 'global.optional' }}){{/ if }}</p>
-                      <div class="form-group">
-                        <input type="email" class="form-control">
-                      </div>
-                      {{# unless createWithInvitation }}
-                        <p>{{ i18n 'accounts.schema.profile.name' }}</p>
-                        <div class="form-group">
-                          <input type="text" name="name" class="form-control">
-                        </div>
-                        <p>{{ i18n 'accounts.schema.password.new' }}</p>
-                        <div class="form-group">
-                          <input type="password" name="password" class="form-control">
-                        </div>
-                        <p>{{ i18n 'accounts.schema.password.confirm' }}</p>
-                        <div class="form-group">
-                          <input type="password" name="confirm" class="form-control">
-                        </div>
-                      {{/ unless }}
-
-                      <hr>
-                      <div class="buttons">
-                        <a class="btn btn-default" href="{{ RouterLayerPathFor 'accounts.index' }}">{{ i18n 'global.cancel' }}</a>
-                        <button class="btn btn-primary">{{ i18n 'global.create' }}</button>
-                      </div>
-                    </form>
-                  {{/ if }}
+    <div class="row">
+      <div class="col-lg-12">
+        {{# Layout template="MediumContentOffset" }}
+          {{# Layout template="ContentContainer" }}
+            <div class="ibox-content">
+              <h4>
+                <span class="fa fa-user-plus"></span>&nbsp;Create New User</h4>
+              <form class="create">
+                <hr>
+                <div class="i-checks">
+                  <label>
+                    <input name="createMethod" type="radio" value="now">
+                    <i></i>&nbsp;
+                    {{ i18n 'accounts.create.createUserNow' }}
+                  </label>
                 </div>
-              {{/ Layout }}
-            {{/ Layout }}
+                <hr>
+                <p>{{ i18n 'accounts.create.selectRoles' }}</p>
+                {{# each roles }}
+                  <div class="i-checks">
+                    <label>
+                      <input role="{{ this }}" type="checkbox">
+                      <i></i>&nbsp;
+                      {{ this }}
+                    </label>
+                  </div>
+                {{/ each }}
+                <hr>
 
-        </div>
+                <p>{{ i18n 'accounts.create.email' }}
+                </p>
+                <div class="form-group">
+                  <input class="form-control" type="email">
+                </div>
+
+                <p>{{ i18n 'accounts.schema.profile.name' }}</p>
+                <div class="form-group">
+                  <input class="form-control" name="name" type="text">
+                </div>
+                <p>{{ i18n 'accounts.schema.password.new' }}</p>
+                <div class="form-group">
+                  <input class="form-control" name="password" type="password">
+                </div>
+                <p>{{ i18n 'accounts.schema.password.confirm' }}</p>
+                <div class="form-group">
+                  <input class="form-control" name="confirm" type="password">
+                </div>
+
+                <hr>
+                <div class="buttons">
+                  <a class="btn btn-default" href="{{ RouterLayerPathFor 'accounts.index' }}">{{ i18n 'global.cancel' }}</a>
+                  <button class="btn btn-primary">{{ i18n 'global.create' }}</button>
+                </div>
+              </form>
+
+            </div>
+          {{/ Layout }}
+        {{/ Layout }}
+
       </div>
     </div>
+  </div>
+  {{else}}
+    {{> DeniedAccess}}
+  {{/if}}
 </template>

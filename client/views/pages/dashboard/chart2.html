@@ -1,0 +1,151 @@
+<template name="chart">
+  <div class="col-lg-12">
+    <div class="ibox-title">
+      <div class="input-group-btn">
+        <button class="btn btn-white dropdown-toggle" data-toggle="dropdown" type="button">Select year
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="#" id="chart2">2012 summary</a></li>
+          <li><a href="#" id="chart3">2013 summary</a></li>
+          <li><a href="#" id="chart4">2014 summary</a></li>
+          <li><a href="#" id="chart5">2015 summary</a></li>
+          <li><a href="#" id="chart6">2016 summary</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ibox-content">
+      {{> Template.dynamic template=active }}
+    </div>
+  </div>
+</template>
+<template name="updatedOn">
+  <small class="pull-right">
+    <i class="fa fa-clock-o"> </i> Updated on {{ updated }}
+  </small>
+</template>
+<template name="chart6">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div>
+            <span class="pull-right text-right">
+              <strong>Legend:</strong>&nbsp;
+              <button class='btn btn-xs btn-default'>Claims</button>
+              &nbsp;
+              <button class='btn btn-xs btn-primary'>Enrollments</button>
+            </span>
+            <h1 class="m-b-xs">2016 Summary of Enrollments and Claims</h1>
+          </div>
+          <div>
+            <canvas id="enrollChart6" height="70"></canvas>
+          </div>
+          <div class="m-t-md">
+            {{> updatedOn }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<template name="chart5">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div>
+            <span class="pull-right text-right">
+              <strong>Legend:</strong>&nbsp;
+              <button class='btn btn-xs btn-default'>Claims</button>
+              &nbsp;
+              <button class='btn btn-xs btn-primary'>Enrollments</button>
+            </span>
+            <h1 class="m-b-xs">2015 Summary of Enrollments and Claims</h1>
+          </div>
+          <div>
+            <canvas id="enrollChart5" height="70"></canvas>
+          </div>
+          <div class="m-t-md">
+              {{> updatedOn }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<template name="chart4">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div>
+            <span class="pull-right text-right">
+              <strong>Legend:</strong>&nbsp;
+              <button class='btn btn-xs btn-default'>Claims</button>
+              &nbsp;
+              <button class='btn btn-xs btn-primary'>Enrollments</button>
+            </span>
+            <h1 class="m-b-xs">2014 Summary of Enrollments and Claims</h1>
+          </div>
+          <div>
+            <canvas id="enrollChart4" height="70"></canvas>
+          </div>
+          <div class="m-t-md">
+            {{> updatedOn }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<template name="chart3">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div>
+            <span class="pull-right text-right">
+              <strong>Legend:</strong>&nbsp;
+              <button class='btn btn-xs btn-default'>Claims</button>
+              &nbsp;
+              <button class='btn btn-xs btn-primary'>Enrollments</button>
+            </span>
+            <h1 class="m-b-xs">2013 Summary of Enrollments and Claims</h1>
+          </div>
+          <div>
+            <canvas id="enrollChart3" height="70"></canvas>
+          </div>
+          <div class="m-t-md">
+              {{> updatedOn }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<template name="chart2">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div>
+            <span class="pull-right text-right">
+              <strong>Legend:</strong>&nbsp;
+              <button class='btn btn-xs btn-default'>Claims</button>
+              &nbsp;
+              <button class='btn btn-xs btn-primary'>Enrollments</button>
+            </span>
+            <h1 class="m-b-xs">2012 Summary of Enrollments and Claims</h1>
+          </div>
+          <div>
+            <canvas id="enrollChart2" height="70"></canvas>
+          </div>
+          <div class="m-t-md">
+              {{> updatedOn }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

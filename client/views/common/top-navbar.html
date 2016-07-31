@@ -1,14 +1,11 @@
 <template name="topNavbar">
-  <!-- {{#if currentUser}} -->
   <div class="row border-bottom white-bg">
     <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-      <div class="navbar-header">
-        <a id="navbar-minimalize" class="minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-        <form role="search" class="navbar-form-custom" action="search_results">
-        </form>
-      </div>
+      <!-- <div class="navbar-header">
+        <a id="navbar-minimalize" class="minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-bars"></i> </a>
+      </div> -->
       <ul class="nav navbar-top-links navbar-right">
-        {{# with getAdminLink 'myAccount' }}
+        {{#with getAdminLink 'myAccount' }}
         <div class="navbar-collapse collapse navbar-responsive-collapse" id="user-profile-dropdown">
           <ul class="nav navbar-top-links animated fadeInRight m-t-xs navbar-right">
             <li>
@@ -19,18 +16,18 @@
                 {{ title }} <span class="caret"></span>
               </a>
               <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                {{# each childs }}
+                {{#each childs }}
                 <li>
                   <a href="{{ RouterLayerPathFor routeName }}" class="grey-text text-darken-4">{{ title }}</a>
                 </li>
-                {{/ each }}
+                {{/each }}
                 <li role="separator" class="divider"></li>
                 <li><a href="#" class="logout"><i class="fa fa-sign-out"></i> {{ i18n 'global.logout' }}</a></li>
               </ul>
             </li>
           </ul>
         </div>
-        {{/ with }}
+        {{/with }}
       </ul>
     </nav>
   </div>
