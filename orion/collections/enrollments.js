@@ -1187,8 +1187,8 @@ Enrollments.attachSchema( new SimpleSchema( {
       type: "bootstrap-datepicker",
       datePickerOptions: {
         format: 'mm-dd-yyyy',
+        defaultDate: false,
         forceParse: false,
-        enableOnReadonly: false
       },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'

@@ -393,11 +393,12 @@ Template.productsAvailed.events( {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange.get(), 10 ), 'months' );
     var value = moment( effectivity ).add( duration ).format( 'MM-DD-YYYY' );
-    // if ( effectivity ) {
-    //   // console.log( typeof new Date( value ) );
-    //   $( 'input[name=maturityDate]' ).datepicker( 'update', value );
-    // }
-    template.$( 'input[name=maturityDate]' ).val( value );
+    if ( effectivity ) {
+      // console.log( typeof new Date( value ) );
+      $( 'input[name=maturityDate]' ).datepicker( 'setDate', value );
+      template.$( 'input[name=maturityDate]' ).val( value );
+    }
+
   }
 } );
 

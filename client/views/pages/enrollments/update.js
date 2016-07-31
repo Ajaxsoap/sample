@@ -54,51 +54,6 @@ Template.productsAvailedUpdate9.onCreated( function () {
   this.subscribe( 'products' );
 } );
 
-// Template.afInputDate_Maturity.onRendered( function () {
-//   AutoForm.addInputType( "dateMaturity", {
-//     template: "afInputDate_Maturity",
-//     valueIn: function ( val ) {
-//       //convert Date to string value
-//       return AutoForm.valueConverters.dateToDateStringUTC( val );
-//     },
-//     valueOut: function () {
-//       if ( AutoForm.Utility.isValidDateString( val ) ) {
-//         // Date constructor will interpret val as UTC and create
-//         // date at mignight in the morning of val date in UTC time zone
-//         return new Date( val );
-//       } else {
-//         return null;
-//       }
-//     },
-//     valueConverters: {
-//       "string": AutoForm.valueConverters.dateToDateStringUTC,
-//       "stringArray": AutoForm.valueConverters.dateToDateStringUTCArray,
-//       "number": AutoForm.valueConverters.dateToNumber,
-//       "numberArray": AutoForm.valueConverters.dateToNumberArray,
-//       "dateArray": AutoForm.valueConverters.dateToDateArray
-//     },
-//     contextAdjust: function ( context ) {
-//       if ( typeof context.atts.max === "undefined" && context.max instanceof Date ) {
-//         context.atts.max = AutoForm.valueConverters.dateToDateStringUTC( context.max );
-//       }
-//       if ( typeof context.atts.min === "undefined" && context.min instanceof Date ) {
-//         context.atts.min = AutoForm.valueConverters.dateToDateStringUTC( context.min );
-//       }
-//       return context;
-//     }
-//   } );
-//   AutoForm.debug();
-// } );
-
-// Template["afQuickField_bootstraptimepicker"].helpers( {
-//   atts: function addFormControlAtts() {
-//     var atts = _.clone( this.atts );
-//     // Add bootstrap class
-//     atts = AutoForm.Utility.addClass( atts, "form-control" );
-//     return atts;
-//   }
-// } );
-
 var selectedProductName = new ReactiveVar( null );
 var selectedProductName1 = new ReactiveVar( null );
 var selectedProductName2 = new ReactiveVar( null );
@@ -110,7 +65,6 @@ var selectedProductName7 = new ReactiveVar( null );
 var selectedProductName8 = new ReactiveVar( null );
 var selectedProductName9 = new ReactiveVar( null );
 var selectedDependentId = new ReactiveVar();
-var maturity = new ReactiveVar( null );
 var selectedProductId = new ReactiveVar();
 var selectedRange = new ReactiveVar( 0 );
 var loancycle = new ReactiveVar( 1 );
@@ -266,9 +220,9 @@ Template.productsAvailedUpdate.events( {
     var range = ( $( 'select[name=productRange]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
     var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate]' ).val( value );
     if ( effectivity ) {
-      $( 'input[name=maturityDate]' ).datepicker( 'update', value );
+      $( 'input[name=maturityDate]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate]' ).val( value );
     }
   },
   'click .renew-btn': function ( event, template ) {
@@ -600,13 +554,6 @@ function enrollee( premiums ) {
   } );
 }
 
-Template.registerHelper( 'dateTime', function ( maturityDate ) {
-  if ( maturityDate ) {
-    var momentToFormat = moment( maturityDate );
-    return momentToFormat.format( 'MM-DD-YYYY' );
-  }
-} );
-
 Template.enrollmentsUpdate.helpers( {
   enrolleePremium: function () {
     totalPremium = [
@@ -639,10 +586,6 @@ Tracker.autorun( function () {
 } );
 
 Template.productsAvailedUpdate.helpers( {
-  maturity: function () {
-    var enrollee = Enrollments.findOne( this._id );
-    return enrollee && moment( enrollee.maturityDate ).format( 'mm-dd-yyyy' );
-  },
   productOption: function () {
     return Products.find().map( function ( offer ) {
       return {
