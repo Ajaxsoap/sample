@@ -219,7 +219,7 @@ Template.productsAvailedUpdate.events( {
     var effectivity = $( event.target ).val();
     var range = ( $( 'select[name=productRange]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
-    var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
+    var value = moment( effectivity ).add( duration ).format( 'MM-DD-YYYY' );
     if ( effectivity ) {
       $( 'input[name=maturityDate]' ).datepicker( 'update', new Date( value ) );
       template.$( 'input[name=maturityDate]' ).val( value );
@@ -244,19 +244,21 @@ Template.productsAvailedUpdate1.events( {
     template.$( 'input[name=productRange1]' ).val( rangeValue );
   },
   'change input[name=effectivityDate1]': function ( event, template ) {
-    var effectivity = $( event.target ).val();
+    var effectivity1 = $( event.target ).val();
     var range = ( $( 'select[name=productRange1]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
-    var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate1]' ).val( value );
-    $( 'input[name=maturityDate1]' ).datepicker( 'update', new Date( value ) );
+    var value = moment( new Date( effectivity1 ) ).add( duration ).format( 'MM-DD-YYYY' );
+    if ( effectivity1 ) {
+      $( 'input[name=maturityDate1]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate1]' ).val( value );
+    }
   },
   'click .renew-btn1': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle1' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle2]' ).val( value );
+    template.$( 'input[name=loanCycle1]' ).val( value );
   }
 } );
 
@@ -270,19 +272,21 @@ Template.productsAvailedUpdate2.events( {
     template.$( 'input[name=productRange2]' ).val( rangeValue );
   },
   'change input[name=effectivityDate2]': function ( event, template ) {
-    var effectivity = $( event.target ).val();
+    var effectivity2 = $( event.target ).val();
     var range = ( $( 'select[name=productRange2]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
-    var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate2]' ).val( value );
-    $( 'input[name=maturityDate2]' ).datepicker( 'update', new Date( value ) );
+    var value = moment( new Date( effectivity2 ) ).add( duration ).format( 'MM-DD-YYYY' );
+    if ( effectivity2 ) {
+      $( 'input[name=maturityDate2]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate2]' ).val( value );
+    }
   },
   'click .renew-btn2': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle2' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle3]' ).val( value );
+    template.$( 'input[name=loanCycle2]' ).val( value );
   }
 } );
 
@@ -300,15 +304,17 @@ Template.productsAvailedUpdate3.events( {
     var range = ( $( 'select[name=productRange3]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
     var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate3]' ).val( value );
-    $( 'input[name=maturityDate3]' ).datepicker( 'update', new Date( value ) );
+    if ( effectivity ) {
+      $( 'input[name=maturityDate3]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate3]' ).val( value );
+    }
   },
   'click .renew-btn3': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle3' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle4]' ).val( value );
+    template.$( 'input[name=loanCycle3]' ).val( value );
   }
 } );
 
@@ -326,15 +332,17 @@ Template.productsAvailedUpdate4.events( {
     var range = ( $( 'select[name=productRange4]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
     var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate4]' ).val( value );
-    $( 'input[name=maturityDate4]' ).datepicker( 'update', new Date( value ) );
+    if ( effectivity ) {
+      $( 'input[name=maturityDate4]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate4]' ).val( value );
+    }
   },
   'click .renew-btn4': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle4' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle5]' ).val( value );
+    template.$( 'input[name=loanCycle4]' ).val( value );
   }
 } );
 
@@ -352,15 +360,17 @@ Template.productsAvailedUpdate5.events( {
     var range = ( $( 'select[name=productRange5]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
     var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate5]' ).val( value );
-    $( 'input[name=maturityDate5]' ).datepicker( 'update', new Date( value ) );
+    if ( effectivity ) {
+      $( 'input[name=maturityDate5]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate5]' ).val( value );
+    }
   },
   'click .renew-btn5': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle5' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle6]' ).val( value );
+    template.$( 'input[name=loanCycle5]' ).val( value );
   }
 } );
 
@@ -378,15 +388,17 @@ Template.productsAvailedUpdate6.events( {
     var range = ( $( 'select[name=productRange6]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
     var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate6]' ).val( value );
-    $( 'input[name=maturityDate6]' ).datepicker( 'update', new Date( value ) );
+    if ( effectivity ) {
+      $( 'input[name=maturityDate6]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate6]' ).val( value );
+    }
   },
   'click .renew-btn6': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle6' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle7]' ).val( value );
+    template.$( 'input[name=loanCycle6]' ).val( value );
   }
 } );
 
@@ -404,15 +416,17 @@ Template.productsAvailedUpdate7.events( {
     var range = ( $( 'select[name=productRange7]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
     var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate7]' ).val( value );
-    $( 'input[name=maturityDate7]' ).datepicker( 'update', new Date( value ) );
+    if ( effectivity ) {
+      $( 'input[name=maturityDate7]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate7]' ).val( value );
+    }
   },
   'click .renew-btn7': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle7' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle8]' ).val( value );
+    template.$( 'input[name=loanCycle7]' ).val( value );
   }
 } );
 
@@ -430,15 +444,17 @@ Template.productsAvailedUpdate8.events( {
     var range = ( $( 'select[name=productRange8]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
     var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate8]' ).val( value );
-    $( 'input[name=maturityDate8]' ).datepicker( 'update', new Date( value ) );
+    if ( effectivity ) {
+      $( 'input[name=maturityDate8]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate8]' ).val( value );
+    }
   },
   'click .renew-btn8': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle8' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle9]' ).val( value );
+    template.$( 'input[name=loanCycle8]' ).val( value );
   }
 } );
 
@@ -455,15 +471,17 @@ Template.productsAvailedUpdate9.events( {
     var effectivity = $( event.target ).val();
     var range = ( $( 'select[name=productRange9]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
-    template.$( 'input[name=maturityDate9]' ).val( value );
-    $( 'input[name=maturityDate9]' ).datepicker( 'update', new Date( value ) );
+    if ( effectivity ) {
+      $( 'input[name=maturityDate9]' ).datepicker( 'update', new Date( value ) );
+      template.$( 'input[name=maturityDate9]' ).val( value );
+    }
   },
   'click .renew-btn9': function ( event, template ) {
     event.preventDefault();
     var cycle = template.$( '#loanCycle9' ).val();
     var value = parseInt( cycle, 10 );
     console.log( "Loan Cycle:", value++ );
-    template.$( 'input[name=loanCycle10]' ).val( value );
+    template.$( 'input[name=loanCycle9]' ).val( value );
   }
 } );
 
@@ -543,16 +561,6 @@ Template.registerHelper( "siblingsOptionUpdate", function () {
     };
   } );
 } );
-
-function enrollee( premiums ) {
-  return Enrollments.findOne( {
-    _id: this._id
-  }, {
-    fields: {
-      "premiums": 1
-    }
-  } );
-}
 
 Template.enrollmentsUpdate.helpers( {
   enrolleePremium: function () {

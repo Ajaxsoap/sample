@@ -81,14 +81,14 @@ Template.enrollmentsTable.helpers( {
     if ( val instanceof Date ) {
       return moment( val ).format( 'll' );
     } else {
-      return "No Data";
+      return "No Date";
     }
   },
   datelll: function ( val, type, doc ) {
     if ( val instanceof Date ) {
       return moment( val ).format( 'lll' );
     } else {
-      return "No Data";
+      return "No Date";
     }
   },
   companyName: function ( company ) {

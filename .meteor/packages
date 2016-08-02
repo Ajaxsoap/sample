@@ -13,7 +13,7 @@ ian:accounts-ui-bootstrap-3
 iron:router
 twbs:bootstrap
 standard-app-packages
-dburles:collection-helpers
+#dburles:collection-helpers
 aldeed:autoform-bs-datepicker
 rajit:bootstrap3-datepicker
 # audit-argument-checks
@@ -28,7 +28,7 @@ orionjs:config
 meteorhacks:kadira
 brightbind:orion-gridfs
 vsivsi:orion-file-collection
-mickaelfm:vermongo
+#mickaelfm:vermongo
 #cfs:standard-packages
 #cfs:filesystem
 dsyko:meteor-node-csv

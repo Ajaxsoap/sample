@@ -1186,9 +1186,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     autoform: {
       type: "bootstrap-datepicker",
       datePickerOptions: {
-        format: 'mm-dd-yyyy',
-        defaultDate: false,
-        forceParse: false,
+        format: 'mm-dd-yyyy'
       },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -1203,7 +1201,7 @@ Enrollments.attachSchema( new SimpleSchema( {
       type: "bootstrap-datepicker",
       datePickerOptions: {
         format: 'mm-dd-yyyy',
-        // daysOfWeekDisabled: [ 0, 6 ],
+        daysOfWeekDisabled: [ 0, 6 ],
       },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -1217,8 +1215,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     autoform: {
       type: "bootstrap-datepicker",
       datePickerOptions: {
-        format: 'mm-dd-yyyy',
-        daysOfWeekDisabled: [ 0, 6 ],
+        format: 'mm-dd-yyyy'
       },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -3037,7 +3034,6 @@ Enrollments.helpers( {
 Enrollments.before.insert( function ( userId, doc ) {
   var date = moment().toDate();
   doc.createdAt = date;
-  doc.maturityDate = date;
 } );
 
 Claim.before.insert( function ( userId, doc ) {

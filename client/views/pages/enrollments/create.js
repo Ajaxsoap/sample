@@ -369,7 +369,7 @@ Template.enrollmentsCreate.events( {
   'change input[name=sibling10Name]': function ( event, template ) {
     var sibling9 = $( event.target ).val();
     selectedSibling9.set( sibling9 );
-    console.log( "Sibling 10:", selectedSibling9.get( 'Sibling10' ) );
+    console.log( "Sibling 10:", selectedSibling9.get() );
   },
 } );
 
@@ -381,7 +381,7 @@ Template.productsAvailed.events( {
   'change select[name=productOffering]': function ( event, template ) {
     selectedDependentId.set( $( event.target ).val() );
     // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
   },
   'change select[name=productRange]': function ( event, template ) {
     var currentTarget = event.currentTarget;
@@ -390,15 +390,13 @@ Template.productsAvailed.events( {
     template.$( 'input[name=productRange]' ).val( rangeValue );
   },
   'change input[name=effectivityDate]': function ( event, template ) {
-    var effectivity = $( event.target ).val();
-    var duration = moment.duration( parseInt( selectedRange.get(), 10 ), 'months' );
-    var value = moment( effectivity ).add( duration ).format( 'MM-DD-YYYY' );
-    if ( effectivity ) {
-      // console.log( typeof new Date( value ) );
-      $( 'input[name=maturityDate]' ).datepicker( 'setDate', value );
+    var effective = $( event.target ).val();
+    var range = moment.duration( parseInt( selectedRange.get(), 10 ), 'months' );
+    var value = moment( new Date( effective ) ).add( range ).format( 'MM-DD-YYYY' );
+    if ( effective ) {
+      $( 'input[name=maturityDate]' ).datepicker( 'setDate', new Date( value ) );
       template.$( 'input[name=maturityDate]' ).val( value );
     }
-
   }
 } );
 
@@ -417,14 +415,17 @@ Template.productsAvailed1.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange1.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange1.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate1]': function ( event, template ) {
-    var effectivity = $( event.target ).val();
+    var effective = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange1.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effective ) ).add( duration ).format(
       'MM-DD-YYYY' );
-    template.$( 'input[name=maturityDate1]' ).val( effectiveDate );
+    if ( effective ) {
+      $( 'input[name=maturityDate1]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate1]' ).val( value );
+    }
   }
 } );
 
@@ -443,15 +444,16 @@ Template.productsAvailed2.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange2.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange2.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate2]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange2.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effectivity ) ).add( duration ).format(
       'MM-DD-YYYY' );
     if ( effectivity ) {
-      template.$( 'input[name=maturityDate2]' ).val( effectiveDate );
+      $( 'input[name=maturityDate2]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate2]' ).val( value );
     }
   }
 } );
@@ -471,15 +473,16 @@ Template.productsAvailed3.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange3.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange3.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate3]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange3.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effectivity ) ).add( duration ).format(
       'MM-DD-YYYY' );
     if ( effectivity ) {
-      template.$( 'input[name=maturityDate3]' ).val( effectiveDate );
+      $( 'input[name=maturityDate3]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate3]' ).val( value );
     }
   }
 } );
@@ -499,15 +502,16 @@ Template.productsAvailed4.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange4.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange4.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate4]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange4.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effectivity ) ).add( duration ).format(
       'MM-DD-YYYY' );
     if ( effectivity ) {
-      template.$( 'input[name=maturityDate4]' ).val( effectiveDate );
+      $( 'input[name=maturityDate4]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate4]' ).val( value );
     }
   }
 } );
@@ -527,15 +531,16 @@ Template.productsAvailed5.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange5.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange5.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate5]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange5.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effectivity ) ).add( duration ).format(
       'MM-DD-YYYY' );
     if ( effectivity ) {
-      template.$( 'input[name=maturityDate5]' ).val( effectiveDate );
+      $( 'input[name=maturityDate5]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate5]' ).val( value );
     }
   }
 } );
@@ -555,15 +560,16 @@ Template.productsAvailed6.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange6.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange6.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate6]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange6.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effectivity ) ).add( duration ).format(
       'MM-DD-YYYY' );
     if ( effectivity ) {
-      template.$( 'input[name=maturityDate6]' ).val( effectiveDate );
+      $( 'input[name=maturityDate6]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate6]' ).val( value );
     }
   }
 } );
@@ -583,15 +589,16 @@ Template.productsAvailed7.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange7.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange7.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate7]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange7.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effectivity ) ).add( duration ).format(
       'MM-DD-YYYY' );
     if ( effectivity ) {
-      template.$( 'input[name=maturityDate7]' ).val( effectiveDate );
+      $( 'input[name=maturityDate7]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate7]' ).val( value );
     }
   }
 } );
@@ -611,15 +618,16 @@ Template.productsAvailed8.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange8.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange8.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate8]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange8.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effectivity ) ).add( duration ).format(
       'MM-DD-YYYY' );
     if ( effectivity ) {
-      template.$( 'input[name=maturityDate8]' ).val( effectiveDate );
+      $( 'input[name=maturityDate8]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate8]' ).val( value );
     }
   },
 
@@ -640,15 +648,16 @@ Template.productsAvailed9.events( {
     var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
     selectedRange9.set( rangeValue );
     // console.log( 'Product Range:', parseInt( selectedRange9.get() ) );
-    template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
   },
   'change input[name=effectivityDate9]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var duration = moment.duration( parseInt( selectedRange9.get(), 10 ), 'months' );
-    var effectiveDate = moment( effectivity ).add( duration ).format(
+    var value = moment( new Date( effectivity ) ).add( duration ).format(
       'MM-DD-YYYY' );
     if ( effectivity ) {
-      template.$( 'input[name=maturityDate9]' ).val( effectiveDate );
+      $( 'input[name=maturityDate9]' ).datepicker( 'setDate', new Date( value ) );
+      template.$( 'input[name=maturityDate9]' ).val( value );
     }
   }
 } );
