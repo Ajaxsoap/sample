@@ -829,4 +829,104 @@ Meteor.startup( function () {
       "siblingAge": 57
     } );
   }
+  if ( Claim.find().count() === 0 ) {
+    Claim.insert( {
+      "_id": "694fjjpFfxosk9DAk",
+      "enrollmentId": "eEohPiv6wMqTapeyu",
+      "clientType": "Dependent-Children",
+      "children": "Amihan Villanueva",
+      "products": "Cra2HHgNzTHWyaF6n",
+      "status": "ApprovedRB",
+      "medical": "Hypersensitivity",
+      "amountPaid": 20000,
+      "dateFiled": ISODate( "2016-04-06T20:15:24.795Z" ),
+      "company": "RE4d92pDug66Mfbzr",
+      "branch": "LytDnsbXK2d4cgYPX",
+      "insurer": "8s8CGHT7uNnmvX5fq",
+      "createdBy": "zMxsbQKz6AxkY2aW9",
+      "createdAt": ISODate( "2016-04-06T20:15:24.822Z" )
+    }, {
+      "_id": "zR9tKRbn8G9WvYzm4",
+      "enrollmentId": "wyrY7GCZbdnGoqFZF",
+      "clientType": "Dependent-Children",
+      "children": "James Coronel",
+      "products": "Cra2HHgNzTHWyaF6n",
+      "status": "Approved",
+      "medical": "Hypertension",
+      "amountPaid": 20000,
+      "dateFiled": ISODate( "2016-04-08T17:34:51.715Z" ),
+      "company": "RE4d92pDug66Mfbzr",
+      "branch": "LytDnsbXK2d4cgYPX",
+      "insurer": "8s8CGHT7uNnmvX5fq",
+      "createdBy": "zMxsbQKz6AxkY2aW9",
+      "createdAt": ISODate( "2016-04-08T17:34:51.720Z" ),
+      "file": {
+        "fileId": "7MFJxpwWsuWsng5tH",
+        "url": "/gridfs/data/id/7f4dce175c5f33fd1fc675d0"
+      }
+    }, {
+      "_id": "rojKoN7LW5DuxPLzY",
+      "enrollmentId": "eEohPiv6wMqTapeyu",
+      "clientType": "Dependent-Spouse",
+      "spouseName": "Vikki Poblete",
+      "products": "rGWfZJ2eGJBZ9WBuq",
+      "status": "Approved",
+      "medical": "Hypersensitivity",
+      "amountPaid": 40000,
+      "dateFiled": ISODate( "2016-04-13T18:37:27.304Z" ),
+      "company": "RE4d92pDug66Mfbzr",
+      "branch": "mBRy2J8qAQRXeizmZ",
+      "insurer": "8s8CGHT7uNnmvX5fq",
+      "createdBy": "EKwLqF8zxeoQXG88H",
+      "createdAt": ISODate( "2016-04-13T18:37:27.317Z" ),
+      "file": {
+        "fileId": "iDoKmuH9GspzSxBKg",
+        "url": "/gridfs/data/id/ff9dc8eba474ac75efd1c52d"
+      }
+    }, {
+      "_id": "XFEyq5nNS9vtCmSDe",
+      "enrollmentId": "wyrY7GCZbdnGoqFZF",
+      "clientType": "Dependent-Children",
+      "children": "Farie Coronel",
+      "products": "Cra2HHgNzTHWyaF6n",
+      "status": "Denied",
+      "medical": "Hypertension",
+      "dateFiled": ISODate( "2016-04-20T17:29:02.348Z" ),
+      "company": "RE4d92pDug66Mfbzr",
+      "branch": "LytDnsbXK2d4cgYPX",
+      "insurer": "8s8CGHT7uNnmvX5fq",
+      "createdBy": "zMxsbQKz6AxkY2aW9",
+      "createdAt": ISODate( "2016-04-20T17:29:02.360Z" )
+    }, {
+      "_id": "zRcgSsbFEYuFtqJEs",
+      "enrollmentId": "jgh8jdR63x7Npobsr",
+      "clientType": "Dependent-Sibling",
+      "siblingName": "Jobby Reyes",
+      "products": "cjpy2L9E57NogeFZN",
+      "status": "Approved",
+      "medical": "Animal/Insect bite",
+      "amountPaid": 30000,
+      "dateFiled": ISODate( "2016-04-24T17:32:32.408Z" ),
+      "company": "RE4d92pDug66Mfbzr",
+      "branch": "mBRy2J8qAQRXeizmZ",
+      "insurer": "8s8CGHT7uNnmvX5fq",
+      "createdBy": "EKwLqF8zxeoQXG88H",
+      "createdAt": ISODate( "2016-04-24T17:32:32.416Z" )
+    }, {
+      "_id": "QJYFKYLEcoDRyiPPG",
+      "enrollmentId": "jgh8jdR63x7Npobsr",
+      "clientType": "Dependent-Parent",
+      "parentName": "Jake Reyes",
+      "products": "e7S2ABDnvJmotqdcy",
+      "status": "Approved",
+      "causeOfDeath": "Respiratory",
+      "amountPaid": 40000,
+      "dateFiled": ISODate( "2016-04-24T17:46:13.173Z" ),
+      "company": "RE4d92pDug66Mfbzr",
+      "branch": "mBRy2J8qAQRXeizmZ",
+      "insurer": "8s8CGHT7uNnmvX5fq",
+      "createdBy": "EKwLqF8zxeoQXG88H",
+      "createdAt": ISODate( "2016-04-24T17:46:13.181Z" )
+    } );
+  }
 } );
