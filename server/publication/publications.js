@@ -682,15 +682,40 @@ Meteor.publish( "MedicalClaimCount", function () {
       "medical": {
         "$exists": true,
         "$ne": null
+      },
+      "dateFiled": {
+        "$exists": true
       }
     }
 
   }, {
+    $project: {
+      medical: "$medical",
+      month: {
+        $month: "$dateFiled"
+      },
+      year: {
+        $year: "$dateFiled"
+      }
+    }
+  }, {
     $group: {
       '_id': "$medical",
+      monthFiled: {
+        $max: "$month"
+      },
+      yearFiled: {
+        $max: "$year"
+      },
       count: {
         $sum: 1
       }
+    }
+  }, {
+    $project: {
+      monthFiled: 1,
+      yearFiled: 1,
+      count: 1
     }
   } ], {
     clientCollection: "MedicalClaimCount"
@@ -708,15 +733,40 @@ Meteor.publish( "DeathClaimCount", function () {
       "causeOfDeath": {
         "$exists": true,
         "$ne": null
+      },
+      "dateFiled": {
+        "$exists": true
       }
     }
 
   }, {
+    $project: {
+      causeOfDeath: "$causeOfDeath",
+      month: {
+        $month: "$dateFiled"
+      },
+      year: {
+        $year: "$dateFiled"
+      }
+    }
+  }, {
     $group: {
       '_id': "$causeOfDeath",
+      monthFiled: {
+        $max: "$month"
+      },
+      yearFiled: {
+        $max: "$year"
+      },
       count: {
         $sum: 1
       }
+    }
+  }, {
+    $project: {
+      monthFiled: 1,
+      yearFiled: 1,
+      count: 1
     }
   } ], {
     clientCollection: "DeathClaimCount"

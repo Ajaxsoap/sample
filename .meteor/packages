@@ -42,7 +42,6 @@ meteorhacks:aggregate
 msavin:mongol
 #mizzao:user-status
 #zuuk:stale-session
-maazalik:highcharts
 #cottz:publish-relations
 comerc:autoform-selectize
 chhib:selectize-bootstrap-3
@@ -67,3 +66,6 @@ harrison:papa-parse
 jcbernack:reactive-aggregate
 jeremy:selectize
 aldeed:template-extension
+highcharts:highcharts-meteor
+es5-shim
+highcharts-container

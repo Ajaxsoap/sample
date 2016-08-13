@@ -110,11 +110,7 @@ Template.claimList.onCreated( function () {
   this.subscribe( "BranchClaimDeniedCount" );
 } );
 
-Template.claimChartMedical.onCreated( function () {
-  this.subscribe( "MedicalClaimCount" );
-} );
-
-Template.claimChartDeath.onCreated( function () {
+Template.deathClaim.onCreated( function () {
   this.subscribe( "DeathClaimCount" );
 } );
 
@@ -186,450 +182,231 @@ Template.enolledTable.onRendered( function () {
 
 } );
 
-Template.claimChartMedical.onRendered( function () {
-  Tracker.autorun( function () {
-    var JanClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '01/01/2015' ),
-        $lt: new Date( '02/01/2015' )
-      }
-    } ).count() );
-    var FebClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '02/01/2015' ),
-        $lt: new Date( '03/01/2015' )
-      }
-    } ).count() );
-    var MarClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '03/01/2015' ),
-        $lt: new Date( '04/01/2015' )
-      }
-    } ).count() );
-    var AprClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '04/01/2015' ),
-        $lt: new Date( '05/01/2015' )
-      }
-    } ).count() );
-    var MayClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '05/01/2015' ),
-        $lt: new Date( '06/01/2015' )
-      }
-    } ).count() );
-    var JuneClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '06/01/2015' ),
-        $lt: new Date( '07/01/2015' )
-      }
-    } ).count() );
-    var JulyClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '07/01/2015' ),
-        $lt: new Date( '08/01/2015' )
-      }
-    } ).count() );
-    var AugClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '08/01/2015' ),
-        $lt: new Date( '09/01/2015' )
-      }
-    } ).count() );
-    var SeptClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '09/01/2015' ),
-        $lt: new Date( '10/01/2015' )
-      }
-    } ).count() );
-    var OctClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '10/01/2015' ),
-        $lt: new Date( '11/01/2015' )
-      }
-    } ).count() );
-    var NovClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '11/01/2015' ),
-        $lt: new Date( '12/01/2015' )
-      }
-    } ).count() );
-    var DecClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '12/01/2015' ),
-        $lt: new Date( '01/30/2016' )
-      }
-    } ).count() );
+Template.medicalClaim.onCreated( function () {
+  this.subscribe( "MedicalClaimCount" );
+} );
 
-    var medicalClaimsForChart = {};
-    var medicalClaims = Claim.find( {}, {
-      fields: {
-        medical: 1
-      }
-    } );
 
-    var chart;
 
-    function buildChart() {
+Template.medicalClaim.onRendered( function () {
+  var chart;
 
-      chart = $( '#claimChartMedical' ).highcharts( {
+  function buildChart( series ) {
 
-        chart: {
-          type: 'column'
-        },
+    chart = $( '#claimChartMedical' ).highcharts( {
 
+      chart: {
+        type: 'column'
+      },
+
+      title: {
+        text: 'Monthly Total Cause of Medical Claims'
+      },
+
+      subtitle: {
+        text: ''
+      },
+
+      credits: {
+        enabled: false
+      },
+
+      xAxis: {
+        categories: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec'
+        ]
+      },
+
+      yAxis: {
+        min: 0,
         title: {
-          text: 'Monthly Total Cause of Medical Claims'
-        },
-
-        subtitle: {
           text: ''
-        },
+        }
+      },
 
-        credits: {
-          enabled: false
-        },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
 
-        xAxis: {
-          categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-          ]
-        },
+      plotOptions: {
+        column: {
+          pointPadding: 0,
+          borderWidth: 0,
+          showInLegend: false
+        }
+      },
 
-        yAxis: {
-          min: 0,
-          title: {
-            text: ''
-          }
-        },
+      series: series
+    } );
+  }
+  var medicalClaimsForChart = {};
+  var medicalClaims = [ 'Animal/Insect bite', 'Hypertension', 'Diabetes',
+    'CVA,Chronic Kidney disease', 'Abration', 'Hypersensitivity',
+    'Community acquired pneumonia', 'others'
+  ];
 
-        tooltip: {
-          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-          footerFormat: '</table>',
-          shared: true,
-          useHTML: true
-        },
+  _.each( medicalClaims, function ( medicalClaim ) {
+    medicalClaimsForChart[ medicalClaim ] = {
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+      10: 0,
+      11: 0
+    };
+  } );
 
-        plotOptions: {
-          column: {
-            pointPadding: 0,
-            borderWidth: 0,
-            showInLegend: false
-          }
-        },
-
-        series: [ {
-          name: 'Animal/Insect bite',
-          data: [ JanClaim, FebClaim, MarClaim, AprClaim,
-            MayClaim, JuneClaim,
-            JulyClaim, AugClaim, SeptClaim, OctClaim,
-            NovClaim,
-            DecClaim
-          ]
-
-        }, {
-          name: 'Hypertension',
-          data: [ 83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0,
-            104.3,
-            91.2,
-            83.5, 106.6, 92.3
-          ]
-
-        }, {
-          name: 'Diabetes',
-          data: [ 48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0,
-            59.6,
-            52.4,
-            65.2, 59.3, 51.2
-          ]
-
-        }, {
-          name: 'CVA,Chronic Kidney disease',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4,
-            60.4,
-            47.6,
-            39.1, 46.8, 51.1
-          ]
-
-        }, {
-          name: 'Abration',
-          data: [ 42.4, 33.2, 50, 39.7, 52.6, 75.5, 54.4, 60.4,
-            47.6,
-            39.1,
-            46.8, 51.1
-          ]
-
-        }, {
-          name: 'Hypersensitivity',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4,
-            60.4,
-            47.6,
-            39.1, 46.8, 51.1
-          ]
-
-        }, {
-          name: 'Community acquired pneumonia',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 60.4,
-            60.4,
-            47.6,
-            40.1, 46.8, 51.1
-          ]
-
-        }, {
-          name: 'Others',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4,
-            60.4,
-            47.6,
-            39.1, 46.8, 51.1
-          ]
-
-        } ]
+  Tracker.autorun( function () {
+    var series = [];
+    _.each( medicalClaims, function ( medicalClaim ) {
+      _.each( MedicalClaimCount.find( {
+        _id: medicalClaim,
+      } ).fetch(), function ( claim ) {
+        medicalClaimsForChart[ medicalClaim ][ claim.monthFiled ]++;
       } );
-    }
+      // console.log( );
+      series.push( {
+        name: medicalClaim,
+        data: _.values( medicalClaimsForChart[ medicalClaim ] )
+      } );
+    } );
 
     // if there is no chart, built it
     if ( !chart ) {
-      buildChart();
+      buildChart( series );
       return;
     }
 
-  } );
-} );
-
-Template.claimChartDeath.helpers( {
-  //  dateSchema: function(){
-  //    var session = Session.get('searchFilter2');
-  //    return session.DateRangeSchema;
-  //  },
-} );
-
-Template.claimChartDeath.onRendered( function () {
-  Tracker.autorun( function () {
-    var JanClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '01/01/2015' ),
-        $lt: new Date( '02/01/2015' )
-      }
-    } ).count() );
-    var FebClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '02/01/2015' ),
-        $lt: new Date( '03/01/2015' )
-      }
-    } ).count() );
-    var MarClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '03/01/2015' ),
-        $lt: new Date( '04/01/2015' )
-      }
-    } ).count() );
-    var AprClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '04/01/2015' ),
-        $lt: new Date( '05/01/2015' )
-      }
-    } ).count() );
-    var MayClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '05/01/2015' ),
-        $lt: new Date( '06/01/2015' )
-      }
-    } ).count() );
-    var JuneClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '06/01/2015' ),
-        $lt: new Date( '07/01/2015' )
-      }
-    } ).count() );
-    var JulyClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '07/01/2015' ),
-        $lt: new Date( '08/01/2015' )
-      }
-    } ).count() );
-    var AugClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '08/01/2015' ),
-        $lt: new Date( '09/01/2015' )
-      }
-    } ).count() );
-    var SeptClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '09/01/2015' ),
-        $lt: new Date( '10/01/2015' )
-      }
-    } ).count() );
-    var OctClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '10/01/2015' ),
-        $lt: new Date( '11/01/2015' )
-      }
-    } ).count() );
-    var NovClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '11/01/2015' ),
-        $lt: new Date( '12/01/2015' )
-      }
-    } ).count() );
-    var DecClaim = ( Claim.find( {
-      dateFiled: {
-        $gt: new Date( '12/01/2015' ),
-        $lt: new Date( '01/30/2016' )
-      }
-    } ).count() );
-
-    function builtColumn() {
-
-      $( '#claimChartDeath' ).highcharts( {
-
-        chart: {
-          type: 'column'
-        },
-
-        title: {
-          text: 'Monthly Total Cause of Death Claims'
-        },
-
-        // subtitle: {
-        //   text: 'Source: WorldClimate.com'
-        // },
-
-        credits: {
-          enabled: false
-        },
-
-        xAxis: {
-          categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec'
-          ]
-        },
-
-        yAxis: {
-          min: 0,
-          title: {
-            text: 'Total Numbers'
-          }
-        },
-
-        tooltip: {
-          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y} </b></td></tr>',
-          footerFormat: '</table>',
-          shared: true,
-          useHTML: true
-        },
-
-        plotOptions: {
-          column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-          }
-        },
-
-        series: [ {
-          name: 'Cardiovascular',
-          data: [ JanClaim, FebClaim, MarClaim, AprClaim,
-            MayClaim, JuneClaim,
-            JulyClaim, AugClaim, SeptClaim, OctClaim,
-            NovClaim,
-            DecClaim
-          ]
-
-        }, {
-          name: 'Respiratory',
-          data: [ 83.6, 78.8, 98.5, 93.4, 106.0, 84.5, 105.0,
-            104.3,
-            91.2,
-            83.5, 106.6, 92.3
-          ]
-
-        }, {
-          name: 'Renal failure',
-          data: [ 48.9, 38.8, 39.3, 41.4, 47.0, 48.3, 59.0,
-            59.6,
-            52.4,
-            65.2, 59.3, 51.2
-          ]
-
-        }, {
-          name: 'Cancer',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4,
-            60.4,
-            47.6,
-            39.1, 46.8, 51.1
-          ]
-
-        }, {
-          name: 'Accident',
-          data: [ 42.4, 33.2, 50, 39.7, 52.6, 75.5, 54.4, 60.4,
-            47.6,
-            39.1,
-            46.8, 51.1
-          ]
-
-        }, {
-          name: 'Diabetes',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4,
-            60.4,
-            47.6,
-            39.1, 46.8, 51.1
-          ]
-
-        }, {
-          name: 'Animal/Insect bite',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 60.4,
-            60.4,
-            47.6,
-            40.1, 46.8, 51.1
-          ]
-
-        }, {
-          name: 'Liver illness',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4,
-            60.4,
-            47.6,
-            39.1, 46.8, 51.1
-          ]
-
-        }, {
-          name: 'Others',
-          data: [ 42.4, 33.2, 34.5, 39.7, 52.6, 75.5, 57.4,
-            60.4,
-            47.6,
-            39.1, 46.8, 51.1
-          ]
-
-        } ]
+    // Otherwise, simply update the data
+    for ( var i = 0; i < medicalClaims.length; i++ ) {
+      chart.highcharts().series[ i ].update( {
+        data: series[ i ].data
       } );
     }
 
-    builtColumn();
   } );
+
+} );
+
+Template.deathClaim.onRendered( function () {
+
+  var deathChart = $( '#claimChartDeath' ).highcharts( {
+
+    chart: {
+      type: 'column'
+    },
+
+    title: {
+      text: 'Monthly Total Cause of Death Claims'
+    },
+    credits: {
+      enabled: false
+    },
+    xAxis: {
+      categories: [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+      ]
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Total Numbers'
+      }
+    },
+    tooltip: {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y} </b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0.2,
+        borderWidth: 0
+      }
+    },
+    series: [ {
+      name: 'Cardiovascular',
+      data: []
+
+    }, {
+      name: 'Respiratory',
+      data: []
+
+    }, {
+      name: 'Renal failure',
+      data: []
+
+    }, {
+      name: 'Cancer',
+      data: []
+
+    }, {
+      name: 'Accident',
+      data: []
+
+    }, {
+      name: 'Diabetes',
+      data: []
+
+    }, {
+      name: 'Animal/Insect bite',
+      data: []
+
+    }, {
+      name: 'Liver illness',
+      data: []
+
+    }, {
+      name: 'Others',
+      data: []
+
+    } ]
+  } );
+  // this.autorun( function () {
+  //   this.subscribe( 'DeathClaimCount', function () {
+  //     var deathClaim = DeathClaimCount.find().fetch().map( function () {
+  //       return doc.count;
+  //     } );
+  //     deathChart.series[ 0 ].setData( deathClaim );
+  //   } );
+  // } );
+
 } );
 
 Template.dashboardClaimTable.onRendered( function () {
