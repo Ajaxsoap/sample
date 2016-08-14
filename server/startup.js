@@ -3,7 +3,7 @@ Enrollments._ensureIndex( {
 } );
 
 Meteor.startup( function () {
-  console.log( "starting" );
+  console.log( "starting..." );
   // Create random data
   if ( Companies.find().count() === 0 ) {
     Companies.insert( {
@@ -20,7 +20,8 @@ Meteor.startup( function () {
         "knKTWBZ9g7XJ3WiZK"
       ],
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Companies.insert( {
       "_id": "bHBunxXdBEshv5vkB",
       "name": "ASKI",
       "branchId": [
@@ -34,7 +35,8 @@ Meteor.startup( function () {
         "ma9ab4kQ9Z3kmab2G"
       ],
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Companies.insert( {
       "_id": "xXe6rrHdkGartYPzW",
       "name": "PAIS",
       "branchId": [
@@ -59,7 +61,8 @@ Meteor.startup( function () {
         "knKTWBZ9g7XJ3WiZK"
       ],
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Companies.insert( {
       "_id": "CEMRkRxrn49drsZ9G",
       "name": "Eastwest Insurance",
       "branchId": [
@@ -90,23 +93,28 @@ Meteor.startup( function () {
       "_id": "mBRy2J8qAQRXeizmZ",
       "branch": "Manila",
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Branches.insert( {
       "_id": "qzE66TeEWXjHdXx6y",
       "branch": "La Union",
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Branches.insert( {
       "_id": "f6D6FJWa2KGZ8rNFc",
       "branch": "Baguio",
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Branches.insert( {
       "_id": "C5uqZKRz2wuG3MzcE",
       "branch": "Kamias",
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Branches.insert( {
       "_id": "LytDnsbXK2d4cgYPX",
       "branch": "HO",
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Branches.insert( {
       "_id": "6GDnamAGELDhxW2AN",
       "branch": "Zamboanga",
       "createdBy": "Eywb8SAc2jtMDreSr"
@@ -122,313 +130,321 @@ Meteor.startup( function () {
       password: "12345678"
     } );
     var marvin = Meteor.users.findOne( adminId );
-    Meteor.users.find( {
-        "_id": "8uQnm7dvstZTxdgJN",
-        "createdAt": ISODate( "2016-01-03T14:01:59.301Z" ),
-        "services": {
-          "password": {
-            "bcrypt": "$2a$10$qgYCNxiYLWDy8J5fN9xlbulAooJDDYi5nONF5ZDfoj4l9VKhlRdjO"
-          },
-          "resume": {
-            "loginTokens": []
-          }
+    Meteor.users.insert( {
+      "_id": "8uQnm7dvstZTxdgJN",
+      "createdAt": ISODate( "2016-01-03T14:01:59.301Z" ),
+      "services": {
+        "password": {
+          "bcrypt": "$2a$10$qgYCNxiYLWDy8J5fN9xlbulAooJDDYi5nONF5ZDfoj4l9VKhlRdjO"
         },
-        "emails": [ {
-          "address": "pais@admin.com",
-          "verified": false
-        } ],
-        "profile": {
-          "name": "PAIS Admin",
-          "company": "xXe6rrHdkGartYPzW",
-          "branch": "LytDnsbXK2d4cgYPX",
-          "products": [
-            "Ptb5Fma75Yp7Tdmzc"
-          ],
-          "insurer": [
-            "xXe6rrHdkGartYPzW"
-          ],
-          "picture": {
-            "fileId": "SbGKSLzfWLbrZjxZp",
-            "url": "/gridfs/data/id/44eace76dc209eff2c58e0ad"
-          }
-        },
-        "roles": [
-          "admin"
-        ],
-        "status": {
-          "online": false,
-          "lastLogin": {
-            "date": ISODate( "2016-01-23T21:53:44.116Z" ),
-            "ipAddr": "127.0.0.1",
-            "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:43.0) Gecko/20100101 Firefox/43.0"
-          }
+        "resume": {
+          "loginTokens": []
         }
+      },
+      "emails": [ {
+        "address": "pais@admin.com",
+        "verified": false
+      } ],
+      "profile": {
+        "name": "PAIS Admin",
+        "company": "xXe6rrHdkGartYPzW",
+        "branch": "LytDnsbXK2d4cgYPX",
+        "products": [
+          "Ptb5Fma75Yp7Tdmzc"
+        ],
+        "insurer": [
+          "xXe6rrHdkGartYPzW"
+        ],
+        "picture": {
+          "fileId": "SbGKSLzfWLbrZjxZp",
+          "url": "/gridfs/data/id/44eace76dc209eff2c58e0ad"
+        }
+      },
+      "roles": [
+        "admin"
+      ],
+      "status": {
+        "online": false,
+        "lastLogin": {
+          "date": ISODate( "2016-01-23T21:53:44.116Z" ),
+          "ipAddr": "127.0.0.1",
+          "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:43.0) Gecko/20100101 Firefox/43.0"
+        }
+      }
 
-      }, {
-        "_id": "k8WKKx8KFusc8Z4sz",
-        "createdAt": ISODate( "2016-01-03T14:04:56.836Z" ),
-        "services": {
-          "password": {
-            "bcrypt": "$2a$10$dKM9RtaIIiAAJvMp2lv9eusxSNlBbBUZtZ7qwWxapS/9xIyFZxEhy"
-          }
-        },
-        "emails": [ {
-          "address": "baguio@kmbi.com",
-          "verified": false
-        } ],
-        "profile": {
-          "name": "KMBI Baguio",
-          "company": "RE4d92pDug66Mfbzr",
-          "branch": "f6D6FJWa2KGZ8rNFc",
-          "products": [
-            "cjpy2L9E57NogeFZN",
-            "rGWfZJ2eGJBZ9WBuq",
-            "kaKw4hQ3WTtso572F",
-            "e7S2ABDnvJmotqdcy",
-            "Cra2HHgNzTHWyaF6n"
-          ],
-          "insurer": [
-            "8s8CGHT7uNnmvX5fq"
-          ]
-        },
-        "roles": [
-          "Branch"
-        ],
-        "status": {
-          "online": false
+    } );
+    Meteor.users.insert( {
+      "_id": "k8WKKx8KFusc8Z4sz",
+      "createdAt": ISODate( "2016-01-03T14:04:56.836Z" ),
+      "services": {
+        "password": {
+          "bcrypt": "$2a$10$dKM9RtaIIiAAJvMp2lv9eusxSNlBbBUZtZ7qwWxapS/9xIyFZxEhy"
         }
-      }, {
-        "_id": "Q5MzbjgSyLPwqsFtS",
-        "createdAt": ISODate( "2016-01-03T14:06:02.300Z" ),
-        "services": {
-          "password": {
-            "bcrypt": "$2a$10$tNaHq99NWCeQ3drDPZx9LOVjAqK3a6ITZEfwy1uhOaoKF6FwWtqHi"
-          },
-          "resume": {
-            "loginTokens": []
-          }
-        },
-        "emails": [ {
-          "address": "launion@aski.com",
-          "verified": false
-        } ],
-        "profile": {
-          "name": "ASKI La Union",
-          "company": "bHBunxXdBEshv5vkB",
-          "branch": "qzE66TeEWXjHdXx6y",
-          "products": [
-            "ma9ab4kQ9Z3kmab2G"
-          ],
-          "insurer": [
-            "CEMRkRxrn49drsZ9G"
-          ]
-        },
-        "roles": [
-          "Branch"
+      },
+      "emails": [ {
+        "address": "baguio@kmbi.com",
+        "verified": false
+      } ],
+      "profile": {
+        "name": "KMBI Baguio",
+        "company": "RE4d92pDug66Mfbzr",
+        "branch": "f6D6FJWa2KGZ8rNFc",
+        "products": [
+          "cjpy2L9E57NogeFZN",
+          "rGWfZJ2eGJBZ9WBuq",
+          "kaKw4hQ3WTtso572F",
+          "e7S2ABDnvJmotqdcy",
+          "Cra2HHgNzTHWyaF6n"
         ],
-        "status": {
-          "online": false,
-          "lastLogin": {
-            "date": ISODate( "2016-02-01T17:59:22.148Z" ),
-            "ipAddr": "127.0.0.1",
-            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
-          }
+        "insurer": [
+          "8s8CGHT7uNnmvX5fq"
+        ]
+      },
+      "roles": [
+        "Branch"
+      ],
+      "status": {
+        "online": false
+      }
+    } );
+    Meteor.users.insert( {
+      "_id": "Q5MzbjgSyLPwqsFtS",
+      "createdAt": ISODate( "2016-01-03T14:06:02.300Z" ),
+      "services": {
+        "password": {
+          "bcrypt": "$2a$10$tNaHq99NWCeQ3drDPZx9LOVjAqK3a6ITZEfwy1uhOaoKF6FwWtqHi"
+        },
+        "resume": {
+          "loginTokens": []
         }
-      }, {
-        "_id": "9qS7Rs2xPM6Rvfj7q",
-        "createdAt": ISODate( "2016-01-03T14:03:45.096Z" ),
-        "services": {
-          "password": {
-            "bcrypt": "$2a$10$gWrI954yEGmWbbxBtIto1.4sjrI6kn0vNToHOYOmYbcwRMcYzn9/K"
-          },
-          "resume": {
-            "loginTokens": []
-          }
-        },
-        "emails": [ {
-          "address": "hq@aski.com",
-          "verified": false
-        } ],
-        "profile": {
-          "name": "ASKI HQ",
-          "company": "bHBunxXdBEshv5vkB",
-          "branch": "LytDnsbXK2d4cgYPX",
-          "products": [
-            "cjpy2L9E57NogeFZN",
-            "rGWfZJ2eGJBZ9WBuq",
-            "kaKw4hQ3WTtso572F",
-            "e7S2ABDnvJmotqdcy",
-            "Cra2HHgNzTHWyaF6n"
-          ],
-          "insurer": [
-            "CEMRkRxrn49drsZ9G"
-          ]
-        },
-        "roles": [
-          "HQ"
+      },
+      "emails": [ {
+        "address": "launion@aski.com",
+        "verified": false
+      } ],
+      "profile": {
+        "name": "ASKI La Union",
+        "company": "bHBunxXdBEshv5vkB",
+        "branch": "qzE66TeEWXjHdXx6y",
+        "products": [
+          "ma9ab4kQ9Z3kmab2G"
         ],
-        "status": {
-          "online": false,
-          "lastLogin": {
-            "date": ISODate( "2016-01-31T14:10:25.279Z" ),
-            "ipAddr": "127.0.0.1",
-            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
-          }
+        "insurer": [
+          "CEMRkRxrn49drsZ9G"
+        ]
+      },
+      "roles": [
+        "Branch"
+      ],
+      "status": {
+        "online": false,
+        "lastLogin": {
+          "date": ISODate( "2016-02-01T17:59:22.148Z" ),
+          "ipAddr": "127.0.0.1",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
         }
-      }, {
-        "_id": "Eo9RKd4M7dBs2JHrp",
-        "createdAt": ISODate( "2016-01-03T14:09:21.834Z" ),
-        "services": {
-          "password": {
-            "bcrypt": "$2a$10$oq/EafpVl.HG37FqINZHEOVkRV0jTS6xV9/42GX59MJW5Js/nwAg."
-          },
-          "resume": {
-            "loginTokens": []
-          }
+      }
+    } );
+    Meteor.users.insert( {
+      "_id": "9qS7Rs2xPM6Rvfj7q",
+      "createdAt": ISODate( "2016-01-03T14:03:45.096Z" ),
+      "services": {
+        "password": {
+          "bcrypt": "$2a$10$gWrI954yEGmWbbxBtIto1.4sjrI6kn0vNToHOYOmYbcwRMcYzn9/K"
         },
-        "emails": [ {
-          "address": "firstlife@insurer.com",
-          "verified": false
-        } ],
-        "profile": {
-          "name": "FirstLife Insurance",
-          "company": "8s8CGHT7uNnmvX5fq",
-          "branch": "LytDnsbXK2d4cgYPX",
-          "products": [
-            "cjpy2L9E57NogeFZN",
-            "rGWfZJ2eGJBZ9WBuq",
-            "kaKw4hQ3WTtso572F",
-            "e7S2ABDnvJmotqdcy",
-            "Cra2HHgNzTHWyaF6n"
-          ],
-          "insurer": [
-            "8s8CGHT7uNnmvX5fq"
-          ]
-        },
-        "roles": [
-          "insurer"
+        "resume": {
+          "loginTokens": []
+        }
+      },
+      "emails": [ {
+        "address": "hq@aski.com",
+        "verified": false
+      } ],
+      "profile": {
+        "name": "ASKI HQ",
+        "company": "bHBunxXdBEshv5vkB",
+        "branch": "LytDnsbXK2d4cgYPX",
+        "products": [
+          "cjpy2L9E57NogeFZN",
+          "rGWfZJ2eGJBZ9WBuq",
+          "kaKw4hQ3WTtso572F",
+          "e7S2ABDnvJmotqdcy",
+          "Cra2HHgNzTHWyaF6n"
         ],
-        "status": {
-          "online": false,
-          "lastLogin": {
-            "date": ISODate( "2016-02-23T19:42:55.757Z" ),
-            "ipAddr": "127.0.0.1",
-            "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0"
-          }
+        "insurer": [
+          "CEMRkRxrn49drsZ9G"
+        ]
+      },
+      "roles": [
+        "HQ"
+      ],
+      "status": {
+        "online": false,
+        "lastLogin": {
+          "date": ISODate( "2016-01-31T14:10:25.279Z" ),
+          "ipAddr": "127.0.0.1",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
         }
-      }, {
-        "_id": "CF2Hw6LNL5oY7TWJ9",
-        "createdAt": ISODate( "2016-01-03T14:08:38.389Z" ),
-        "services": {
-          "password": {
-            "bcrypt": "$2a$10$THG/vpvZCznJg5UdP38IUu67I54f7HXeB6hRa9hpejRTiVFj4BuDS"
-          },
-          "resume": {
-            "loginTokens": []
-          }
+      }
+    } );
+    Meteor.users.insert( {
+      "_id": "Eo9RKd4M7dBs2JHrp",
+      "createdAt": ISODate( "2016-01-03T14:09:21.834Z" ),
+      "services": {
+        "password": {
+          "bcrypt": "$2a$10$oq/EafpVl.HG37FqINZHEOVkRV0jTS6xV9/42GX59MJW5Js/nwAg."
         },
-        "emails": [ {
-          "address": "eastwest@insurer.com",
-          "verified": false
-        } ],
-        "profile": {
-          "name": "EASWEST Insurance",
-          "company": "CEMRkRxrn49drsZ9G",
-          "branch": "LytDnsbXK2d4cgYPX",
-          "products": [
-            "ma9ab4kQ9Z3kmab2G"
-          ],
-          "insurer": [
-            "CEMRkRxrn49drsZ9G"
-          ]
-        },
-        "roles": [
-          "insurer"
+        "resume": {
+          "loginTokens": []
+        }
+      },
+      "emails": [ {
+        "address": "firstlife@insurer.com",
+        "verified": false
+      } ],
+      "profile": {
+        "name": "FirstLife Insurance",
+        "company": "8s8CGHT7uNnmvX5fq",
+        "branch": "LytDnsbXK2d4cgYPX",
+        "products": [
+          "cjpy2L9E57NogeFZN",
+          "rGWfZJ2eGJBZ9WBuq",
+          "kaKw4hQ3WTtso572F",
+          "e7S2ABDnvJmotqdcy",
+          "Cra2HHgNzTHWyaF6n"
         ],
-        "status": {
-          "online": false,
-          "lastLogin": {
-            "date": ISODate( "2016-02-23T19:43:13.092Z" ),
-            "ipAddr": "127.0.0.1",
-            "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0"
-          }
+        "insurer": [
+          "8s8CGHT7uNnmvX5fq"
+        ]
+      },
+      "roles": [
+        "insurer"
+      ],
+      "status": {
+        "online": false,
+        "lastLogin": {
+          "date": ISODate( "2016-02-23T19:42:55.757Z" ),
+          "ipAddr": "127.0.0.1",
+          "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0"
         }
-      }, {
-        "_id": "Eywb8SAc2jtMDreSr",
-        "createdAt": ISODate( "2016-01-03T13:55:26.786Z" ),
-        "services": {
-          "password": {
-            "bcrypt": "$2a$10$.jceQEIW7XM7BnFBmvhBquLTICfKJ8aWy52ofZVaq.S2.oGNtkQPi"
-          }
+      }
+    } );
+    Meteor.users.insert( {
+      "_id": "CF2Hw6LNL5oY7TWJ9",
+      "createdAt": ISODate( "2016-01-03T14:08:38.389Z" ),
+      "services": {
+        "password": {
+          "bcrypt": "$2a$10$THG/vpvZCznJg5UdP38IUu67I54f7HXeB6hRa9hpejRTiVFj4BuDS"
         },
-        "username": "admin",
-        "emails": [ {
-          "address": "admin@admin.com",
-          "verified": false
-        } ],
-        "profile": {
-          "name": "Super Admin",
-          "company": "fyecWJbj2gS5YDGAK",
-          "branch": "mBRy2J8qAQRXeizmZ",
-          "products": [
-            "Ptb5Fma75Yp7Tdmzc"
-          ],
-          "insurer": [
-            "xXe6rrHdkGartYPzW"
-          ]
-        },
-        "roles": [
-          "admin"
+        "resume": {
+          "loginTokens": []
+        }
+      },
+      "emails": [ {
+        "address": "eastwest@insurer.com",
+        "verified": false
+      } ],
+      "profile": {
+        "name": "EASWEST Insurance",
+        "company": "CEMRkRxrn49drsZ9G",
+        "branch": "LytDnsbXK2d4cgYPX",
+        "products": [
+          "ma9ab4kQ9Z3kmab2G"
         ],
-        "status": {
-          "online": false,
-          "lastLogin": {
-            "date": ISODate( "2016-03-12T15:08:19.465Z" ),
-            "ipAddr": "127.0.0.1",
-            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36"
-          }
+        "insurer": [
+          "CEMRkRxrn49drsZ9G"
+        ]
+      },
+      "roles": [
+        "insurer"
+      ],
+      "status": {
+        "online": false,
+        "lastLogin": {
+          "date": ISODate( "2016-02-23T19:43:13.092Z" ),
+          "ipAddr": "127.0.0.1",
+          "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0"
         }
-      }, {
-        "_id": "zMxsbQKz6AxkY2aW9",
-        "createdAt": ISODate( "2016-01-03T14:02:45.565Z" ),
-        "services": {
-          "password": {
-            "bcrypt": "$2a$10$OHfTyHbnLlsXjFDTRVQTXuKVNX/qfpQuuD2KSdw/DvmpArmPWfL1G"
-          }
-        },
-        "emails": [ {
-          "address": "hq@kmbi.com",
-          "verified": true
-        } ],
-        "profile": {
-          "name": "KMBI HQ",
-          "company": "RE4d92pDug66Mfbzr",
-          "branch": "LytDnsbXK2d4cgYPX",
-          "products": [
-            "cjpy2L9E57NogeFZN",
-            "rGWfZJ2eGJBZ9WBuq",
-            "kaKw4hQ3WTtso572F",
-            "e7S2ABDnvJmotqdcy",
-            "Cra2HHgNzTHWyaF6n"
-          ],
-          "insurer": [
-            "bHBunxXdBEshv5vkB",
-            "8s8CGHT7uNnmvX5fq"
-          ]
-        },
-        "roles": [
-          "HQ"
+      }
+    } );
+    Meteor.users.insert( {
+      "_id": "Eywb8SAc2jtMDreSr",
+      "createdAt": ISODate( "2016-01-03T13:55:26.786Z" ),
+      "services": {
+        "password": {
+          "bcrypt": "$2a$10$.jceQEIW7XM7BnFBmvhBquLTICfKJ8aWy52ofZVaq.S2.oGNtkQPi"
+        }
+      },
+      "username": "admin",
+      "emails": [ {
+        "address": "admin@admin.com",
+        "verified": false
+      } ],
+      "profile": {
+        "name": "Super Admin",
+        "company": "fyecWJbj2gS5YDGAK",
+        "branch": "mBRy2J8qAQRXeizmZ",
+        "products": [
+          "Ptb5Fma75Yp7Tdmzc"
         ],
-        "status": {
-          "online": true,
-          "lastLogin": {
-            "date": ISODate( "2016-03-12T15:34:48.940Z" ),
-            "ipAddr": "127.0.0.1",
-            "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36"
-          },
-          "idle": false
+        "insurer": [
+          "xXe6rrHdkGartYPzW"
+        ]
+      },
+      "roles": [
+        "admin"
+      ],
+      "status": {
+        "online": false,
+        "lastLogin": {
+          "date": ISODate( "2016-03-12T15:08:19.465Z" ),
+          "ipAddr": "127.0.0.1",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36"
         }
-      }, {
+      }
+    } );
+    Meteor.users.insert( {
+      "_id": "zMxsbQKz6AxkY2aW9",
+      "createdAt": ISODate( "2016-01-03T14:02:45.565Z" ),
+      "services": {
+        "password": {
+          "bcrypt": "$2a$10$OHfTyHbnLlsXjFDTRVQTXuKVNX/qfpQuuD2KSdw/DvmpArmPWfL1G"
+        }
+      },
+      "emails": [ {
+        "address": "hq@kmbi.com",
+        "verified": true
+      } ],
+      "profile": {
+        "name": "KMBI HQ",
+        "company": "RE4d92pDug66Mfbzr",
+        "branch": "LytDnsbXK2d4cgYPX",
+        "products": [
+          "cjpy2L9E57NogeFZN",
+          "rGWfZJ2eGJBZ9WBuq",
+          "kaKw4hQ3WTtso572F",
+          "e7S2ABDnvJmotqdcy",
+          "Cra2HHgNzTHWyaF6n"
+        ],
+        "insurer": [
+          "bHBunxXdBEshv5vkB",
+          "8s8CGHT7uNnmvX5fq"
+        ]
+      },
+      "roles": [
+        "HQ"
+      ],
+      "status": {
+        "online": true,
+        "lastLogin": {
+          "date": ISODate( "2016-03-12T15:34:48.940Z" ),
+          "ipAddr": "127.0.0.1",
+          "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36"
+        },
+        "idle": false
+      }
+    } );
+    Meteor.users.insert( {
         "_id": "EKwLqF8zxeoQXG88H",
         "createdAt": ISODate( "2016-01-03T14:07:56.591Z" ),
         "services": {
@@ -481,7 +497,8 @@ Meteor.startup( function () {
       "grossProfit": 30,
       "premium": 90,
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Products.insert( {
       "_id": "rGWfZJ2eGJBZ9WBuq",
       "name": "KMBI_MI_Spouse",
       "productOffering": "Dependent-Spouse",
@@ -490,7 +507,8 @@ Meteor.startup( function () {
       "grossProfit": 50,
       "premium": 100,
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Products.insert( {
       "_id": "kaKw4hQ3WTtso572F",
       "name": "KMBI_MI_Principal",
       "productOffering": "Principal",
@@ -499,7 +517,8 @@ Meteor.startup( function () {
       "grossProfit": 40,
       "premium": 60,
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Products.insert( {
       "_id": "e7S2ABDnvJmotqdcy",
       "name": "KMBI_MI_Parent",
       "productOffering": "Dependent-Parent",
@@ -508,7 +527,8 @@ Meteor.startup( function () {
       "grossProfit": 20,
       "premium": 70,
       "createdBy": "Eywb8SAc2jtMDreSr"
-    }, {
+    } );
+    Products.insert( {
       "_id": "Cra2HHgNzTHWyaF6n",
       "name": "KMBI_MI_Children",
       "netPremium": 20,
@@ -567,7 +587,8 @@ Meteor.startup( function () {
       "efffectiveDates": [],
       "beneficiaryOneRelationship": "Father",
       "maturityDate": ISODate( "2017-08-06T00:00:00.000Z" )
-    }, {
+    } );
+    Enrollments.insert( {
       "_id": "eEohPiv6wMqTapeyu",
       "centerNumber": "MA-001",
       "fullName": "Marvin Villanueva",
@@ -651,7 +672,8 @@ Meteor.startup( function () {
       "maturityDate": ISODate( "2016-11-01T00:00:00.000Z" ),
       "maturityDate1": ISODate( "2017-04-27T00:00:00.000Z" )
 
-    }, {
+    } );
+    Enrollments.insert( {
       "_id": "jgh8jdR63x7Npobsr",
       "centerNumber": "MA-003",
       "fullName": "Joy Duran",
@@ -728,7 +750,8 @@ Meteor.startup( function () {
       "efffectiveDates": [],
       "maturityDate": ISODate( "2017-03-24T00:00:00.000Z" ),
       "maturityDate1": ISODate( "2016-11-07T00:00:00.000Z" )
-    }, {
+    } );
+    Enrollments.insert( {
       "_id": "EEhW7te4GPa8XXgan",
       "centerNumber": "MA-0001",
       "fullName": "Vilma Santos",
@@ -777,7 +800,8 @@ Meteor.startup( function () {
       "efffectiveDates": [],
       "birthDate": ISODate( "1971-03-11T00:00:00.000Z" ),
       "ageOfEnrollee": 45
-    }, {
+    } );
+    Enrollments.insert( {
       "_id": "brYvK3FvEY9JhZPtM",
       "centerNumber": "MA-0001",
       "fullName": "Jerry Calma",
@@ -845,7 +869,8 @@ Meteor.startup( function () {
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "zMxsbQKz6AxkY2aW9",
       "createdAt": ISODate( "2016-04-06T20:15:24.822Z" )
-    }, {
+    } );
+    Claim.insert( {
       "_id": "zR9tKRbn8G9WvYzm4",
       "enrollmentId": "wyrY7GCZbdnGoqFZF",
       "clientType": "Dependent-Children",
@@ -864,7 +889,8 @@ Meteor.startup( function () {
         "fileId": "7MFJxpwWsuWsng5tH",
         "url": "/gridfs/data/id/7f4dce175c5f33fd1fc675d0"
       }
-    }, {
+    } );
+    Claim.insert( {
       "_id": "rojKoN7LW5DuxPLzY",
       "enrollmentId": "eEohPiv6wMqTapeyu",
       "clientType": "Dependent-Spouse",
@@ -883,7 +909,8 @@ Meteor.startup( function () {
         "fileId": "iDoKmuH9GspzSxBKg",
         "url": "/gridfs/data/id/ff9dc8eba474ac75efd1c52d"
       }
-    }, {
+    } );
+    Claim.insert( {
       "_id": "XFEyq5nNS9vtCmSDe",
       "enrollmentId": "wyrY7GCZbdnGoqFZF",
       "clientType": "Dependent-Children",
@@ -897,7 +924,8 @@ Meteor.startup( function () {
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "zMxsbQKz6AxkY2aW9",
       "createdAt": ISODate( "2016-04-20T17:29:02.360Z" )
-    }, {
+    } );
+    Claim.insert( {
       "_id": "zRcgSsbFEYuFtqJEs",
       "enrollmentId": "jgh8jdR63x7Npobsr",
       "clientType": "Dependent-Sibling",
@@ -912,7 +940,8 @@ Meteor.startup( function () {
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "EKwLqF8zxeoQXG88H",
       "createdAt": ISODate( "2016-04-24T17:32:32.416Z" )
-    }, {
+    } );
+    Claim.insert( {
       "_id": "QJYFKYLEcoDRyiPPG",
       "enrollmentId": "jgh8jdR63x7Npobsr",
       "clientType": "Dependent-Parent",
@@ -929,4 +958,10 @@ Meteor.startup( function () {
       "createdAt": ISODate( "2016-04-24T17:46:13.181Z" )
     } );
   }
+  if ( Meteor.error ) {
+    return error.reason;
+  } else {
+    console.log( "--- PAIS Easy IMS is already started ---" );
+  }
+
 } );
