@@ -132,7 +132,7 @@ Meteor.startup( function () {
     var marvin = Meteor.users.findOne( adminId );
     Meteor.users.insert( {
       "_id": "8uQnm7dvstZTxdgJN",
-      "createdAt": ISODate( "2016-01-03T14:01:59.301Z" ),
+      "createdAt": "2016-01-03",
       "services": {
         "password": {
           "bcrypt": "$2a$10$qgYCNxiYLWDy8J5fN9xlbulAooJDDYi5nONF5ZDfoj4l9VKhlRdjO"
@@ -166,7 +166,7 @@ Meteor.startup( function () {
       "status": {
         "online": false,
         "lastLogin": {
-          "date": ISODate( "2016-01-23T21:53:44.116Z" ),
+          "date": "2016-01-23",
           "ipAddr": "127.0.0.1",
           "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:43.0) Gecko/20100101 Firefox/43.0"
         }
@@ -175,7 +175,7 @@ Meteor.startup( function () {
     } );
     Meteor.users.insert( {
       "_id": "k8WKKx8KFusc8Z4sz",
-      "createdAt": ISODate( "2016-01-03T14:04:56.836Z" ),
+      "createdAt": "2016-01-03",
       "services": {
         "password": {
           "bcrypt": "$2a$10$dKM9RtaIIiAAJvMp2lv9eusxSNlBbBUZtZ7qwWxapS/9xIyFZxEhy"
@@ -209,7 +209,7 @@ Meteor.startup( function () {
     } );
     Meteor.users.insert( {
       "_id": "Q5MzbjgSyLPwqsFtS",
-      "createdAt": ISODate( "2016-01-03T14:06:02.300Z" ),
+      "createdAt": "2016-01-03",
       "services": {
         "password": {
           "bcrypt": "$2a$10$tNaHq99NWCeQ3drDPZx9LOVjAqK3a6ITZEfwy1uhOaoKF6FwWtqHi"
@@ -239,7 +239,7 @@ Meteor.startup( function () {
       "status": {
         "online": false,
         "lastLogin": {
-          "date": ISODate( "2016-02-01T17:59:22.148Z" ),
+          "date": "2016-02-01",
           "ipAddr": "127.0.0.1",
           "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
         }
@@ -247,7 +247,7 @@ Meteor.startup( function () {
     } );
     Meteor.users.insert( {
       "_id": "9qS7Rs2xPM6Rvfj7q",
-      "createdAt": ISODate( "2016-01-03T14:03:45.096Z" ),
+      "createdAt": "2016-01-03",
       "services": {
         "password": {
           "bcrypt": "$2a$10$gWrI954yEGmWbbxBtIto1.4sjrI6kn0vNToHOYOmYbcwRMcYzn9/K"
@@ -281,7 +281,7 @@ Meteor.startup( function () {
       "status": {
         "online": false,
         "lastLogin": {
-          "date": ISODate( "2016-01-31T14:10:25.279Z" ),
+          "date": "2016-01-31",
           "ipAddr": "127.0.0.1",
           "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
         }
@@ -289,7 +289,7 @@ Meteor.startup( function () {
     } );
     Meteor.users.insert( {
       "_id": "Eo9RKd4M7dBs2JHrp",
-      "createdAt": ISODate( "2016-01-03T14:09:21.834Z" ),
+      "createdAt": "2016-01-03",
       "services": {
         "password": {
           "bcrypt": "$2a$10$oq/EafpVl.HG37FqINZHEOVkRV0jTS6xV9/42GX59MJW5Js/nwAg."
@@ -323,7 +323,7 @@ Meteor.startup( function () {
       "status": {
         "online": false,
         "lastLogin": {
-          "date": ISODate( "2016-02-23T19:42:55.757Z" ),
+          "date": "2016-02-23",
           "ipAddr": "127.0.0.1",
           "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0"
         }
@@ -331,7 +331,7 @@ Meteor.startup( function () {
     } );
     Meteor.users.insert( {
       "_id": "CF2Hw6LNL5oY7TWJ9",
-      "createdAt": ISODate( "2016-01-03T14:08:38.389Z" ),
+      "createdAt": "2016-01-03",
       "services": {
         "password": {
           "bcrypt": "$2a$10$THG/vpvZCznJg5UdP38IUu67I54f7HXeB6hRa9hpejRTiVFj4BuDS"
@@ -361,7 +361,7 @@ Meteor.startup( function () {
       "status": {
         "online": false,
         "lastLogin": {
-          "date": ISODate( "2016-02-23T19:43:13.092Z" ),
+          "date": "2016-02-23",
           "ipAddr": "127.0.0.1",
           "userAgent": "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0"
         }
@@ -369,7 +369,7 @@ Meteor.startup( function () {
     } );
     Meteor.users.insert( {
       "_id": "Eywb8SAc2jtMDreSr",
-      "createdAt": ISODate( "2016-01-03T13:55:26.786Z" ),
+      "createdAt": "2016-01-03",
       "services": {
         "password": {
           "bcrypt": "$2a$10$.jceQEIW7XM7BnFBmvhBquLTICfKJ8aWy52ofZVaq.S2.oGNtkQPi"
@@ -397,7 +397,7 @@ Meteor.startup( function () {
       "status": {
         "online": false,
         "lastLogin": {
-          "date": ISODate( "2016-03-12T15:08:19.465Z" ),
+          "date": "2016-03-12",
           "ipAddr": "127.0.0.1",
           "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36"
         }
@@ -405,7 +405,7 @@ Meteor.startup( function () {
     } );
     Meteor.users.insert( {
       "_id": "zMxsbQKz6AxkY2aW9",
-      "createdAt": ISODate( "2016-01-03T14:02:45.565Z" ),
+      "createdAt": "2016-01-03",
       "services": {
         "password": {
           "bcrypt": "$2a$10$OHfTyHbnLlsXjFDTRVQTXuKVNX/qfpQuuD2KSdw/DvmpArmPWfL1G"
@@ -437,7 +437,7 @@ Meteor.startup( function () {
       "status": {
         "online": true,
         "lastLogin": {
-          "date": ISODate( "2016-03-12T15:34:48.940Z" ),
+          "date": "2016-03-12",
           "ipAddr": "127.0.0.1",
           "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36"
         },
@@ -446,7 +446,7 @@ Meteor.startup( function () {
     } );
     Meteor.users.insert( {
         "_id": "EKwLqF8zxeoQXG88H",
-        "createdAt": ISODate( "2016-01-03T14:07:56.591Z" ),
+        "createdAt": "2016-01-03",
         "services": {
           "password": {
             "bcrypt": "$2a$10$Zrscf3CMpiMKnVSX5HOAVeNMLBhP27vzdYojP2emW.zWKFQAkLPW2"
@@ -477,7 +477,7 @@ Meteor.startup( function () {
         "status": {
           "online": false,
           "lastLogin": {
-            "date": ISODate( "2016-01-04T18:58:32.841Z" ),
+            "date": "2016-01-04",
             "ipAddr": "127.0.0.1",
             "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36"
           }
@@ -545,7 +545,7 @@ Meteor.startup( function () {
       "centerNumber": "MA-002",
       "fullName": "Hilda Coronel",
       "tin": "11-5616123",
-      "birthDate": ISODate( "1972-04-07T00:00:00.000Z" ),
+      "birthDate": "1972-04-07",
       "ageOfEnrollee": 44,
       "gender": "FEMALE",
       "phone": "2133867080",
@@ -555,21 +555,21 @@ Meteor.startup( function () {
       "maritalStatus": "ANNULED",
       "children": "Two Children",
       "childrenName": "James Coronel",
-      "childrenBirthdate": ISODate( "1994-03-10T00:00:00.000Z" ),
+      "childrenBirthdate": "1994-03-10",
       "children2Name": "Farie Coronel",
-      "children2Birthdate": ISODate( "2000-02-15T00:00:00.000Z" ),
+      "children2Birthdate": "2000-02-15",
       "parent": "One Parent",
       "parentName": "Jaime Coronel",
-      "parentBirthdate": ISODate( "1960-06-14T00:00:00.000Z" ),
+      "parentBirthdate": "1960-06-14",
       "productsAvailed": "One Product",
       "productName": "Cra2HHgNzTHWyaF6n",
       "productOffering": "Dependent-Children",
       "premium": 40.5000000000000000,
       "productRange": 12,
       "insuredName": "James Coronel",
-      "effectivityDate": ISODate( "2016-08-06T00:00:00.000Z" ),
+      "effectivityDate": "2016-08-06",
       "loanCycle": 1,
-      "createdAt": ISODate( "2016-04-08T17:34:12.013Z" ),
+      "createdAt": "2016-04-08",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "LytDnsbXK2d4cgYPX",
       "insurer": [
@@ -586,14 +586,14 @@ Meteor.startup( function () {
       "parentAge": 56,
       "efffectiveDates": [],
       "beneficiaryOneRelationship": "Father",
-      "maturityDate": ISODate( "2017-08-06T00:00:00.000Z" )
+      "maturityDate": "2017-08-06"
     } );
     Enrollments.insert( {
       "_id": "eEohPiv6wMqTapeyu",
       "centerNumber": "MA-001",
       "fullName": "Marvin Villanueva",
       "tin": "23-1131654",
-      "birthDate": ISODate( "1980-08-16T00:00:00.000Z" ),
+      "birthDate": "1980-08-16",
       "ageOfEnrollee": 35,
       "gender": "MALE",
       "phone": "2133867080",
@@ -602,21 +602,21 @@ Meteor.startup( function () {
       "beneficiaryOne": "Myself",
       "maritalStatus": "MARRIED",
       "spouseName": "Vikki Poblete",
-      "spouseBirthdate": ISODate( "1971-11-23T00:00:00.000Z" ),
+      "spouseBirthdate": "1971-11-23",
       "spouseAge": 44,
       "children": "One Child",
       "childrenName": "Amihan Villanueva",
-      "childrenBirthdate": ISODate( "2013-03-26T00:00:00.000Z" ),
+      "childrenBirthdate": "2013-03-26",
       "childrenAge": 3,
       "parent": "One Parent",
       "parentName": "Misael Villanueva",
-      "parentBirthdate": ISODate( "1954-12-16T00:00:00.000Z" ),
+      "parentBirthdate": "1954-12-16",
       "parentAge": 61,
       "siblings": "One Sibling",
       "siblingName": "Macy Villanueva",
-      "siblingBirthdate": ISODate( "2000-12-27T00:00:00.000Z" ),
+      "siblingBirthdate": "2000-12-27",
       "siblingAge": 15,
-      "createdAt": ISODate( "2016-03-31T17:29:09.054Z" ),
+      "createdAt": "2016-03-31",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "mBRy2J8qAQRXeizmZ",
       "insurer": [
@@ -628,13 +628,13 @@ Meteor.startup( function () {
       "productOffering": "Dependent-Parent",
       "premium": 70,
       "insuredName": "Misael Villanueva",
-      "effectivityDate": ISODate( "2016-05-01T00:00:00.000Z" ),
+      "effectivityDate": "2016-05-01",
       "loanCycle": 1,
       "productName1": "Cra2HHgNzTHWyaF6n",
       "productOffering1": "Dependent-Children",
       "premium1": 40.5000000000000000,
       "insuredName1": "Amihan Villanueva",
-      "effectivityDate1": ISODate( "2016-04-27T00:00:00.000Z" ),
+      "effectivityDate1": "2016-04-27",
       "loanCycle2": 1,
       "productRange1": 12,
       "productName2": "rGWfZJ2eGJBZ9WBuq",
@@ -642,15 +642,15 @@ Meteor.startup( function () {
       "premium2": 100,
       "productRange2": 4,
       "insuredName2": "Vikki Poblete",
-      "effectivityDate2": ISODate( "2016-04-20T00:00:00.000Z" ),
-      "maturityDate2": ISODate( "2016-08-20T00:00:00.000Z" ),
+      "effectivityDate2": "2016-04-20",
+      "maturityDate2": "2016-08-20",
       "loanCycle3": 1,
       "productName3": "cjpy2L9E57NogeFZN",
       "productOffering3": "Dependent-Sibling",
       "premium3": 90,
       "productRange3": 12,
-      "effectivityDate3": ISODate( "2016-04-30T00:00:00.000Z" ),
-      "maturityDate3": ISODate( "2017-04-30T00:00:00.000Z" ),
+      "effectivityDate3": "2016-04-30",
+      "maturityDate3": "2017-04-30",
       "loanCycle4": 1,
       "productRange": 6,
       "premiums": 370.5000000000000000,
@@ -660,8 +660,8 @@ Meteor.startup( function () {
       "premium4": 70,
       "productRange4": 6,
       "insuredName4": "Misael Villanueva",
-      "effectivityDate4": ISODate( "2016-06-27T00:00:00.000Z" ),
-      "maturityDate4": ISODate( "2016-12-27T00:00:00.000Z" ),
+      "effectivityDate4": "2016-06-27",
+      "maturityDate4": "2016-12-27",
       "efffectiveDates": [],
       "products": [
         "e7S2ABDnvJmotqdcy",
@@ -669,8 +669,8 @@ Meteor.startup( function () {
         "rGWfZJ2eGJBZ9WBuq",
         "cjpy2L9E57NogeFZN"
       ],
-      "maturityDate": ISODate( "2016-11-01T00:00:00.000Z" ),
-      "maturityDate1": ISODate( "2017-04-27T00:00:00.000Z" )
+      "maturityDate": "2016-11-01",
+      "maturityDate1": "2017-04-27"
 
     } );
     Enrollments.insert( {
@@ -678,7 +678,7 @@ Meteor.startup( function () {
       "centerNumber": "MA-003",
       "fullName": "Joy Duran",
       "tin": "12-3131555",
-      "birthDate": ISODate( "1978-06-14T00:00:00.000Z" ),
+      "birthDate": "1978-06-14",
       "ageOfEnrollee": 38,
       "gender": "FEMALE",
       "phone": "2133867080",
@@ -687,41 +687,41 @@ Meteor.startup( function () {
       "beneficiaryOne": "Myself",
       "maritalStatus": "MARRIED",
       "spouseName": "Conrado Duran",
-      "spouseBirthdate": ISODate( "1975-07-30T00:00:00.000Z" ),
+      "spouseBirthdate": "1975-07-30",
       "spouseAge": 41,
       "children": "One Child",
       "childrenName": "Jay Duran",
-      "childrenBirthdate": ISODate( "1995-07-20T00:00:00.000Z" ),
+      "childrenBirthdate": "1995-07-20",
       "childrenAge": 21,
       "parent": "One Parent",
       "parentName": "Jake Reyes",
-      "parentBirthdate": ISODate( "1961-07-27T00:00:00.000Z" ),
+      "parentBirthdate": "1961-07-27",
       "parentAge": 55,
       "siblings": "One Sibling",
       "siblingName": "Jobby Reyes",
-      "siblingBirthdate": ISODate( "1980-06-17T00:00:00.000Z" ),
+      "siblingBirthdate": "1980-06-17",
       "siblingAge": 36,
       "productsAvailed": "Four Products",
       "productName": "rGWfZJ2eGJBZ9WBuq",
       "productOffering": "Dependent-Spouse",
       "premium": 100,
       "productRange": 4,
-      "effectivityDate": ISODate( "2016-11-24T00:00:00.000Z" ),
+      "effectivityDate": "2016-11-24",
       "loanCycle": 1,
       "productName1": "e7S2ABDnvJmotqdcy",
       "productOffering1": "Dependent-Parent",
       "premium1": 70,
       "productRange1": 6,
-      "effectivityDate1": ISODate( "2016-05-07T00:00:00.000Z" ),
+      "effectivityDate1": "2016-05-07",
       "loanCycle2": 1,
       "productName2": "Cra2HHgNzTHWyaF6n",
       "productOffering2": "Dependent-Children",
       "premium2": 40.5000000000000000,
       "productRange2": 6,
-      "effectivityDate2": ISODate( "2016-04-20T00:00:00.000Z" ),
-      "maturityDate2": ISODate( "2016-10-20T00:00:00.000Z" ),
+      "effectivityDate2": "2016-04-20",
+      "maturityDate2": "2016-10-20",
       "loanCycle3": 1,
-      "createdAt": ISODate( "2016-04-24T17:30:31.731Z" ),
+      "createdAt": "2016-04-24",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "mBRy2J8qAQRXeizmZ",
       "insurer": [
@@ -739,8 +739,8 @@ Meteor.startup( function () {
       "productOffering3": "Principal",
       "premium3": 60,
       "productRange3": 12,
-      "effectivityDate3": ISODate( "2016-04-27T00:00:00.000Z" ),
-      "maturityDate3": ISODate( "2017-04-25T00:00:00.000Z" ),
+      "effectivityDate3": "2016-04-27",
+      "maturityDate3": "2017-04-25",
       "loanCycle4": 1,
       "loanCycle1": 1,
       "insuredName": "Conrado Duran",
@@ -748,8 +748,8 @@ Meteor.startup( function () {
       "insuredName2": "Jay Duran",
       "insuredName3": "Joy Duran",
       "efffectiveDates": [],
-      "maturityDate": ISODate( "2017-03-24T00:00:00.000Z" ),
-      "maturityDate1": ISODate( "2016-11-07T00:00:00.000Z" )
+      "maturityDate": "2017-03-24",
+      "maturityDate1": "2016-11-07"
     } );
     Enrollments.insert( {
       "_id": "EEhW7te4GPa8XXgan",
@@ -761,17 +761,17 @@ Meteor.startup( function () {
       "address": "Street St",
       "maritalStatus": "MARRIED",
       "spouseName": "Ralph",
-      "spouseBirthdate": ISODate( "1985-11-16T16:00:00.000Z" ),
+      "spouseBirthdate": "1985-11-16",
       "parentName": "Sharon Santos",
-      "parentBirthdate": ISODate( "1953-02-14T16:00:00.000Z" ),
+      "parentBirthdate": "1953-02-14",
       "siblingName": "Cynthia",
-      "siblingBirthdate": ISODate( "1957-12-23T16:00:00.000Z" ),
+      "siblingBirthdate": "1957-12-23",
       "productOffering": "Dependent-Spouse",
       "premium": 100,
       "productRange": 4,
       "insuredName": "Ralph",
-      "effectivityDate": ISODate( "2016-06-27T00:00:00.000Z" ),
-      "maturityDate": ISODate( "2016-10-27T00:00:00.000Z" ),
+      "effectivityDate": "2016-06-27",
+      "maturityDate": "2016-10-27",
       "loanCycle": 1,
       "company": "RE4d92pDug66Mfbzr",
       "branch": "LytDnsbXK2d4cgYPX",
@@ -784,7 +784,7 @@ Meteor.startup( function () {
         "kaKw4hQ3WTtso572F"
       ],
       "premiums": 160,
-      "createdAt": ISODate( "2016-06-05T20:26:56.563Z" ),
+      "createdAt": "2016-06-05",
       "createdBy": "zMxsbQKz6AxkY2aW9",
       "spouseAge": 30,
       "productsAvailed": "Two Products",
@@ -794,11 +794,11 @@ Meteor.startup( function () {
       "premium1": 60,
       "productRange1": 12,
       "insuredName1": "Vilma Santos",
-      "effectivityDate1": ISODate( "2016-07-31T00:00:00.000Z" ),
-      "maturityDate1": ISODate( "2017-07-31T00:00:00.000Z" ),
+      "effectivityDate1": "2016-07-31",
+      "maturityDate1": "2017-07-31",
       "loanCycle1": 1,
       "efffectiveDates": [],
-      "birthDate": ISODate( "1971-03-11T00:00:00.000Z" ),
+      "birthDate": "1971-03-11",
       "ageOfEnrollee": 45
     } );
     Enrollments.insert( {
@@ -811,19 +811,19 @@ Meteor.startup( function () {
       "address": "Rigbu Square",
       "maritalStatus": "MARRIED",
       "spouseName": "Nora",
-      "spouseBirthdate": ISODate( "1986-11-16T16:00:00.000Z" ),
+      "spouseBirthdate": "1986-11-16",
       "childrenName": "David",
-      "childrenBirthdate": ISODate( "1994-03-10T00:00:00.000Z" ),
+      "childrenBirthdate": "1994-03-10",
       "parentName": "Vernon",
-      "parentBirthdate": ISODate( "1954-02-14T16:00:00.000Z" ),
+      "parentBirthdate": "1954-02-14",
       "siblingName": "Claudia",
-      "siblingBirthdate": ISODate( "1958-12-23T16:00:00.000Z" ),
+      "siblingBirthdate": "1958-12-23",
       "productOffering": "Principal",
       "productName": "kaKw4hQ3WTtso572F",
       "premium": 60,
       "productRange": 6,
       "insuredName1": "Jerry Calma",
-      "effectivityDate1": ISODate( "2016-05-15T16:00:00.000Z" ),
+      "effectivityDate1": "2016-05-15",
       "loanCycle": 1,
       "company": "RE4d92pDug66Mfbzr",
       "branch": "LytDnsbXK2d4cgYPX",
@@ -836,14 +836,14 @@ Meteor.startup( function () {
       ],
       "premiums": 60,
       "efffectiveDates": [],
-      "createdAt": ISODate( "2016-07-23T10:50:17.994Z" ),
+      "createdAt": "2016-07-23",
       "createdBy": "zMxsbQKz6AxkY2aW9",
       "spouseAge": 29,
       "productsAvailed": "One Product",
       "insuredName": "Jerry Calma",
-      "effectivityDate": ISODate( "2016-07-26T00:00:00.000Z" ),
-      "maturityDate": ISODate( "2017-01-25T16:00:00.000Z" ),
-      "birthDate": ISODate( "1970-02-10T00:00:00.000Z" ),
+      "effectivityDate": "2016-07-26",
+      "maturityDate": "2017-01-25",
+      "birthDate": "1970-02-10",
       "ageOfEnrollee": 46,
       "children": "One Child",
       "childrenAge": 22,
@@ -863,12 +863,12 @@ Meteor.startup( function () {
       "status": "ApprovedRB",
       "medical": "Hypersensitivity",
       "amountPaid": 20000,
-      "dateFiled": ISODate( "2016-04-06T20:15:24.795Z" ),
+      "dateFiled": "2016-04-06",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "LytDnsbXK2d4cgYPX",
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "zMxsbQKz6AxkY2aW9",
-      "createdAt": ISODate( "2016-04-06T20:15:24.822Z" )
+      "createdAt": "2016-04-06"
     } );
     Claim.insert( {
       "_id": "zR9tKRbn8G9WvYzm4",
@@ -879,12 +879,12 @@ Meteor.startup( function () {
       "status": "Approved",
       "medical": "Hypertension",
       "amountPaid": 20000,
-      "dateFiled": ISODate( "2016-04-08T17:34:51.715Z" ),
+      "dateFiled": "2016-04-08",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "LytDnsbXK2d4cgYPX",
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "zMxsbQKz6AxkY2aW9",
-      "createdAt": ISODate( "2016-04-08T17:34:51.720Z" ),
+      "createdAt": "2016-04-08",
       "file": {
         "fileId": "7MFJxpwWsuWsng5tH",
         "url": "/gridfs/data/id/7f4dce175c5f33fd1fc675d0"
@@ -899,12 +899,12 @@ Meteor.startup( function () {
       "status": "Approved",
       "medical": "Hypersensitivity",
       "amountPaid": 40000,
-      "dateFiled": ISODate( "2016-04-13T18:37:27.304Z" ),
+      "dateFiled": "2016-04-13",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "mBRy2J8qAQRXeizmZ",
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "EKwLqF8zxeoQXG88H",
-      "createdAt": ISODate( "2016-04-13T18:37:27.317Z" ),
+      "createdAt": "2016-04-13",
       "file": {
         "fileId": "iDoKmuH9GspzSxBKg",
         "url": "/gridfs/data/id/ff9dc8eba474ac75efd1c52d"
@@ -918,12 +918,12 @@ Meteor.startup( function () {
       "products": "Cra2HHgNzTHWyaF6n",
       "status": "Denied",
       "medical": "Hypertension",
-      "dateFiled": ISODate( "2016-04-20T17:29:02.348Z" ),
+      "dateFiled": "2016-04-20",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "LytDnsbXK2d4cgYPX",
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "zMxsbQKz6AxkY2aW9",
-      "createdAt": ISODate( "2016-04-20T17:29:02.360Z" )
+      "createdAt": "2016-04-20"
     } );
     Claim.insert( {
       "_id": "zRcgSsbFEYuFtqJEs",
@@ -934,12 +934,12 @@ Meteor.startup( function () {
       "status": "Approved",
       "medical": "Animal/Insect bite",
       "amountPaid": 30000,
-      "dateFiled": ISODate( "2016-04-24T17:32:32.408Z" ),
+      "dateFiled": "2016-04-24",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "mBRy2J8qAQRXeizmZ",
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "EKwLqF8zxeoQXG88H",
-      "createdAt": ISODate( "2016-04-24T17:32:32.416Z" )
+      "createdAt": "2016-04-24"
     } );
     Claim.insert( {
       "_id": "QJYFKYLEcoDRyiPPG",
@@ -950,12 +950,12 @@ Meteor.startup( function () {
       "status": "Approved",
       "causeOfDeath": "Respiratory",
       "amountPaid": 40000,
-      "dateFiled": ISODate( "2016-04-24T17:46:13.173Z" ),
+      "dateFiled": "2016-04-24",
       "company": "RE4d92pDug66Mfbzr",
       "branch": "mBRy2J8qAQRXeizmZ",
       "insurer": "8s8CGHT7uNnmvX5fq",
       "createdBy": "EKwLqF8zxeoQXG88H",
-      "createdAt": ISODate( "2016-04-24T17:46:13.181Z" )
+      "createdAt": "2016-04-24"
     } );
   }
   if ( Meteor.error ) {
