@@ -11,7 +11,7 @@ try {
   config = JSON.parse( fs.readFileSync( configFile ) );
 } catch ( err ) {
   console.log(
-    'Config file: config.highcharts.json doesn\'t exist or is not a proper JSON. Proceeding with the default options.\n', err )
+    'Config file: config.highcharts.json doesn\'t exist or is not a proper JSON. Proceeding with the default options.\n', err );
 }
 
 // Build up options:

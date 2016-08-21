@@ -345,7 +345,6 @@
           <th>Children</th>
           <th>Parent</th>
           <th>Siblings</th>
-
         </tr>
       </thead>
       <tfoot>
@@ -368,7 +367,6 @@
           <th>Children</th>
           <th>Parent</th>
           <th>Siblings</th>
-
         </tr>
       </tfoot>
       <tbody>
@@ -392,7 +390,6 @@
             <td>{{ childrenName}}</td>
             <td>{{ parentName }}</td>
             <td>{{ siblingName }}</td>
-
           </tr>
         {{/each}}
       </tbody>
@@ -409,13 +406,39 @@
 </template>
 
 <template name="dashboardClaimTable">
-  <div class="row">
-    <div class="col-lg-12">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <div class="ibox-content">
+          {{> medicalClaim}}
+          <div class="m-t-md">
+            <small class="pull-right">
+              <i class="fa fa-clock-o"></i>
+              Updated on
+              {{ updated }}
+            </small>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-6">
+        <div class="ibox-content">
+          {{> deathClaim}}
+          <div class="m-t-md">
+            <small class="pull-right">
+              <i class="fa fa-clock-o"></i>
+              Updated on
+              {{ updated }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- <div class="col-lg-12">
       <div class="ibox float-e-margins">
         <div class="ibox-content">
-          <div>
-
-          </div>
           <div>
             {{> medicalClaim}}
           </div>
@@ -432,14 +455,12 @@
 
         </div>
       </div>
-    </div>
-  </div>
-  <hr>
+    </div> -->
+
   <div class="ibox-title">
       <span class="label label-danger btn-xs pull-right text-right">More than or equal to 10 days processed </span>
       <span class="label label-primary btn-xs pull-right text-right">Less than 10 days processed </span>&nbsp;
       <span class="label label-default btn-xs pull-right text-rigt">Processing Stopped</span>&nbsp;
-
       <span class="pull-right text-right"><strong>Legend Days Processed: </strong></span>
 
   </div>
@@ -506,14 +527,53 @@
 </template>
 
 <template name="medicalClaim">
-
-  <div id="claimChartMedical" style="min-width: 310px; height: 400px;"></div>
+  <!-- <div id="claimChartMedical" style="min-width: 310px; height: 400px;"></div> -->
+  <table class="table table-striped tablesorter" id="medicalTable">
+    <thead>
+      <tr>
+        <th>Medical Claim</th>
+        <th>Count</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each medClaim}}
+      <tr>
+        <th>{{ _id }}</th>
+        <td>{{ count }}</td>
+        <td>{{ filedDate monthFiled }}</td>
+        <td>{{ yearFiled }}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
 
 </template>
 
 <template name="deathClaim">
 
-  <div id="claimChartDeath" style="min-width: 310px; height: 400px;"></div>
+  <!-- <div id="claimChartDeath" style="min-width: 310px; height: 400px;"></div> -->
+  <table class="table table-striped tablesorter" id="deathTable">
+    <thead>
+      <tr>
+        <th>Death Claim</th>
+        <th>Count</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each deathClaim}}
+      <tr>
+        <th>{{ _id }}</th>
+        <td>{{ count }}</td>
+        <td>{{ filedDate monthFiled }}</td>
+        <td>{{ yearFiled }}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
 
 </template>
 

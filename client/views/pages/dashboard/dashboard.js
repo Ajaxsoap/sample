@@ -186,15 +186,13 @@ Template.medicalClaim.onCreated( function () {
   this.subscribe( "MedicalClaimCount" );
 } );
 
+var chart;
 
-
-Template.medicalClaim.onRendered( function () {
-  var chart;
-
-  function buildChart( series ) {
-
-    chart = $( '#claimChartMedical' ).highcharts( {
-
+function MedicalClaimChart() {
+  chart = $( '#claimChartMedical' ).highcharts( {
+      data: {
+        table: 'medicalTable'
+      },
       chart: {
         type: 'column'
       },
@@ -202,112 +200,81 @@ Template.medicalClaim.onRendered( function () {
       title: {
         text: 'Monthly Total Cause of Medical Claims'
       },
-
-      subtitle: {
-        text: ''
-      },
-
       credits: {
         enabled: false
       },
-
-      xAxis: {
-        categories: [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec'
-        ]
-      },
-
       yAxis: {
         min: 0,
         title: {
-          text: ''
+          text: 'Total Medical Claims'
         }
       },
-
       tooltip: {
         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-          '<td style="padding:0"><b>{point.y}</b></td></tr>',
+          '<td style="padding:0"><b>{point.y} </b></td></tr>',
         footerFormat: '</table>',
         shared: true,
         useHTML: true
       },
-
       plotOptions: {
         column: {
-          pointPadding: 0,
-          borderWidth: 0,
-          showInLegend: false
+          pointPadding: 0.2,
+          borderWidth: 0
         }
-      },
+      }
+    }
 
-      series: series
+  );
+}
+
+
+Template.medicalClaim.helpers( {
+  medClaim: function () {
+    return MedicalClaimCount.find();
+  },
+  animalClaim: function () {
+    var animal = MedicalClaimCount.findOne( {
+      _id: "Animal/Insect bite"
+    }, {
+      fields: {
+        count: 1
+      }
     } );
+    console.log( animal.count );
+    if ( animal ) {
+      return animal && animal.count;
+    } else {
+      return "No data";
+    }
   }
-  var medicalClaimsForChart = {};
-  var medicalClaims = [ 'Animal/Insect bite', 'Hypertension', 'Diabetes',
-    'CVA,Chronic Kidney disease', 'Abration', 'Hypersensitivity',
-    'Community acquired pneumonia', 'others'
-  ];
+} );
 
-  _.each( medicalClaims, function ( medicalClaim ) {
-    medicalClaimsForChart[ medicalClaim ] = {
-      0: 0,
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-      6: 0,
-      7: 0,
-      8: 0,
-      9: 0,
-      10: 0,
-      11: 0
-    };
+Template.medicalClaim.onRendered( function () {
+  var janData = MedicalClaimCount.findOne( {
+    _id: "Animal/Insect bite"
+  }, {
+    fields: {
+      "count": 1
+    }
   } );
 
-  Tracker.autorun( function () {
-    var series = [];
-    _.each( medicalClaims, function ( medicalClaim ) {
-      _.each( MedicalClaimCount.find( {
-        _id: medicalClaim,
-      } ).fetch(), function ( claim ) {
-        medicalClaimsForChart[ medicalClaim ][ claim.monthFiled ]++;
-      } );
-      // console.log( );
-      series.push( {
-        name: medicalClaim,
-        data: _.values( medicalClaimsForChart[ medicalClaim ] )
-      } );
-    } );
+  if ( !chart ) {
+    MedicalClaimChart();
+    return;
+  }
 
-    // if there is no chart, built it
-    if ( !chart ) {
-      buildChart( series );
-      return;
-    }
+} );
 
-    // Otherwise, simply update the data
-    for ( var i = 0; i < medicalClaims.length; i++ ) {
-      chart.highcharts().series[ i ].update( {
-        data: series[ i ].data
-      } );
-    }
+Template.registerHelper( "filedDate", function () {
+  var datefile = this.monthFiled;
+  return moment( new Date( datefile.toString() ) ).format( 'MMMM' );
+} );
 
-  } );
-
+Template.deathClaim.helpers( {
+  deathClaim: function () {
+    return DeathClaimCount.find();
+  }
 } );
 
 Template.deathClaim.onRendered( function () {
@@ -343,7 +310,7 @@ Template.deathClaim.onRendered( function () {
     yAxis: {
       min: 0,
       title: {
-        text: 'Total Numbers'
+        text: ''
       }
     },
     tooltip: {
