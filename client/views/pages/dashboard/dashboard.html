@@ -405,6 +405,74 @@
   </div>
 </template>
 
+<template name="medicalClaim">
+  <!-- <div id="claimChartMedical" style="min-width: 310px; height: 400px;"></div> -->
+  <div id="data">
+    <table class="table table-striped tablesorter" id="medicalClaimTable">
+      <thead>
+        <tr>
+          <th>Medical Claim</th>
+          <th>Count</th>
+          <th>Month Filed</th>
+          <th>Year Filed</th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Medical Claim</th>
+          <th>Count</th>
+          <th>Month Filed</th>
+          <th>Year Filed</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        {{#each medClaim}}
+        <tr>
+          <td>{{ _id }}</td>
+          <td>{{ count }}</td>
+          <td>{{ filedDate monthFiled }}</td>
+          <td>{{ yearFiled }}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<template name="deathClaim">
+  <!-- <div id="claimChartDeath" style="min-width: 310px; height: 400px;"></div> -->
+  <div id="data">
+  <table class="table table-striped tablesorter" id="deathClaimTable">
+    <thead>
+      <tr>
+        <th>Death Claim</th>
+        <th>Count</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <th>Death Claim</th>
+        <th>Count</th>
+        <th>Month</th>
+        <th>Year</th>
+      </tr>
+    </tfoot>
+    <tbody>
+      {{#each deathClaim}}
+      <tr>
+        <td>{{ _id }}</td>
+        <td>{{ count }}</td>
+        <td>{{ filedDate monthFiled }}</td>
+        <td>{{ yearFiled }}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+</template>
+
 <template name="dashboardClaimTable">
     <div class="row">
       <div class="col-lg-6">
@@ -433,7 +501,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- <div class="col-lg-12">
@@ -524,57 +591,6 @@
         claims</span>
     </div>
   </div>
-</template>
-
-<template name="medicalClaim">
-  <!-- <div id="claimChartMedical" style="min-width: 310px; height: 400px;"></div> -->
-  <table class="table table-striped tablesorter" id="medicalTable">
-    <thead>
-      <tr>
-        <th>Medical Claim</th>
-        <th>Count</th>
-        <th>Month</th>
-        <th>Year</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each medClaim}}
-      <tr>
-        <th>{{ _id }}</th>
-        <td>{{ count }}</td>
-        <td>{{ filedDate monthFiled }}</td>
-        <td>{{ yearFiled }}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-
-</template>
-
-<template name="deathClaim">
-
-  <!-- <div id="claimChartDeath" style="min-width: 310px; height: 400px;"></div> -->
-  <table class="table table-striped tablesorter" id="deathTable">
-    <thead>
-      <tr>
-        <th>Death Claim</th>
-        <th>Count</th>
-        <th>Month</th>
-        <th>Year</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each deathClaim}}
-      <tr>
-        <th>{{ _id }}</th>
-        <td>{{ count }}</td>
-        <td>{{ filedDate monthFiled }}</td>
-        <td>{{ yearFiled }}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
-
 </template>
 
 <template name="countMonth">

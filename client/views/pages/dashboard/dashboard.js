@@ -110,6 +110,10 @@ Template.claimList.onCreated( function () {
   this.subscribe( "BranchClaimDeniedCount" );
 } );
 
+Template.medicalClaim.onCreated( function () {
+  this.subscribe( "MedicalClaimCount" );
+} );
+
 Template.deathClaim.onCreated( function () {
   this.subscribe( "DeathClaimCount" );
 } );
@@ -151,7 +155,7 @@ Template.enolledTable.onRendered( function () {
         title + '" />' );
     } );
 
-    $( '#enrollmentsTable' ).DataTable( {
+    table = $( '#enrollmentsTable' ).DataTable( {
       "scrollX": true,
       dom: "<lB><f><rtip>",
       buttons: [ {
@@ -165,8 +169,6 @@ Template.enolledTable.onRendered( function () {
         text: 'PDF'
       } ]
     } );
-
-    var table = $( '#enrollmentsTable' ).DataTable();
 
     table.columns().every( function () {
       var that = this;
@@ -182,52 +184,72 @@ Template.enolledTable.onRendered( function () {
 
 } );
 
-Template.medicalClaim.onCreated( function () {
-  this.subscribe( "MedicalClaimCount" );
+// var chart;
+//
+// function MedicalClaimChart() {
+//   chart = $( '#claimChartMedical' ).highcharts( {
+//       data: {
+//         table: 'medicalTable'
+//       },
+//       chart: {
+//         type: 'column'
+//       },
+//
+//       title: {
+//         text: 'Monthly Total Cause of Medical Claims'
+//       },
+//       credits: {
+//         enabled: false
+//       },
+//       yAxis: {
+//         min: 0,
+//         title: {
+//           text: 'Total Medical Claims'
+//         }
+//       },
+//       tooltip: {
+//         headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+//         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+//           '<td style="padding:0"><b>{point.y} </b></td></tr>',
+//         footerFormat: '</table>',
+//         shared: true,
+//         useHTML: true
+//       },
+//       plotOptions: {
+//         column: {
+//           pointPadding: 0.2,
+//           borderWidth: 0
+//         }
+//       }
+//     }
+//
+//   );
+// }
+
+Template.medicalClaim.onRendered( function () {
+  this.autorun( function () {
+    $( '#medicalClaimTable tfoot th' ).each( function () {
+      var title = $( this ).text();
+      $( this ).html( '<input type="text" placeholder="Search ' +
+        title + '" />' );
+    } );
+
+    medTable = $( '#medicalClaimTable' ).DataTable( {
+      dom: "<l><f><rtip>"
+    } );
+
+    medTable.columns().every( function () {
+      var that = this;
+      $( 'input', this.footer() ).on( 'keyup change', function () {
+        if ( that.search() !== this.value ) {
+          that
+            .search( this.value )
+            .draw();
+        }
+      } );
+    } );
+  } );
 } );
-
-var chart;
-
-function MedicalClaimChart() {
-  chart = $( '#claimChartMedical' ).highcharts( {
-      data: {
-        table: 'medicalTable'
-      },
-      chart: {
-        type: 'column'
-      },
-
-      title: {
-        text: 'Monthly Total Cause of Medical Claims'
-      },
-      credits: {
-        enabled: false
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Total Medical Claims'
-        }
-      },
-      tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-          '<td style="padding:0"><b>{point.y} </b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-      },
-      plotOptions: {
-        column: {
-          pointPadding: 0.2,
-          borderWidth: 0
-        }
-      }
-    }
-
-  );
-}
-
 
 Template.medicalClaim.helpers( {
   medClaim: function () {
@@ -250,22 +272,6 @@ Template.medicalClaim.helpers( {
   }
 } );
 
-Template.medicalClaim.onRendered( function () {
-  var janData = MedicalClaimCount.findOne( {
-    _id: "Animal/Insect bite"
-  }, {
-    fields: {
-      "count": 1
-    }
-  } );
-
-  if ( !chart ) {
-    MedicalClaimChart();
-    return;
-  }
-
-} );
-
 Template.registerHelper( "filedDate", function () {
   var datefile = this.monthFiled;
   return moment( new Date( datefile.toString() ) ).format( 'MMMM' );
@@ -279,101 +285,115 @@ Template.deathClaim.helpers( {
 
 Template.deathClaim.onRendered( function () {
 
-  var deathChart = $( '#claimChartDeath' ).highcharts( {
-
-    chart: {
-      type: 'column'
-    },
-
-    title: {
-      text: 'Monthly Total Cause of Death Claims'
-    },
-    credits: {
-      enabled: false
-    },
-    xAxis: {
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-      ]
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: ''
-      }
-    },
-    tooltip: {
-      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>{point.y} </b></td></tr>',
-      footerFormat: '</table>',
-      shared: true,
-      useHTML: true
-    },
-    plotOptions: {
-      column: {
-        pointPadding: 0.2,
-        borderWidth: 0
-      }
-    },
-    series: [ {
-      name: 'Cardiovascular',
-      data: []
-
-    }, {
-      name: 'Respiratory',
-      data: []
-
-    }, {
-      name: 'Renal failure',
-      data: []
-
-    }, {
-      name: 'Cancer',
-      data: []
-
-    }, {
-      name: 'Accident',
-      data: []
-
-    }, {
-      name: 'Diabetes',
-      data: []
-
-    }, {
-      name: 'Animal/Insect bite',
-      data: []
-
-    }, {
-      name: 'Liver illness',
-      data: []
-
-    }, {
-      name: 'Others',
-      data: []
-
-    } ]
-  } );
-  // this.autorun( function () {
-  //   this.subscribe( 'DeathClaimCount', function () {
-  //     var deathClaim = DeathClaimCount.find().fetch().map( function () {
-  //       return doc.count;
-  //     } );
-  //     deathChart.series[ 0 ].setData( deathClaim );
-  //   } );
+  // var deathChart = $( '#claimChartDeath' ).highcharts( {
+  //
+  //   chart: {
+  //     type: 'column'
+  //   },
+  //
+  //   title: {
+  //     text: 'Monthly Total Cause of Death Claims'
+  //   },
+  //   credits: {
+  //     enabled: false
+  //   },
+  //   xAxis: {
+  //     categories: [
+  //       'Jan',
+  //       'Feb',
+  //       'Mar',
+  //       'Apr',
+  //       'May',
+  //       'Jun',
+  //       'Jul',
+  //       'Aug',
+  //       'Sep',
+  //       'Oct',
+  //       'Nov',
+  //       'Dec'
+  //     ]
+  //   },
+  //   yAxis: {
+  //     min: 0,
+  //     title: {
+  //       text: ''
+  //     }
+  //   },
+  //   tooltip: {
+  //     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+  //     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+  //       '<td style="padding:0"><b>{point.y} </b></td></tr>',
+  //     footerFormat: '</table>',
+  //     shared: true,
+  //     useHTML: true
+  //   },
+  //   plotOptions: {
+  //     column: {
+  //       pointPadding: 0.2,
+  //       borderWidth: 0
+  //     }
+  //   },
+  //   series: [ {
+  //     name: 'Cardiovascular',
+  //     data: []
+  //
+  //   }, {
+  //     name: 'Respiratory',
+  //     data: []
+  //
+  //   }, {
+  //     name: 'Renal failure',
+  //     data: []
+  //
+  //   }, {
+  //     name: 'Cancer',
+  //     data: []
+  //
+  //   }, {
+  //     name: 'Accident',
+  //     data: []
+  //
+  //   }, {
+  //     name: 'Diabetes',
+  //     data: []
+  //
+  //   }, {
+  //     name: 'Animal/Insect bite',
+  //     data: []
+  //
+  //   }, {
+  //     name: 'Liver illness',
+  //     data: []
+  //
+  //   }, {
+  //     name: 'Others',
+  //     data: []
+  //
+  //   } ]
   // } );
 
+  this.autorun( function () {
+    $( '#deathClaimTable tfoot th' ).each( function () {
+      var title = $( this ).text();
+      $( this ).html( '<input type="text" placeholder="Search ' +
+        title + '" />' );
+    } );
+
+    deathTable = $( '#deathClaimTable' ).DataTable( {
+      dom: "<l><f><rtip>"
+    } );
+
+    deathTable.columns().every( function () {
+      var that = this;
+      $( 'input', this.footer() ).on( 'keyup change', function () {
+        if ( that.search() !== this.value ) {
+          that
+            .search( this.value )
+            .draw();
+        }
+      } );
+    } );
+  } );
 } );
 
 Template.dashboardClaimTable.onRendered( function () {
@@ -384,7 +404,7 @@ Template.dashboardClaimTable.onRendered( function () {
         title + '" />' );
     } );
 
-    var table = $( '#claimantTable' ).DataTable( {
+    table = $( '#claimantTable' ).DataTable( {
       "scrollX": true,
       dom: "<lB><f><rtip>",
       buttons: [ {
@@ -597,7 +617,6 @@ Template.dashboardClaimTable.helpers( {
       return dependent.children || dependent.parentName || dependent.spouseName || dependent.siblingName;
     } else
       return "Insured Principal";
-
   },
 
   insuredName: function ( enrollmentId ) {
