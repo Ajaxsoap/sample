@@ -298,6 +298,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     allowedValues: [
       'Father', 'Mother', 'Brother', 'Sister', 'Brother-in-law', 'Sister-in-law', 'Spouse', 'Daughter', 'Son', 'Friend',
+      'Sibling', 'Nephew', 'Niece', 'Granddaughter', 'Grandson', 'Live-In Partner',
       'Auntie', 'Uncle', 'Grandchildren', 'Grandparents',
       'Parents-in-law'
     ],
@@ -317,6 +318,9 @@ Enrollments.attachSchema( new SimpleSchema( {
           label: 'Sister',
           value: 'Sister',
         }, {
+          label: 'Sibling',
+          value: 'Sibling',
+        }, {
           label: 'Brother-in-law',
           value: 'Brother-in-law',
         }, {
@@ -335,20 +339,32 @@ Enrollments.attachSchema( new SimpleSchema( {
           label: 'Friend',
           value: "Friend"
         }, {
+          label: 'Nephew',
+          value: "Nephew"
+        }, {
+          label: 'Niece',
+          value: "Niece"
+        }, {
           label: 'Auntie',
           value: "Auntie"
         }, {
           label: 'Uncle',
           value: "Uncle"
         }, {
-          label: 'Grandchildren',
-          value: "Grandchildren"
+          label: 'Granddaughter',
+          value: "Granddaughter"
+        }, {
+          label: 'Grandson',
+          value: 'Grandson'
         }, {
           label: 'Grandparents',
           value: "Grandparents"
         }, {
           label: 'Parents-in-law',
           value: "Parents-in-law"
+        }, {
+          label: 'Live-In Partner',
+          value: "Live-In Partner"
         }, ];
       },
       afFormGroup: {
@@ -1498,7 +1514,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Marital Status",
     optional: true,
     blackbox: true,
-    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOW', 'ANNULED' ],
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
     autoform: {
       type: "selectize",
       options: function () {
@@ -1514,6 +1530,9 @@ Enrollments.attachSchema( new SimpleSchema( {
         }, {
           label: 'ANNULED',
           value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
         } ];
       },
       afFormGroup: {

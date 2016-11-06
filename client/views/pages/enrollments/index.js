@@ -139,7 +139,7 @@ Template.enrollmentsIndex.events( {
                 showMethod: 'slideDown',
                 timeOut: 2000
               };
-              toastr.success( 'Import Sucessfull' );
+              toastr.success( 'Import Successfull' );
             }, 1300 );
           }
         } );
