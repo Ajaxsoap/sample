@@ -11,7 +11,7 @@ Meteor.methods( {
         } );
 
       if ( !exists ) {
-        Enrollments.insert( item );
+        Enrollments.insert( item );n
       } else if ( exists ) {
         Enrollments.update( item );
       } else {
