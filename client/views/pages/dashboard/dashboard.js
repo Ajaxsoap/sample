@@ -372,28 +372,28 @@ Template.deathClaim.onRendered( function () {
   //   } ]
   // } );
 
-  this.autorun( function () {
-    $( '#deathClaimTable tfoot th' ).each( function () {
-      var title = $( this ).text();
-      $( this ).html( '<input type="text" placeholder="Search ' +
-        title + '" />' );
-    } );
-
-    deathTable = $( '#deathClaimTable' ).DataTable( {
-      dom: "<l><f><rtip>"
-    } );
-
-    deathTable.columns().every( function () {
-      var that = this;
-      $( 'input', this.footer() ).on( 'keyup change', function () {
-        if ( that.search() !== this.value ) {
-          that
-            .search( this.value )
-            .draw();
-        }
-      } );
-    } );
-  } );
+  // this.autorun( function () {
+  //   $( '#deathClaimTable tfoot th' ).each( function () {
+  //     var title = $( this ).text();
+  //     $( this ).html( '<input type="text" placeholder="Search ' +
+  //       title + '" />' );
+  //   } );
+  //
+  //   deathTable = $( '#deathClaimTable' ).DataTable( {
+  //     dom: "<l><f><rtip>"
+  //   } );
+  //
+  //   deathTable.columns().every( function () {
+  //     var that = this;
+  //     $( 'input', this.footer() ).on( 'keyup change', function () {
+  //       if ( that.search() !== this.value ) {
+  //         that
+  //           .search( this.value )
+  //           .draw();
+  //       }
+  //     } );
+  //   } );
+  // } );
 } );
 
 Template.dashboardClaimTable.onRendered( function () {

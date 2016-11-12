@@ -51,7 +51,16 @@ Meteor.publish( "enrollments", function ( limit ) {
   } );
   initializing = false;
   if ( limit ) {
-    return this.ready();
+    return Enrollments.find( query, {
+      fields: {
+        createdAt: 1,
+        centerNumber: 1,
+        fullName: 1,
+        company: 1,
+        branch: 1,
+        premiums: 1
+      }
+    } );
   } else {
     return Enrollments.find( query, {
       fields: {
@@ -83,7 +92,26 @@ Meteor.publish( "claims", function ( limit ) {
   var insurer = user.profile.insurer;
   var insurerRole = Roles.userHasRole( self.userId, 'insurer' );
   if ( limit ) {
-    return this.ready();
+    return Claim.find( query, {
+      sort: {
+        'dateFiled': 1
+      },
+      fields: {
+        dateFiled: 1,
+        claimNumber: 1,
+        enrollmentId: 1,
+        status: 1,
+        clientType: 1,
+        children: 1,
+        parentName: 1,
+        spouseName: 1,
+        siblingName: 1,
+        amountPaid: 1,
+        partialPayment: 1,
+        causeOfDeath: 1,
+        medical: 1
+      }
+    } );
   } else {
     return Claim.find( query, {
       sort: {
