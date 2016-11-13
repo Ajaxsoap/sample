@@ -51,25 +51,39 @@ Meteor.publish( "enrollments", function ( limit ) {
   } );
   initializing = false;
   if ( limit ) {
-    return Enrollments.find( query, {
-      fields: {
-        createdAt: 1,
-        centerNumber: 1,
-        fullName: 1,
-        company: 1,
-        branch: 1,
-        premiums: 1
-      }
-    } );
+    return this.ready();
   } else {
     return Enrollments.find( query, {
       fields: {
         createdAt: 1,
         centerNumber: 1,
         fullName: 1,
+        birthDate: 1,
+        ageOfEnrollee: 1,
         company: 1,
         branch: 1,
-        premiums: 1
+        premiums: 1,
+        productOffering: 1,
+        productOffering1: 1,
+        productOffering2: 1,
+        productOffering3: 1,
+        productOffering4: 1,
+        productOffering5: 1,
+        productOffering6: 1,
+        productOffering7: 1,
+        productOffering8: 1,
+        productOffering9: 1,
+        productName: 1,
+        productsAvailed: 1,
+        productsAvailed1: 1,
+        productsAvailed2: 1,
+        productsAvailed3: 1,
+        productsAvailed4: 1,
+        productsAvailed5: 1,
+        productsAvailed6: 1,
+        productsAvailed7: 1,
+        productsAvailed8: 1,
+        productsAvailed9: 1,
       }
     } );
   }

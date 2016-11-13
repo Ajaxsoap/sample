@@ -127,311 +127,322 @@
 
 <template name="productsAvailed">
   {{#if Template.subscriptionsReady}}
-  <fieldset>
-    {{> afQuickField name="productName" options=productNameOption}}
-    {{> afQuickField name="productOffering" options=productOption}}
-    {{> afQuickField name="premium" options=premiumOptions }}
-    {{> afQuickField name="productRange" options=productRange}}
-    {{#if afFieldValueIs name="productOffering" value="Principal" }}
+  <div class="lightGray">
+    <fieldset>
+      {{> afQuickField name="productName" options=productNameOption}}
+      {{> afQuickField name="productOffering" options=productOption}}
+      {{> afQuickField name="premium" options=premiumOptions }}
+      {{> afQuickField name="productRange" options=productRange}}
+      {{#if afFieldValueIs name="productOffering" value="Principal" }}
       {{> afQuickField name="insuredName" options=principalOption type="selectize" }}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering" value="Dependent-Spouse" }}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering" value="Dependent-Spouse" }}
       {{> afQuickField name="insuredName" options=spouseOption type="selectize" }}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering" value="Dependent-Parent" }}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering" value="Dependent-Parent" }}
       {{> afQuickField name="insuredName" options=parentsOption type="selectize" }}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering" value="Dependent-Children" }}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering" value="Dependent-Children" }}
       {{> afQuickField name="insuredName" options=childrenOption type="selectize" }}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering" value="Dependent-Sibling" }}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering" value="Dependent-Sibling" }}
       {{> afQuickField name="insuredName" options=siblingsOption type="selectize" }}
-    {{/if}}
-    {{> afQuickField name="effectivityDate" }}
-    {{> afQuickField name="maturityDate" }}
-    {{> afQuickField name="loanCycle" value=cycle  }}
-  </fieldset>
+      {{/if}}
+      {{> afQuickField name="effectivityDate" }}
+      {{> afQuickField name="maturityDate" }}
+      {{> afQuickField name="loanCycle" value=cycle  }}
+    </fieldset>
+  </div>
   {{/if}}
 </template>
 
 <template name="productsAvailed1">
   {{> productsAvailed}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName1" options=productNameOption}}
-    {{> afQuickField name="productOffering1" options=productOption}}
-    {{> afQuickField name="premium1"  options=premiumOptions }}
-    {{> afQuickField name="productRange1" options=productRange}}
-    {{#if afFieldValueIs name="productOffering1" value="Principal"}}
+  <div class="oddEnrolled">
+    <fieldset>
+      {{> afQuickField name="productName1" options=productNameOption}}
+      {{> afQuickField name="productOffering1" options=productOption}}
+      {{> afQuickField name="premium1"  options=premiumOptions }}
+      {{> afQuickField name="productRange1" options=productRange}}
+      {{#if afFieldValueIs name="productOffering1" value="Principal"}}
       {{> afQuickField name="insuredName1" options=principalOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering1" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering1" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName1" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering1" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering1" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName1" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering1" value="Dependent-Children"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering1" value="Dependent-Children"}}
       {{> afQuickField name="insuredName1" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering1" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering1" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName1" options=siblingsOption type="selectize"}}
-    {{/if}}
-  {{> afQuickField name="effectivityDate1" }}
-  {{> afQuickField name="maturityDate1" }}
-  {{> afQuickField name="loanCycle1" value=cycle1 }}
-</fieldset>
+      {{/if}}
+      {{> afQuickField name="effectivityDate1" }}
+      {{> afQuickField name="maturityDate1" }}
+      {{> afQuickField name="loanCycle1" value=cycle1 }}
+    </fieldset>
+  </div>
 {{/if}}
 </template>
 
 <template name="productsAvailed2">
   {{> productsAvailed1}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName2" options=productNameOption}}
-    {{> afQuickField name="productOffering2" options=productOption}}
-    {{> afQuickField name="premium2"  options=premiumOptions }}
-    {{> afQuickField name="productRange2" options=productRange}}
-    {{#if afFieldValueIs name="productOffering2" value="Principal"}}
+  <div class="lightGray">
+    <fieldset>
+      {{> afQuickField name="productName2" options=productNameOption}}
+      {{> afQuickField name="productOffering2" options=productOption}}
+      {{> afQuickField name="premium2"  options=premiumOptions }}
+      {{> afQuickField name="productRange2" options=productRange}}
+      {{#if afFieldValueIs name="productOffering2" value="Principal"}}
       {{> afQuickField name="insuredName2" options=principalOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering2" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering2" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName2" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering2" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering2" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName2" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering2" value="Dependent-Children" }}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering2" value="Dependent-Children" }}
       {{> afQuickField name="insuredName2" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering2" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering2" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName2" options=siblingsOption type="selectize"}}
-    {{/if}}
+      {{/if}}
 
-  {{> afQuickField name="effectivityDate2" }}
-  {{> afQuickField name="maturityDate2" }}
-  {{> afQuickField name="loanCycle3" value=cycle2 }}
-</fieldset>
+      {{> afQuickField name="effectivityDate2" }}
+      {{> afQuickField name="maturityDate2" }}
+      {{> afQuickField name="loanCycle3" value=cycle2 }}
+    </fieldset>
+  </div>
 {{/if}}
 </template>
 
 <template name="productsAvailed3">
   {{> productsAvailed2}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName3" options=productNameOption}}
-    {{> afQuickField name="productOffering3" options=productOption}}
-    {{> afQuickField name="premium3"  options=premiumOptions }}
-    {{> afQuickField name="productRange3" options=productRange}}
-    {{#if afFieldValueIs name="productOffering3" value="Principal"}}
+  <div class="oddEnrolled">
+    <fieldset>
+      {{> afQuickField name="productName3" options=productNameOption}}
+      {{> afQuickField name="productOffering3" options=productOption}}
+      {{> afQuickField name="premium3"  options=premiumOptions }}
+      {{> afQuickField name="productRange3" options=productRange}}
+      {{#if afFieldValueIs name="productOffering3" value="Principal"}}
       {{> afQuickField name="insuredName3" options=principalOption}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering3" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering3" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName3" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering3" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering3" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName3" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering3" value="Dependent-Children"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering3" value="Dependent-Children"}}
       {{> afQuickField name="insuredName3" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering3" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering3" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName3" options=siblingsOption type="selectize"}}
-    {{/if}}
+      {{/if}}
 
-  {{> afQuickField name="effectivityDate3" }}
-  {{> afQuickField name="maturityDate3"  }}
-  {{> afQuickField name="loanCycle3" value=cycle3 }}
-</fieldset>
+      {{> afQuickField name="effectivityDate3" }}
+      {{> afQuickField name="maturityDate3"  }}
+      {{> afQuickField name="loanCycle3" value=cycle3 }}
+    </fieldset>
+  </div>
 {{/if}}
 </template>
 <template name="productsAvailed4">
   {{> productsAvailed3}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName4" options=productNameOption}}
-    {{> afQuickField name="productOffering4" options=productOption}}
-    {{> afQuickField name="premium4" options=premiumOptions }}
-    {{> afQuickField name="productRange4" options=productRange}}
-    {{#if afFieldValueIs name="productOffering4" value="Principal"}}
+  <div class="lightGray">
+    <fieldset>
+      {{> afQuickField name="productName4" options=productNameOption}}
+      {{> afQuickField name="productOffering4" options=productOption}}
+      {{> afQuickField name="premium4" options=premiumOptions }}
+      {{> afQuickField name="productRange4" options=productRange}}
+      {{#if afFieldValueIs name="productOffering4" value="Principal"}}
       {{> afQuickField name="insuredName4" options=principalOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering4" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering4" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName4" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering4" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering4" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName4" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering4" value="Dependent-Children"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering4" value="Dependent-Children"}}
       {{> afQuickField name="insuredName4" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering4" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering4" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName4" options=siblingsOption type="selectize"}}
-    {{/if}}
+      {{/if}}
 
-  {{> afQuickField name="effectivityDate4" }}
-  {{> afQuickField name="maturityDate4"  }}
-  {{> afQuickField name="loanCycle4" value=cycle4 }}
-  </fieldset>
+      {{> afQuickField name="effectivityDate4" }}
+      {{> afQuickField name="maturityDate4"  }}
+      {{> afQuickField name="loanCycle4" value=cycle4 }}
+    </fieldset>
+  </div>
   {{/if}}
 </template>
 <template name="productsAvailed5">
   {{> productsAvailed4}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName5" options=productNameOption}}
-    {{> afQuickField name="productOffering5" options=productOption}}
-    {{> afQuickField name="premium5" options=premiumOptions }}
-    {{> afQuickField name="productRange5" options=productRange}}
-    {{#if afFieldValueIs name="productOffering5" value="Principal"}}
+  <div class="oddEnrolled">
+    <fieldset>
+      {{> afQuickField name="productName5" options=productNameOption}}
+      {{> afQuickField name="productOffering5" options=productOption}}
+      {{> afQuickField name="premium5" options=premiumOptions }}
+      {{> afQuickField name="productRange5" options=productRange}}
+      {{#if afFieldValueIs name="productOffering5" value="Principal"}}
       {{> afQuickField name="insuredName5" options=principalOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering5" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering5" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName5" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering5" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering5" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName5" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering5" value="Dependent-Children"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering5" value="Dependent-Children"}}
       {{> afQuickField name="insuredName5" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering5" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering5" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName5" options=siblingsOption type="selectize"}}
-    {{/if}}
-  {{> afQuickField name="effectivityDate5" }}
-  {{> afQuickField name="maturityDate5"  }}
-  {{> afQuickField name="loanCycle5" value=cycle5 }}
-</fieldset>
+      {{/if}}
+      {{> afQuickField name="effectivityDate5" }}
+      {{> afQuickField name="maturityDate5"  }}
+      {{> afQuickField name="loanCycle5" value=cycle5 }}
+    </fieldset>
+  </div>
 {{/if}}
 </template>
 <template name="productsAvailed6">
   {{> productsAvailed5}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName6" options=productNameOption}}
-    {{> afQuickField name="productOffering6" options=productOption}}
-    {{> afQuickField name="premium6"  options=premiumOptions }}
-    {{> afQuickField name="productRange6" options=productRange}}
-    {{#if afFieldValueIs name="productOffering6" value="Principal"}}
+  <div class="lightGray">
+    <fieldset>
+      {{> afQuickField name="productName6" options=productNameOption}}
+      {{> afQuickField name="productOffering6" options=productOption}}
+      {{> afQuickField name="premium6"  options=premiumOptions }}
+      {{> afQuickField name="productRange6" options=productRange}}
+      {{#if afFieldValueIs name="productOffering6" value="Principal"}}
       {{> afQuickField name="insuredName6" options=principalOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering6" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering6" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName6" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering6" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering6" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName6" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering6" value="Dependent-Children"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering6" value="Dependent-Children"}}
       {{> afQuickField name="insuredName6" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering6" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering6" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName6" options=siblingsOption type="selectize"}}
-    {{/if}}
+      {{/if}}
 
-  {{> afQuickField name="effectivityDate6" }}
-  {{> afQuickField name="maturityDate6"  }}
-  {{> afQuickField name="loanCycle6" value=cycle6 }}
-</fieldset>
+      {{> afQuickField name="effectivityDate6" }}
+      {{> afQuickField name="maturityDate6"  }}
+      {{> afQuickField name="loanCycle6" value=cycle6 }}
+    </fieldset>
+  </div>
 {{/if}}
 </template>
 <template name="productsAvailed7">
   {{> productsAvailed6}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName7" options=productNameOption}}
-    {{> afQuickField name="productOffering7" options=productOption}}
-    {{> afQuickField name="premium7"  options=premiumOptions }}
-    {{> afQuickField name="productRange7" options=productRange}}
-    {{#if afFieldValueIs name="productOffering7" value="Principal"}}
+  <div class="oddEnrolled">
+    <fieldset>
+      {{> afQuickField name="productName7" options=productNameOption}}
+      {{> afQuickField name="productOffering7" options=productOption}}
+      {{> afQuickField name="premium7"  options=premiumOptions }}
+      {{> afQuickField name="productRange7" options=productRange}}
+      {{#if afFieldValueIs name="productOffering7" value="Principal"}}
       {{> afQuickField name="insuredName7" options=principalOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering7" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering7" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName7" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering7" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering7" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName7" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering7" value="Dependent-Children"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering7" value="Dependent-Children"}}
       {{> afQuickField name="insuredName7" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering7" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering7" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName7" options=siblingsOption type="selectize"}}
-    {{/if}}
+      {{/if}}
 
-  {{> afQuickField name="effectivityDate7" }}
-  {{> afQuickField name="maturityDate7"  }}
-  {{> afQuickField name="loanCycle7" value=cycle7 }}
-  </fieldset>
+      {{> afQuickField name="effectivityDate7" }}
+      {{> afQuickField name="maturityDate7"  }}
+      {{> afQuickField name="loanCycle7" value=cycle7 }}
+    </fieldset>
+  </div>
   {{/if}}
 </template>
 <template name="productsAvailed8">
   {{> productsAvailed7}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName8" options=productNameOption}}
-    {{> afQuickField name="productOffering8" options=productOption}}
-    {{> afQuickField name="premium8"  options=premiumOptions }}
-    {{> afQuickField name="productRange8" options=productRange}}
-    {{#if afFieldValueIs name="productOffering8" value="Principal"}}
+  <div class="lightGray">
+    <fieldset>
+      {{> afQuickField name="productName8" options=productNameOption}}
+      {{> afQuickField name="productOffering8" options=productOption}}
+      {{> afQuickField name="premium8"  options=premiumOptions }}
+      {{> afQuickField name="productRange8" options=productRange}}
+      {{#if afFieldValueIs name="productOffering8" value="Principal"}}
       {{> afQuickField name="insuredName8" options=principalOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering8" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering8" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName8" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering8" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering8" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName8" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering8" value="Dependent-Children"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering8" value="Dependent-Children"}}
       {{> afQuickField name="insuredName8" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering8" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering8" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName8" options=siblingsOption type="selectize"}}
-    {{/if}}
+      {{/if}}
 
-  {{> afQuickField name="effectivityDate8" }}
-  {{> afQuickField name="maturityDate8" }}
-  {{> afQuickField name="loanCycle8" value=cycle8 }}
+      {{> afQuickField name="effectivityDate8" }}
+      {{> afQuickField name="maturityDate8" }}
+      {{> afQuickField name="loanCycle8" value=cycle8 }}
 
-</fieldset>
+    </fieldset>
+  </div>
 {{/if}}
 </template>
 <template name="productsAvailed9">
   {{> productsAvailed8}}
   {{#if Template.subscriptionsReady}}
-  <hr>
-  <fieldset>
-    {{> afQuickField name="productName9" options=productNameOption}}
-    {{> afQuickField name="productOffering9" options=productOption}}
-    {{> afQuickField name="premium9"  options=premiumOptions }}
-    {{> afQuickField name="productRange9" options=productRange}}
-    {{#if afFieldValueIs name="productOffering9" value="Principal"}}
+  <div class="oddEnrolled">
+    <fieldset>
+      {{> afQuickField name="productName9" options=productNameOption}}
+      {{> afQuickField name="productOffering9" options=productOption}}
+      {{> afQuickField name="premium9"  options=premiumOptions }}
+      {{> afQuickField name="productRange9" options=productRange}}
+      {{#if afFieldValueIs name="productOffering9" value="Principal"}}
       {{> afQuickField name="insuredName9" options=principalOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering9" value="Dependent-Spouse"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering9" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName9" options=spouseOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering9" value="Dependent-Parent"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering9" value="Dependent-Parent"}}
       {{> afQuickField name="insuredName9" options=parentsOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering9" value="Dependent-Children"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering9" value="Dependent-Children"}}
       {{> afQuickField name="insuredName9" options=childrenOption type="selectize"}}
-    {{/if}}
-    {{#if afFieldValueIs name="productOffering9" value="Dependent-Sibling"}}
+      {{/if}}
+      {{#if afFieldValueIs name="productOffering9" value="Dependent-Sibling"}}
       {{> afQuickField name="insuredName9" `options=siblingsOption type="selectize"}}
-    {{/if}}
+      {{/if}}
 
-  {{> afQuickField name="effectivityDate9" }}
-  {{> afQuickField name="maturityDate9" }}
-  {{> afQuickField name="loanCycle9" value=cycle9 }}
-  </fieldset>
+      {{> afQuickField name="effectivityDate9" }}
+      {{> afQuickField name="maturityDate9" }}
+      {{> afQuickField name="loanCycle9" value=cycle9 }}
+    </fieldset>    
+  </div>
   {{/if}}
 </template>
 
