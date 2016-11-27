@@ -527,7 +527,12 @@ Template.countdownDashboard.helpers( {
     var timespan = countdown( dateNow, dateMaturity, countdown.MONTHS |
       countdown.DAYS, 2 );
     var monthLeft = timespan.toString();
-    return monthLeft;
+    if ( timespan.months > 1 ) {
+      return timespan.toString();
+    } else {
+      return timespan.toString() + " " + "exceeded " + " " +
+        this.productRange + " " + "months";
+    }
   },
   buttonClass: function () {
     var self = this;

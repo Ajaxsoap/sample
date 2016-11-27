@@ -163,10 +163,15 @@ Template.countdown.helpers( {
   monthCount: function () {
     var dateNow = null;
     var dateMaturity = this.maturityDate;
-    // console.log( dateMaturity );
+    console.log( dateMaturity );
     var timespan = countdown( dateNow, dateMaturity, countdown.MONTHS |
       countdown.DAYS, 2 );
-    return timespan.toString();
+    if ( timespan.months > 1 ) {
+      return timespan.toString();
+    } else {
+      return timespan.toString() + " " + "exceeded " + " " +
+        this.productRange + " " + "months";
+    }
   },
   buttonClass: function () {
     var dateNow = null;

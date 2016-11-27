@@ -1,7 +1,7 @@
 <template name="Dashboard">
   {{#Layout template="pageHeading" }}
-    <span class="fa fa-check"></span>&nbsp;Welcome
-    {{ currentUser.profile.name }}
+    <span class="fa fa-tachometer"></span>&nbsp;Welcome
+    {{ currentUser.profile.name }}&nbsp; Dashboard
   {{/Layout }}
 
     {{#if userHasPermission 'showDashboard'}}

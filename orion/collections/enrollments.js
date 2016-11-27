@@ -497,10 +497,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -508,10 +508,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering1: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -519,10 +519,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering2: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -530,10 +530,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering3: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -541,10 +541,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering4: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -552,10 +552,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering5: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -563,10 +563,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering6: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -574,10 +574,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering7: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -585,10 +585,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering8: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
@@ -596,10 +596,10 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productOffering9: {
     type: String,
-    label: "Product Offering",
+    label: "Relationship",
     optional: true,
     autoform: {
-      firstOption: "Select Product Offering",
+      firstOption: "Select Relationship",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
