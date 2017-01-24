@@ -25,7 +25,6 @@ var getQuery = function ( user ) {
     throw new Error( 'getQuery:  unknown role for user (' + user._id + ')' );
 };
 
-
 Meteor.publish( "userStatus", function () {
   return Meteor.users.find( {
     "status.online": true
@@ -86,6 +85,29 @@ Meteor.publish( "enrollments", function ( limit ) {
         productsAvailed7: 1,
         productsAvailed8: 1,
         productsAvailed9: 1,
+        spouseName: 1,
+        childrenName: 1,
+        children2Name: 1,
+        children3Name: 1,
+        children4Name: 1,
+        children5Name: 1,
+        children6Name: 1,
+        children7Name: 1,
+        children8Name: 1,
+        children9Name: 1,
+        children10Name: 1,
+        parentName: 1,
+        parent2Name: 1,
+        siblingName: 1,
+        sibling2Name: 1,
+        sibling3Name: 1,
+        sibling4Name: 1,
+        sibling5Name: 1,
+        sibling6Name: 1,
+        sibling7Name: 1,
+        sibling8Name: 1,
+        sibling9Name: 1,
+        sibling10Name: 1,
       }
     } );
   }
