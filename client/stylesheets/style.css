@@ -9,3 +9,4 @@
 .green { background-color: #388e3c; color: #fff}
 .lightGray { background-color: #f9f9f9; padding: 10px 0; border-top: 1px solid #D1DADE; border-bottom:  1px solid #D1DADE }
 .oddEnrolled {padding: 10px 0}
+tr {cursor: pointer}
