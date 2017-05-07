@@ -1,6 +1,6 @@
 
 packages.json
-mup.json
+server/mup.json
 settings.json
 accounts.js
 server/kadira.js
