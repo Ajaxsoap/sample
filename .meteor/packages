@@ -69,3 +69,4 @@ aldeed:template-extension
 highcharts:highcharts-meteor
 es5-shim
 highcharts-container
+simple:rest

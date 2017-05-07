@@ -35,6 +35,20 @@ Meteor.publish( "userStatus", function () {
   } );
 } );
 
+Meteor.publish( "KMBIEnrollment", function () {
+  return Enrollments.find( {
+    company: "bQzkwdh2nHxkneAHs"
+  } );
+} );
+
+Meteor.publish( "getProducts", function () {
+  return Products.find();
+} );
+
+// Meteor.publish( "getCompanies", function () {
+//   return Companies.find();
+// } );
+
 Meteor.publish( "enrollments", function ( limit ) {
   var self = this;
   var user = Meteor.users.findOne( {
@@ -54,6 +68,7 @@ Meteor.publish( "enrollments", function ( limit ) {
   } else {
     return Enrollments.find( query, {
       fields: {
+        _id: 1,
         createdAt: 1,
         centerNumber: 1,
         fullName: 1,
@@ -858,6 +873,10 @@ Meteor.publish( "DeathClaimCount", function () {
   } ], {
     clientCollection: "DeathClaimCount"
   } );
+} );
+
+Meteor.publish( "TotalPrincipalPremiumTest", function () {
+  return TotalPrincipalPremium.find();
 } );
 
 Meteor.publish( "TotalPrincipalPremium", function () {
