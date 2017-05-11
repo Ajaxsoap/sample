@@ -70,3 +70,5 @@ highcharts:highcharts-meteor
 es5-shim
 highcharts-container
 simple:rest
+email
+meteorhacks:ssr

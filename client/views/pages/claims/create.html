@@ -12,7 +12,7 @@
           <div class="ibox-content">
             {{#if Template.subscriptionsReady }}
               {{#if userHasPermission 'showDashboard'}}
-                {{#autoForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert"  }}
+                {{#autoForm collection=collection id="claimsCollectionsCreateForm" type="insert"  }}
                   <fieldset>
                     {{> afQuickField name="enrollmentId" }}
                     {{> afQuickField name="clientType" options="allowed" template="bootstrap3-inline"}}
@@ -63,7 +63,7 @@
                 {{/autoForm}}
               {{/if}}
               {{#if userHasPermission 'showHQClaimsUpdate'}}
-                {{#autoForm collection=collection id="orionBootstrapCollectionsCreateForm" type="insert" }}
+                {{#autoForm collection=collection id="claimsCollectionsCreateForm" type="insert" }}
                   <fieldset>
                     {{> afQuickField name="enrollmentId" }}
                     {{> afQuickField name="clientType" options="allowed" template="bootstrap3-inline"}}

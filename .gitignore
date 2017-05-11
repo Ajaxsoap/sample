@@ -1,8 +1,9 @@
 
 packages.json
-mup.json
+mupc.json
 settings.json
 accounts.js
+settings-development.json
 server/kadira.js
 server/startup.js
 server/publication/fixtures.js

@@ -2,7 +2,9 @@ Enrollments._ensureIndex( {
   fullName: "text"
 } );
 
+
 Meteor.startup( function () {
+  process.env.MAIL_URL = "smtp://postmaster%40app.pais.com.ph:fb8e21410cd72582bf6656f6c5712346@smtp.mailgun.org:587";
   console.log( "starting..." );
   // Create random data
   // if ( Companies.find().count() === 0 ) {

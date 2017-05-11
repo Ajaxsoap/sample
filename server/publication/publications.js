@@ -38,7 +38,7 @@ Meteor.publish( "userStatus", function () {
 Meteor.publish( "KMBIEnrollment", function () {
   return Enrollments.find( {
     company: "bQzkwdh2nHxkneAHs"
-  } );
+  });
 } );
 
 Meteor.publish( "getProducts", function () {
