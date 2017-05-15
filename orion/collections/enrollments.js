@@ -945,17 +945,6 @@ Enrollments.attachSchema( new SimpleSchema( {
       }
     }
   },
-  insuredName: {
-    type: String,
-    label: "Name",
-    optional: true,
-    autoform: {
-      firstOption: "Select",
-      afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
-      }
-    }
-  },
   insuredName1: {
     type: String,
     label: "Name",
@@ -1045,6 +1034,17 @@ Enrollments.attachSchema( new SimpleSchema( {
     }
   },
   insuredName9: {
+    type: String,
+    label: "Name",
+    optional: true,
+    autoform: {
+      firstOption: "Select",
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  insuredName10: {
     type: String,
     label: "Name",
     optional: true,
@@ -1464,7 +1464,7 @@ Enrollments.attachSchema( new SimpleSchema( {
       ], Boolean );
     }
   },
-  premiums: {
+  totalPremium: {
     type: Number,
     label: "Total Premium",
     optional: true,
@@ -3023,7 +3023,7 @@ Claim.attachSchema( new SimpleSchema( {
 
 Enrollments.helpers( {
   totalPremium: function () {
-    var premiumsEnrollee = this.premiums;
+    var premiumsEnrollee = this.totalPremium;
     var totalPremium = premiumsEnrollee.reduce( add, 0 );
     console.log( 'Total Premium:', totalPremium );
   },

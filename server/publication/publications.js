@@ -41,6 +41,46 @@ Meteor.publish( "KMBIEnrollment", function () {
   });
 } );
 
+Meteor.publish( "KMBIEnrollmentPremiums", function () {
+  return Enrollments.find({
+    company: "bQzkwdh2nHxkneAHs"
+  },{
+    fields: {
+      totalPremium: 1,
+      insuredName1: 1,
+      productOffering1: 1,
+      premium: 1,
+      insuredName2: 1,
+      productOffering2: 1,
+      premium2: 1,
+      insuredName3: 1,
+      productOffering3: 1,
+      premium3: 1,
+      insuredName4: 1,
+      productOffering4: 1,
+      premium4: 1,
+      insuredName5: 1,
+      productOffering5: 1,
+      premium5: 1,
+      insuredName6: 1,
+      productOffering6: 1,
+      premium6: 1,
+      insuredName7: 1,
+      productOffering7: 1,
+      premium7: 1,
+      insuredName8: 1,
+      productOffering8: 1,
+      premium8: 1,
+      insuredName9: 1,
+      productOffering9: 1,
+      premium9: 1,
+      insuredName10: 1,
+      productOffering10: 1,
+      premium10: 1,
+    }
+  });
+} );
+
 Meteor.publish( "getProducts", function () {
   return Products.find();
 } );
@@ -77,7 +117,7 @@ Meteor.publish( "enrollments", function ( limit ) {
         maturityDate: 1,
         company: 1,
         branch: 1,
-        premiums: 1,
+        totalPremium: 1,
         productRange: 1,
         productOffering: 1,
         productOffering1: 1,
@@ -335,13 +375,13 @@ Meteor.publish( "totalProductsAvailed", function () {
   }, {
     $group: {
       '_id': "$products",
-      'premiums': {
-        $sum: '$premiums'
+      'totalPremium': {
+        $sum: '$totalPremium'
       }
     }
   }, {
     $project: {
-      premiums: '$premiums'
+      totalPremium: '$totalPremium'
     }
   } ], {
     clientCollection: "EnrollmentProducts"
@@ -400,7 +440,7 @@ Meteor.publish( "productClaim", function () {
 //       premium: '$premium',
 //       retained: {
 //         $multiply: [ {
-//           $divide: [ '$premiums', '$amountPaid' ],
+//           $divide: [ '$totalPremium', '$amountPaid' ],
 //         }, 100 ]
 //       }
 //
