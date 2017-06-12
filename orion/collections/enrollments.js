@@ -72,6 +72,19 @@ Enrollments = new orion.collection( 'enrollments', {
 
 
 Enrollments.attachSchema( new SimpleSchema( {
+  dateEnrolled: {
+    type: Date,
+    label: "Date Enrolled",
+    autoform: {
+      type: 'bootstrap-datepicker',
+      datePickerOptions: {
+        format: 'mm-dd-yyyy'
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-md-2 col-lg-1'
+      }
+    }
+  },
   centerNumber: {
     type: String,
     label: "Center Code",
@@ -945,6 +958,17 @@ Enrollments.attachSchema( new SimpleSchema( {
       }
     }
   },
+    insuredName: {
+    type: String,
+    label: "Name",
+    optional: true,
+    autoform: {
+      firstOption: "Select",
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
   insuredName1: {
     type: String,
     label: "Name",
@@ -1034,17 +1058,6 @@ Enrollments.attachSchema( new SimpleSchema( {
     }
   },
   insuredName9: {
-    type: String,
-    label: "Name",
-    optional: true,
-    autoform: {
-      firstOption: "Select",
-      afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
-      }
-    }
-  },
-  insuredName10: {
     type: String,
     label: "Name",
     optional: true,
@@ -1483,10 +1496,10 @@ Enrollments.attachSchema( new SimpleSchema( {
       var sumOfPrem = _.filter( [ prem, prem1, prem2, prem3, prem4, prem5,
         prem6, prem7, prem8, prem9
       ], Boolean );
-      var totalPremium = sumOfPrem.reduce( function add( a, b ) {
+      var sumPremium = sumOfPrem.reduce( function add( a, b ) {
         return a + b;
       }, 0 );
-      return totalPremium;
+      return sumPremium;
     }
   },
   efffectiveDates: {
@@ -3021,13 +3034,13 @@ Claim.attachSchema( new SimpleSchema( {
 
 // Helpers
 
-Enrollments.helpers( {
-  totalPremium: function () {
-    var premiumsEnrollee = this.totalPremium;
-    var totalPremium = premiumsEnrollee.reduce( add, 0 );
-    console.log( 'Total Premium:', totalPremium );
-  },
-} );
+// Enrollments.helpers( {
+//   totalPremium: function () {
+//     var premiumsEnrollee = this.totalPremium;
+//     var totalPremium = premiumsEnrollee.reduce( add, 0 );
+//     console.log( 'Total Premium:', totalPremium );
+//   },
+// } );
 
 // Claim.helpers( {
 //   daysProcessed: function () {
@@ -3052,7 +3065,7 @@ Enrollments.helpers( {
 
 Enrollments.before.insert( function ( userId, doc ) {
   var date = moment().toDate();
-  doc.createdAt = date;
+  doc.dateEnrolled = date;
 } );
 
 Claim.before.insert( function ( userId, doc ) {

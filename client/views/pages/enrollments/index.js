@@ -163,7 +163,6 @@ Template.countdown.helpers( {
   monthCount: function () {
     var dateNow = null;
     var dateMaturity = this.maturityDate;
-    console.log( dateMaturity );
     var timespan = countdown( dateNow, dateMaturity, countdown.MONTHS |
       countdown.DAYS, 2 );
     if ( timespan.months > 1 ) {

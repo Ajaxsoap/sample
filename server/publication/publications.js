@@ -46,6 +46,7 @@ Meteor.publish( "KMBIEnrollmentPremiums", function () {
     company: "bQzkwdh2nHxkneAHs"
   },{
     fields: {
+      dateEnrolled: 1,
       totalPremium: 1,
       insuredName1: 1,
       productOffering1: 1,
@@ -109,6 +110,7 @@ Meteor.publish( "enrollments", function ( limit ) {
     return Enrollments.find( query, {
       fields: {
         _id: 1,
+        dateEnrolled: 1,
         createdAt: 1,
         centerNumber: 1,
         fullName: 1,
