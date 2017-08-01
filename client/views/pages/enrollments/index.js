@@ -7,6 +7,8 @@ Template.enrollmentsIndex.onCreated( function () {
 } );
 
 Template.enrollmentsTable.onRendered( function () {
+  $('input[name="daterange"]').daterangepicker();
+
   this.autorun( function () {
     $( '#enrolleeTable tfoot th' ).each( function () {
       var title = $( this ).text();
@@ -25,17 +27,7 @@ Template.enrollmentsTable.onRendered( function () {
           '<option value="-1">All</option>' +
           '</select> enrollments'
       },
-      dom: "<lB><f><rtip>",
-      buttons: [ {
-        extend: 'excel',
-        text: 'Excel'
-      }, {
-        extend: 'print',
-        text: 'Print'
-      }, {
-        extend: 'pdf',
-        text: 'PDF'
-      } ]
+      dom: "<l><f><rtip>"
     } );
 
     table.columns().every( function () {
@@ -51,7 +43,7 @@ Template.enrollmentsTable.onRendered( function () {
   } );
 
 } );
-
+ 
 Template.enrollmentsTable.events( {
   'click tbody tr': function ( event ) {
     Router.go( 'collections.enrollments.update', {
@@ -103,6 +95,21 @@ Template.enrollmentsTable.helpers( {
       return Branch.branch;
     }
   },
+  spouseDisplayName: function (){
+    var self = this;
+    var enrolledSpouse = Enrollments.findOne( {
+      _id: self._id
+    }, {
+      fields: {
+       "spouseName": 1
+      }
+    } );
+
+    if ( enrolledSpouse ) {
+      return enrolledSpouse.spouseName;
+    } else if ( enrolledSpouse === undefined )
+      return "No Enrolled Spouse";
+  }
   // premium: function () {
   //   var sumOfPrem = 0;
   //   var prem = this.premiums;
@@ -113,6 +120,9 @@ Template.enrollmentsTable.helpers( {
 
 
 Template.enrollmentsIndex.events( {
+  'click #export': function(){ 
+    paisEnrollmentExporter.exportEnrollments();
+  },
   'change [name=importCSV]': function ( event, template ) {
     template.uploading.set( true );
     Papa.parse( event.target.files[ 0 ], {

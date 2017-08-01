@@ -32,6 +32,8 @@
                   {{> afQuickField name="beneficiaryOne" }}
                   {{> afQuickField name="beneficiaryOneBirthdate" }}
                   {{> afQuickField name="beneficiaryOneAge" }}
+                  {{> afQuickField name="beneficiaryOneMaritalStatus" }}
+                  {{> afQuickField name="beneficiaryOneGender" }}
                   {{> afQuickField name="beneficiaryOneRelationship" }}
                 </fieldset>
                 <fieldset>
@@ -39,6 +41,8 @@
                   {{> afQuickField name="beneficiaryTwo" }}
                   {{> afQuickField name="beneficiaryTwoBirthdate" }}
                   {{> afQuickField name="beneficiaryTwoAge" }}
+                  {{> afQuickField name="beneficiaryTwoMaritalStatus" }}
+                  {{> afQuickField name="beneficiaryTwoGender" }}
                   {{> afQuickField name="beneficiaryTwoRelationship" }}
                 </fieldset>
                 <fieldset>
@@ -60,6 +64,8 @@
                     {{> afQuickField name="spouseName" }}
                     {{> afQuickField name="spouseBirthdate" }}
                     {{> afQuickField name="spouseAge" }}
+                    {{> afQuickField name="spouseMaritalStatus" }}
+                    {{> afQuickField name="spouseGender" }}
                     {{> afQuickField name="children" options="allowed" select=true template="bootstrap3-inline"}}
                     {{> childrenDependents}}
                   {{/if}}
@@ -484,14 +490,20 @@
     {{> afQuickField name="parentName" }}
     {{> afQuickField name="parentBirthdate" }}
     {{> afQuickField name="parentAge" }}
+    {{> afQuickField name="parentMaritalStatus" }}
+    {{> afQuickField name="parentGender" }}
   {{/if}}
   {{#if afFieldValueIs name="parent" value="Two Parents" }}
     {{> afQuickField name="parentName" }}
     {{> afQuickField name="parentBirthdate" }}
     {{> afQuickField name="parentAge" }}
+    {{> afQuickField name="parentMaritalStatus" }}
+    {{> afQuickField name="parentGender" }}
     {{> afQuickField name="parent2Name" }}
     {{> afQuickField name="parent2Birthdate" }}
     {{> afQuickField name="parent2Age" }}
+    {{> afQuickField name="parent2MaritalStatus" }}
+    {{> afQuickField name="parent2Gender" }}
   {{/if}}
 </template>
 <template name="siblingDependents">

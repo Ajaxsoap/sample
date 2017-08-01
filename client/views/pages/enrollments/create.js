@@ -665,7 +665,7 @@ Template.productsAvailed9.events( {
 Template.registerHelper( "principalOption", function ( principal ) {
   principal = [ selectedPrincipal.get() ];
   if ( principal === null ) {
-    console.log( "No Principal Enrolled" );
+    // console.log( "No Principal Enrolled" );
     return null;
   } else
     return _.map( principal, function ( fullname ) {
@@ -679,7 +679,7 @@ Template.registerHelper( "principalOption", function ( principal ) {
 Template.registerHelper( "spouseOption", function ( spouse ) {
   spouse = [ selectedSpouse.get() ];
   if ( spouse === null ) {
-    console.log( "No Spouse Enrolled" );
+    // console.log( "No Spouse Enrolled" );
     return "No Spouse Enrolled";
   } else
     return _.map( spouse, function ( spousename ) {

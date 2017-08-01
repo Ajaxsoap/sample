@@ -183,7 +183,37 @@ Enrollments.attachSchema( new SimpleSchema( {
       }
     }
   },
-
+  maritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
   tin: {
     type: String,
     index: true,
@@ -282,7 +312,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     }
   },
   beneficiaryOneBirthdate: {
-    type: String,
+    type: Date,
     optional: true,
     label: "Birthday",
     autoform: {
@@ -305,10 +335,63 @@ Enrollments.attachSchema( new SimpleSchema( {
       }
     }
   },
+  beneficiaryOneGender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  beneficiaryOneMaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
   beneficiaryOneRelationship: {
     type: String,
     label: "Relationship",
     optional: true,
+    blackbox: true,
     allowedValues: [
       'Father', 'Mother', 'Brother', 'Sister', 'Brother-in-law', 'Sister-in-law', 'Spouse', 'Daughter', 'Son', 'Friend',
       'Sibling', 'Nephew', 'Niece', 'Granddaughter', 'Grandson', 'Live-In Partner',
@@ -397,7 +480,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     }
   },
   beneficiaryTwoBirthdate: {
-    type: String,
+    type: Date,
     optional: true,
     blackbox: true,
     label: "Birthday",
@@ -422,20 +505,111 @@ Enrollments.attachSchema( new SimpleSchema( {
       }
     }
   },
+  beneficiaryTwoGender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  beneficiaryTwoMaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
   beneficiaryTwoRelationship: {
     type: String,
     label: "Relationship",
     optional: true,
+    blackbox: true,
     allowedValues: [
-      'Friend', 'Auntie', 'Uncle', 'Grandchildren', 'Grandparents',
+      'Father', 'Mother', 'Brother', 'Sister', 'Brother-in-law', 'Sister-in-law', 'Spouse', 'Daughter', 'Son', 'Friend',
+      'Sibling', 'Nephew', 'Niece', 'Granddaughter', 'Grandson', 'Live-In Partner',
+      'Auntie', 'Uncle', 'Grandchildren', 'Grandparents',
       'Parents-in-law'
     ],
     autoform: {
       type: "selectize",
       options: function () {
         return [ {
+          label: 'Father',
+          value: 'Father',
+        }, {
+          label: 'Mother',
+          value: 'Mother',
+        }, {
+          label: 'Brother',
+          value: 'Brother',
+        }, {
+          label: 'Sister',
+          value: 'Sister',
+        }, {
+          label: 'Sibling',
+          value: 'Sibling',
+        }, {
+          label: 'Brother-in-law',
+          value: 'Brother-in-law',
+        }, {
+          label: 'Sister-in-law',
+          value: 'Sister-in-law',
+        }, {
+          label: 'Spouse',
+          value: 'Spouse',
+        }, {
+          label: 'Daughter',
+          value: 'Daughter',
+        }, {
+          label: 'Son',
+          value: 'Son',
+        }, {
           label: 'Friend',
           value: "Friend"
+        }, {
+          label: 'Nephew',
+          value: "Nephew"
+        }, {
+          label: 'Niece',
+          value: "Niece"
         }, {
           label: 'Auntie',
           value: "Auntie"
@@ -443,14 +617,20 @@ Enrollments.attachSchema( new SimpleSchema( {
           label: 'Uncle',
           value: "Uncle"
         }, {
-          label: 'Grandchildren',
-          value: "Grandchildren"
+          label: 'Granddaughter',
+          value: "Granddaughter"
+        }, {
+          label: 'Grandson',
+          value: 'Grandson'
         }, {
           label: 'Grandparents',
           value: "Grandparents"
         }, {
           label: 'Parents-in-law',
           value: "Parents-in-law"
+        }, {
+          label: 'Live-In Partner',
+          value: "Live-In Partner"
         }, ];
       },
       afFormGroup: {
@@ -540,7 +720,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
-  },
+  }, 
   productOffering3: {
     type: String,
     label: "Relationship",
@@ -724,6 +904,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -736,6 +917,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -748,6 +930,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -760,6 +943,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -772,6 +956,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -784,6 +969,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -796,6 +982,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -808,6 +995,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -820,6 +1008,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -832,6 +1021,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
+      type: "selectize",
       firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -843,7 +1033,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -855,7 +1045,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -867,7 +1057,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -879,7 +1069,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -891,7 +1081,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -903,7 +1093,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -915,7 +1105,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -927,7 +1117,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -939,7 +1129,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
@@ -951,14 +1141,14 @@ Enrollments.attachSchema( new SimpleSchema( {
     label: "Product Range",
     optional: true,
     autoform: {
-      // type: "selectize",
+      type: "selectize",
       firstOption: "Select Range",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     }
   },
-    insuredName: {
+  insuredName: {
     type: String,
     label: "Name",
     optional: true,
@@ -1522,37 +1712,7 @@ Enrollments.attachSchema( new SimpleSchema( {
       ], Boolean );
     }
   },
-  maritalStatus: {
-    type: String,
-    label: "Marital Status",
-    optional: true,
-    blackbox: true,
-    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
-    autoform: {
-      type: "selectize",
-      options: function () {
-        return [ {
-          label: 'SINGLE',
-          value: "SINGLE"
-        }, {
-          label: 'MARRIED',
-          value: 'MARRIED'
-        }, {
-          label: 'WIDOW',
-          value: 'WIDOW'
-        }, {
-          label: 'ANNULED',
-          value: 'ANNULED'
-        }, {
-          label: 'SEPARATED',
-          value: 'SEPARATED'
-        } ];
-      },
-      afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
-      }
-    }
-  },
+  
   spouseName: {
     type: String,
     label: "Spouse Name",
@@ -1560,7 +1720,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1575,7 +1735,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1588,7 +1748,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     max: 65,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  spouseMaritalStatus: {
+    type: String,
+    label: "Spouse Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  spouseGender: {
+    type: String,
+    label: "Spouse Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1664,23 +1876,76 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   childrenAge: {
     type: Number,
-    label: "Age of Child - (1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
+  childrenMaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  childrenGender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  
   children2Name: {
     type: String,
     label: "Children Name",
@@ -1703,23 +1968,76 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children2Age: {
     type: Number,
-    label: "Age of Child - (1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
+  children2MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children2Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  
   children3Name: {
     type: String,
     label: "Children Name",
@@ -1742,20 +2060,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children3Age: {
     type: Number,
-    label: "Age of Child - (1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children3MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children3Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1781,20 +2151,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children4Age: {
     type: Number,
-    label: "Age of Child - (1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children4MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children4Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1820,20 +2242,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children5Age: {
     type: Number,
-    label: "Age of Child - (1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children5MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children5Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1859,20 +2333,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children6Age: {
     type: Number,
-    label: "Age of Child -  (1 - 22 years old)",
+    label: "Age -  (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children6MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children6Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1898,20 +2424,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children7Age: {
     type: Number,
-    label: "Age of Child - (Between 1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children7MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children7Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1937,20 +2515,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children8Age: {
     type: Number,
-    label: "Age of Child - (Between 1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children8MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children8Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1976,20 +2606,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children9Age: {
     type: Number,
-    label: "Age of Child - (Between 1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children9MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children9Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2015,20 +2697,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   children10Age: {
     type: Number,
-    label: "Age of Child - (Between 1 - 22 years old)",
+    label: "Age - (1 - 22 years old)",
     optional: true,
     blackbox: true,
     min: 1,
     max: 22,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children10MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  children10Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2077,20 +2811,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   parentAge: {
     type: Number,
-    label: "Age of Parent - (Maximum of 65 years old)",
+    label: "Parent Age - (Max of 65 years old)",
     optional: true,
     blackbox: true,
     min: 18,
     max: 65,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  parentMaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  parentGender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2116,20 +2902,72 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
   parent2Age: {
     type: Number,
-    label: "Age of Parent - (Maximum of 65 years old)",
+    label: "Parent Age - (Max of 65 years old)",
     optional: true,
     blackbox: true,
     min: 18,
     max: 65,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  parent2MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED'
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  parent2Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2205,7 +3043,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2216,7 +3054,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  siblingMaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  siblingGender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2242,7 +3132,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2253,7 +3143,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling2MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling2Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2279,7 +3221,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2290,7 +3232,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling3MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling3Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2316,7 +3310,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2327,7 +3321,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling4MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling4Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2353,7 +3399,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2364,7 +3410,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling5MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling5Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2390,7 +3488,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2401,7 +3499,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling6MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling6Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2427,7 +3577,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2438,7 +3588,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling7MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling7Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2464,7 +3666,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2475,7 +3677,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling8MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling8Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2501,7 +3755,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2512,7 +3766,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling9MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling9Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2538,7 +3844,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -2549,7 +3855,59 @@ Enrollments.attachSchema( new SimpleSchema( {
     blackbox: true,
     autoform: {
       afFormGroup: {
-        'formgroup-class': 'col-xs-6 col-sm-4'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling10MaritalStatus: {
+    type: String,
+    label: "Marital Status",
+    optional: true,
+    blackbox: true,
+    allowedValues: [ 'SINGLE', 'MARRIED', 'WIDOWED', 'ANNULED', 'SEPARATED' ],
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'SINGLE',
+          value: "SINGLE"
+        }, {
+          label: 'MARRIED',
+          value: 'MARRIED'
+        }, {
+          label: 'WIDOWED',
+          value: 'WIDOWED',
+        }, {
+          label: 'ANNULED',
+          value: 'ANNULED'
+        }, {
+          label: 'SEPARATED',
+          value: 'SEPARATED'
+        } ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
+  sibling10Gender: {
+    type: String,
+    label: "Gender",
+    allowedValues: [ "MALE", "FEMALE" ],
+    optional: true,
+    autoform: {
+      type: "selectize",
+      options: function () {
+        return [ {
+          label: 'MALE',
+          value: "MALE"
+        }, {
+          label: 'FEMALE',
+          value: 'FEMALE'
+        }, ];
+      },
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },

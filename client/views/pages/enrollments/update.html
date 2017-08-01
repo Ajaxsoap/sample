@@ -34,6 +34,7 @@
                   {{#if userHasPermission 'showHQDashboard'}}
                     <fieldset>
                       <legend>Personal Information</legend>
+                      {{> afQuickField name="dateEnrolled" }}
                       {{> afQuickField name="centerNumber" }}
                       {{> afQuickField name="fullName" disabled=true}}
                       {{> afQuickField name="tin" data-mask="99-9999999" disabled=true}}
@@ -52,6 +53,7 @@
                   {{#if userHasPermission 'showBranchDashboard'}}
                     <fieldset>
                       <legend>Personal Information</legend>
+                      {{> afQuickField name="dateEnrolled" }}
                       {{> afQuickField name="centerNumber" }}
                       {{> afQuickField name="fullName" disabled=true}}
                       {{> afQuickField name="tin" data-mask="99-9999999" disabled=true}}
@@ -71,6 +73,8 @@
                     {{> afQuickField name="beneficiaryOne" }}
                     {{> afQuickField name="beneficiaryOneBirthdate" }}
                     {{> afQuickField name="beneficiaryOneAge" }}
+                    {{> afQuickField name="beneficiaryOneMaritalStatus" }}
+                    {{> afQuickField name="beneficiaryOneGender" }}
                     {{> afQuickField name="beneficiaryOneRelationship" }}
                   </fieldset>
                   <fieldset>
@@ -78,6 +82,8 @@
                     {{> afQuickField name="beneficiaryTwo" }}
                     {{> afQuickField name="beneficiaryTwoBirthdate" }}
                     {{> afQuickField name="beneficiaryTwoAge" }}
+                    {{> afQuickField name="beneficiaryTwoMaritalStatus" }}
+                    {{> afQuickField name="beneficiaryTwoGender" }}
                     {{> afQuickField name="beneficiaryTwoRelationship" }}
                   </fieldset>
                   <fieldset>
@@ -100,6 +106,8 @@
                       {{> afQuickField name="spouseName" }}
                       {{> afQuickField name="spouseBirthdate" }}
                       {{> afQuickField name="spouseAge" }}
+                      {{> afQuickField name="spouseMaritalStatus" }}
+                      {{> afQuickField name="spouseGender" }}
                       {{> afQuickField name="children" options="allowed" select=true template="bootstrap3-inline"}}
                       {{> childrenDependents}}
                     {{/if}}

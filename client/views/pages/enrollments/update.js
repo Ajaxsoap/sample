@@ -593,349 +593,385 @@ Tracker.autorun( function () {
   }
 } );
 
-Template.productsAvailedUpdate.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
+Template.registerHelper('productsAvailedUpdate', function(){
+  return Products.find().map( function ( offer ) {
       return {
         label: offer.productOffering,
         value: offer.productOffering
       };
     } );
-  },
-  productNameOption: function ( productName ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
+});
 
-Template.productsAvailedUpdate1.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName1 ) {
-    return Products.find().map( function ( product ) {
+Template.registerHelper('productNameOption', function(){
+  return Products.find().map( function ( product ) {
       return {
         label: product.name,
         value: product._id
       };
     } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
+});
 
-Template.productsAvailedUpdate2.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName2 ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
+Template.registerHelper('premiumOption', function(){
+  return Products.find().map( function ( prem ) {
       return {
         label: prem.premium,
         value: prem.premium
       };
     } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
+});
 
-} );
-Template.productsAvailedUpdate3.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName3 ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
+Template.registerHelper('productRangeOption', function(){
+  return Products.find().map( function ( range ) {
       return {
         label: range.productRange,
         value: range.productRange
       };
     } );
-  }
-} );
-Template.productsAvailedUpdate4.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName4 ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-Template.productsAvailedUpdate5.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName5 ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-Template.productsAvailedUpdate6.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName6 ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
+});
 
-Template.productsAvailedUpdate7.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName7 ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
+// Template.productsAvailedUpdate.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
 
-Template.productsAvailedUpdate8.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName8 ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
+// Template.productsAvailedUpdate1.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName1 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
 
-Template.productsAvailedUpdate9.helpers( {
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function ( productName9 ) {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOption: function () {
-    return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRangeOption: function () {
-    return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
+// Template.productsAvailedUpdate2.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName2 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+
+// } );
+// Template.productsAvailedUpdate3.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName3 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
+// Template.productsAvailedUpdate4.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName4 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
+// Template.productsAvailedUpdate5.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName5 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
+// Template.productsAvailedUpdate6.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName6 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
+
+// Template.productsAvailedUpdate7.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName7 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
+
+// Template.productsAvailedUpdate8.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName8 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
+
+// Template.productsAvailedUpdate9.helpers( {
+//   productOption: function () {
+//     return Products.find().map( function ( offer ) {
+//       return {
+//         label: offer.productOffering,
+//         value: offer.productOffering
+//       };
+//     } );
+//   },
+//   productNameOption: function ( productName9 ) {
+//     return Products.find().map( function ( product ) {
+//       return {
+//         label: product.name,
+//         value: product._id
+//       };
+//     } );
+//   },
+//   premiumOption: function () {
+//     return Products.find().map( function ( prem ) {
+//       return {
+//         label: prem.premium,
+//         value: prem.premium
+//       };
+//     } );
+//   },
+//   productRangeOption: function () {
+//     return Products.find().map( function ( range ) {
+//       return {
+//         label: range.productRange,
+//         value: range.productRange
+//       };
+//     } );
+//   }
+// } );
