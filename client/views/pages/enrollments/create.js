@@ -103,6 +103,16 @@ var selectedSibling8 = new ReactiveVar( null );
 var selectedSibling9 = new ReactiveVar( null );
 var selectedDependentId = new ReactiveVar( null );
 var selectedProductId = new ReactiveVar( "Principal" );
+var selectedPremium = new ReactiveVar( 0 );
+var selectedPremium1 = new ReactiveVar( 0 );
+var selectedPremium2 = new ReactiveVar( 0 );
+var selectedPremium3 = new ReactiveVar( 0 );
+var selectedPremium4 = new ReactiveVar( 0 );
+var selectedPremium5 = new ReactiveVar( 0 );
+var selectedPremium6 = new ReactiveVar( 0 );
+var selectedPremium7 = new ReactiveVar( 0 );
+var selectedPremium8 = new ReactiveVar( 0 );
+var selectedPremium9 = new ReactiveVar( 0 );
 var selectedRange = new ReactiveVar( 0 );
 var selectedRange1 = new ReactiveVar( 0 );
 var selectedRange2 = new ReactiveVar( 0 );
@@ -373,23 +383,47 @@ Template.enrollmentsCreate.events( {
   },
 } );
 
+Template.productsAvailed.helpers( {
+  cycle: function () {
+    return Template.instance().loancycle.get( 'cycle' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName.get()
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  } 
+});
+
 Template.productsAvailed.events( {
   'change select[name=productName]': function ( event, template ) {
     selectedProductName.set( $( event.target ).val() );
-    // console.log( 'Product Name ID:', selectedProductName.get() );
   },
-  'change select[name=productOffering]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    // template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium]': function( event ) {
+    selectedPremium.set( $( event.target).val() );
   },
   'change select[name=productRange]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange.set( rangeValue );
-    template.$( 'input[name=productRange]' ).val( rangeValue );
+    var premiumVal = selectedPremium.get();
+    var selectRange = selectedRange.set( $(event.target).val());
+    var setPremium = parseInt(selectedRange.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium]').val(setPremium);
   },
-  'change input[name=effectivityDate]': function ( event, template ) {
+    'change input[name=effectivityDate]': function ( event, template ) {
     var effective = $( event.target ).val();
     var range = moment.duration( parseInt( selectedRange.get(), 10 ), 'months' );
     var value = moment( new Date( effective ) ).add( range ).format( 'MM-DD-YYYY' );
@@ -400,22 +434,46 @@ Template.productsAvailed.events( {
   }
 } );
 
+Template.productsAvailed1.helpers( {
+  cycle1: function () {
+    return Template.instance().loancycle.get( 'cycle1' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName1.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName1.get()
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailed1.events( {
   'change select[name=productName1]': function ( event, template ) {
     selectedProductName1.set( $( event.target ).val() );
-    // console.log( 'Product Name ID:', selectedProductName1.get() );
   },
-  'change select[name=productOffering1]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium1]': function( event ) {
+    selectedPremium1.set( $( event.target).val() );
   },
   'change select[name=productRange1]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange1.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange1.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium1.get();
+    var selectRange = selectedRange1.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange1.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Selected premium", premiumVal);
+      console.log("Computed Premium 2 is", setPremium);
+      template.$('input[name=computedPremium1]').val(setPremium);
   },
   'change input[name=effectivityDate1]': function ( event, template ) {
     var effective = $( event.target ).val();
@@ -429,22 +487,46 @@ Template.productsAvailed1.events( {
   }
 } );
 
+Template.productsAvailed2.helpers( {
+  cycle2: function () {
+    return Template.instance().loancycle.get( 'cycle2' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName2.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName2.get()
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailed2.events( {
   'change select[name=productName2]': function ( event, template ) {
     selectedProductName2.set( $( event.target ).val() );
     // console.log( 'Product Name ID:', selectedProductName2.get() );
   },
-  'change select[name=productOffering2]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium2]': function( event ) {
+    selectedPremium2.set( $( event.target).val() );
   },
   'change select[name=productRange2]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange2.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange2.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium2.get();
+    var selectRange = selectedRange2.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange2.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium2]').val(setPremium);
   },
   'change input[name=effectivityDate2]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -458,22 +540,46 @@ Template.productsAvailed2.events( {
   }
 } );
 
+Template.productsAvailed3.helpers( {
+  cycle3: function () {
+    return Template.instance().loancycle.get( 'cycle3' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName3.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName3.get()
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailed3.events( {
   'change select[name=productName3]': function ( event, template ) {
     selectedProductName3.set( $( event.target ).val() );
     // console.log( 'Product Name ID:', selectedProductName3.get() );
   },
-  'change select[name=productOffering3]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium3]': function( event ) {
+    selectedPremium3.set( $( event.target).val() );
   },
   'change select[name=productRange3]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange3.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange3.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium3.get();
+    var selectRange = selectedRange3.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange3.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium3]').val(setPremium);
   },
   'change input[name=effectivityDate3]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -487,22 +593,46 @@ Template.productsAvailed3.events( {
   }
 } );
 
+Template.productsAvailed4.helpers( {
+  cycle4: function () {
+    return Template.instance().loancycle.get( 'cycle4' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName4.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName4.get()
+    } ).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailed4.events( {
   'change select[name=productName4]': function ( event, template ) {
     selectedProductName4.set( $( event.target ).val() );
     // console.log( 'Product Name ID:', selectedProductName4.get() );
   },
-  'change select[name=productOffering4]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium4]': function( event ) {
+    selectedPremium4.set( $( event.target).val() );
   },
   'change select[name=productRange4]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange4.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange4.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium4.get();
+    var selectRange = selectedRange4.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange4.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium4]').val(setPremium);
   },
   'change input[name=effectivityDate4]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -516,22 +646,46 @@ Template.productsAvailed4.events( {
   }
 } );
 
+Template.productsAvailed5.helpers( {
+  cycle5: function () {
+    return Template.instance().loancycle.get( 'cycle5' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName5.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName5.get()
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailed5.events( {
   'change select[name=productName5]': function ( event, template ) {
     selectedProductName5.set( $( event.target ).val() );
     // console.log( 'Product Name ID:', selectedProductName5.get() );
   },
-  'change select[name=productOffering5]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium5]': function( event ) {
+    selectedPremium5.set( $( event.target).val() );
   },
   'change select[name=productRange5]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange5.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange5.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium5.get();
+    var selectRange = selectedRange5.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange5.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium5]').val(setPremium);
   },
   'change input[name=effectivityDate5]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -545,22 +699,46 @@ Template.productsAvailed5.events( {
   }
 } );
 
+Template.productsAvailed6.helpers( {
+  cycle6: function () {
+    return Template.instance().loancycle.get( 'cycle6' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName6.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName6.get()
+    } ).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailed6.events( {
   'change select[name=productName6]': function ( event, template ) {
     selectedProductName6.set( $( event.target ).val() );
     // console.log( 'Product Name ID:', selectedProductName6.get() );
   },
-  'change select[name=productOffering6]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium6]': function( event ) {
+    selectedPremium6.set( $( event.target).val() );
   },
   'change select[name=productRange6]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange6.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange6.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium6.get();
+    var selectRange = selectedRange6.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange6.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium6]').val(setPremium);
   },
   'change input[name=effectivityDate6]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -574,22 +752,46 @@ Template.productsAvailed6.events( {
   }
 } );
 
+Template.productsAvailed7.helpers( {
+  cycle7: function () {
+    return Template.instance().loancycle.get( 'cycle7' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName7.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName7.get()
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
+
 Template.productsAvailed7.events( {
   'change select[name=productName7]': function ( event, template ) {
     selectedProductName7.set( $( event.target ).val() );
-    // console.log( 'Product Name ID:', selectedProductName7.get() );
   },
-  'change select[name=productOffering7]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium7]': function( event ) {
+    selectedPremium7.set( $( event.target).val() );
   },
   'change select[name=productRange7]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange7.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange7.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium7.get();
+    var selectRange = selectedRange7.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange7.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium7]').val(setPremium);
   },
   'change input[name=effectivityDate7]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -603,22 +805,45 @@ Template.productsAvailed7.events( {
   }
 } );
 
+Template.productsAvailed8.helpers( {
+  cycle8: function () {
+    return Template.instance().loancycle.get( 'cycle8' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName8.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName8.get()
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailed8.events( {
   'change select[name=productName8]': function ( event, template ) {
     selectedProductName8.set( $( event.target ).val() );
-    // console.log( 'Product Name ID:', selectedProductName8.get() );
   },
-  'change select[name=productOffering8]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium8]': function( event ) {
+    selectedPremium8.set( $( event.target).val() );
   },
   'change select[name=productRange8]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange8.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange8.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium8.get();
+    var selectRange = selectedRange8.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange8.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium8').val(setPremium);
   },
   'change input[name=effectivityDate8]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -633,22 +858,45 @@ Template.productsAvailed8.events( {
 
 } );
 
+Template.productsAvailed9.helpers( {
+  cycle9: function () {
+    return Template.instance().loancycle.get( 'cycle9' );
+  },
+  productOfferingOptionCreate: function(){
+    return Products.find( {
+      _id: selectedProductName9.get()
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionsCreate: function () {
+    return Products.find( {
+      _id: selectedProductName9.get()
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailed9.events( {
   'change select[name=productName9]': function ( event, template ) {
     selectedProductName9.set( $( event.target ).val() );
-    // console.log( 'Product Name ID:', selectedProductName9.get() );
   },
-  'change select[name=productOffering9]': function ( event, template ) {
-    selectedDependentId.set( $( event.target ).val() );
-    // console.log( 'Product Offering:', selectedDependentId.get() );
-    template.$( 'input[name=productRange]' ).val( selectedProductId.get() );
+  'change select[name=premium9]': function( event ) {
+    selectedPremium9.set( $( event.target).val() );
   },
   'change select[name=productRange9]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    selectedRange9.set( rangeValue );
-    // console.log( 'Product Range:', parseInt( selectedRange9.get() ) );
-    // template.$( 'input[name=productRange]' ).val( selectedProduct.get() );
+    var premiumVal = selectedPremium9.get();
+    var selectRange = selectedRange9.set( $(event.target).val() );
+    var setPremium = parseInt(selectedRange9.get(), 10) * parseFloat(premiumVal, 10);
+      console.log("Computed Premium is", setPremium);
+      template.$('input[name=computedPremium9]').val(setPremium);
   },
   'change input[name=effectivityDate9]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -717,7 +965,6 @@ Template.registerHelper( "parentsOption", function ( parents ) {
     selectedParent1.get()
   ];
   if ( parents === undefined ) {
-    console.log( "No Parent enrolled" );
     return "No Parent enrolled";
   } else
     return _.map( parents, function ( parentsname ) {
@@ -751,457 +998,6 @@ Template.registerHelper( "siblingsOption", function ( siblings ) {
         value: sibs
       };
     } );
-} );
-
-Template.productsAvailed.helpers( {
-  cycle: function () {
-    return Template.instance().loancycle.get( 'cycle' );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName.get()
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-
-Template.productsAvailed1.helpers( {
-  cycle1: function () {
-    return Template.instance().loancycle.get( 'cycle1' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName1.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName1.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-Template.productsAvailed2.helpers( {
-  cycle2: function () {
-    return Template.instance().loancycle.get( 'cycle2' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName2.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName2.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-Template.productsAvailed3.helpers( {
-  cycle3: function () {
-    return Template.instance().loancycle.get( 'cycle3' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName3.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName3.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-Template.productsAvailed4.helpers( {
-  cycle4: function () {
-    return Template.instance().loancycle.get( 'cycle4' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName4.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName4.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-Template.productsAvailed5.helpers( {
-  cycle5: function () {
-    return Template.instance().loancycle.get( 'cycle5' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName5.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName5.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-Template.productsAvailed6.helpers( {
-  cycle6: function () {
-    return Template.instance().loancycle.get( 'cycle6' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName6.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName6.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-
-Template.productsAvailed7.helpers( {
-  cycle7: function () {
-    return Template.instance().loancycle.get( 'cycle7' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName7.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName7.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-
-Template.productsAvailed8.helpers( {
-  cycle8: function () {
-    return Template.instance().loancycle.get( 'cycle8' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName8.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName8.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
-} );
-
-Template.productsAvailed9.helpers( {
-  cycle9: function () {
-    return Template.instance().loancycle.get( 'cycle9' );
-  },
-  productOption: function () {
-    return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-  },
-  productNameOption: function () {
-    return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-  },
-  premiumOptions: function () {
-    return Products.find( {
-      _id: selectedProductName9.get()
-    }, {
-      fields: {
-        "premium": 1
-      }
-    } ).map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-  },
-  productRange: function () {
-    return Products.find( {
-      _id: selectedProductName9.get()
-    } ).map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-  }
 } );
 
 AutoForm.addHooks( 'orionBootstrapCollectionsCreateForm', {

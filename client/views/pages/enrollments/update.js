@@ -54,19 +54,38 @@ Template.productsAvailedUpdate9.onCreated( function () {
   this.subscribe( 'products' );
 } );
 
-var selectedProductName = new ReactiveVar( null );
-var selectedProductName1 = new ReactiveVar( null );
-var selectedProductName2 = new ReactiveVar( null );
-var selectedProductName3 = new ReactiveVar( null );
-var selectedProductName4 = new ReactiveVar( null );
-var selectedProductName5 = new ReactiveVar( null );
-var selectedProductName6 = new ReactiveVar( null );
-var selectedProductName7 = new ReactiveVar( null );
-var selectedProductName8 = new ReactiveVar( null );
-var selectedProductName9 = new ReactiveVar( null );
+var selectedProductNameUpdate = new ReactiveVar( null );
+var selectedProductNameUpdate1 = new ReactiveVar( null );
+var selectedProductNameUpdate2 = new ReactiveVar( null );
+var selectedProductNameUpdate3 = new ReactiveVar( null );
+var selectedProductNameUpdate4 = new ReactiveVar( null );
+var selectedProductNameUpdate5 = new ReactiveVar( null );
+var selectedProductNameUpdate6 = new ReactiveVar( null );
+var selectedProductNameUpdate7 = new ReactiveVar( null );
+var selectedProductNameUpdate8 = new ReactiveVar( null );
+var selectedProductNameUpdate9 = new ReactiveVar( null );
 var selectedDependentId = new ReactiveVar();
 var selectedProductId = new ReactiveVar();
-var selectedRange = new ReactiveVar( 0 );
+var selectedPremiumUpdate = new ReactiveVar( 0 );
+var selectedPremiumUpdate1 = new ReactiveVar( 0 );
+var selectedPremiumUpdate2 = new ReactiveVar( 0 );
+var selectedPremiumUpdate3 = new ReactiveVar( 0 );
+var selectedPremiumUpdate4 = new ReactiveVar( 0 );
+var selectedPremiumUpdate5 = new ReactiveVar( 0 );
+var selectedPremiumUpdate6 = new ReactiveVar( 0 );
+var selectedPremiumUpdate7 = new ReactiveVar( 0 );
+var selectedPremiumUpdate8 = new ReactiveVar( 0 );
+var selectedPremiumUpdate9 = new ReactiveVar( 0 );
+var selectedRangeUpdate = new ReactiveVar( 0 );
+var selectedRangeUpdate1 = new ReactiveVar( 0 );
+var selectedRangeUpdate2 = new ReactiveVar( 0 );
+var selectedRangeUpdate3 = new ReactiveVar( 0 );
+var selectedRangeUpdate4 = new ReactiveVar( 0 );
+var selectedRangeUpdate5 = new ReactiveVar( 0 );
+var selectedRangeUpdate6 = new ReactiveVar( 0 );
+var selectedRangeUpdate7 = new ReactiveVar( 0 );
+var selectedRangeUpdate8 = new ReactiveVar( 0 );
+var selectedRangeUpdate9 = new ReactiveVar( 0 );
 var loancycle = new ReactiveVar( 1 );
 
 Template.enrollmentsUpdate.events( {
@@ -206,14 +225,60 @@ Template.enrollmentsUpdate.events( {
   },
 } );
 
+Template.registerHelper('productNameOption', function(){ 
+  return Products.find({},{sort:{"name":1}}).map( function ( product ) {
+      return {
+        label: product.name,
+        value: product._id
+      };
+    } );
+});
+
+Template.productsAvailedUpdate.helpers( {
+  productOfferingOptionUpdate: function(template){
+    return Enrollments.findOne( {_id: this._id
+    }, {
+      fields: {
+        "productOffering": 1
+      }
+    })
+  },
+  premiumOptionUpdate: function () {
+    return Enrollments.findOne({_id: this._id
+    }, {
+      fields: {
+        "premium": 1
+      }
+    })
+  },
+  parentsOptionUpdate: function(){
+    return Enrollments.findOne({_id: this._id
+    }, {
+      fields: {
+        "parentName": 1,
+        "parent2Name": 1
+      }
+    })
+  }
+} );
+
 Template.productsAvailedUpdate.events( {
   'change select[name=productName]': function ( event, template ) {
-    selectedProductName.set( $( event.target ).val() );
+    selectedProductNameUpdate.set( $( event.target ).val() );
+  },
+  'change select[name=premium]': function( event ) {
+    selectedPremiumUpdate.set( $( event.target).val() );
   },
   'change select[name=productRange]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange]' ).val( rangeValue );
+    var premiumVal = template.$('input[name="premium"]').val();
+    var selectRange = selectedRangeUpdate.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate.get(), 10) * parseFloat(selectedProducNameUpdate.get(), 10);
+      template.$('input[name=computedPremium]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -234,14 +299,44 @@ Template.productsAvailedUpdate.events( {
   }
 } );
 
+Template.productsAvailedUpdate1.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailedUpdate1.events( {
   'change select[name=productName1]': function ( event, template ) {
-    selectedProductName1.set( $( event.target ).val() );
+    selectedProductNameUpdate1.set( $( event.target ).val() );
+  },
+  'change select[name=premium1]': function( event ) {
+    selectedPremiumUpdate1.set( $( event.target).val() );
   },
   'change select[name=productRange1]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange1]' ).val( rangeValue );
+    var premiumVal = template.$('select[name="premium1"]').val();
+    var selectRange = selectedRangeUpdate1.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate1.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate1.get(), 10) * parseFloat(selectedPremiumUpdate1.get(), 10);
+      template.$('input[name=computedPremium1]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium1]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate1]': function ( event, template ) {
     var effectivity1 = $( event.target ).val();
@@ -262,14 +357,46 @@ Template.productsAvailedUpdate1.events( {
   }
 } );
 
+Template.productsAvailedUpdate2.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {
+    }).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({
+    }).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+
+} );
+
 Template.productsAvailedUpdate2.events( {
   'change select[name=productName2]': function ( event, template ) {
-    selectedProductName2.set( $( event.target ).val() );
+    selectedProductNameUpdate2.set( $( event.target ).val() );
+  },
+  'change select[name=premium2]': function( event ) {
+    selectedPremiumUpdate2.set( $( event.target).val() );
   },
   'change select[name=productRange2]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange2]' ).val( rangeValue );
+    var premiumVal = template.$('select[name="premium2"]').val();
+    var selectRange = selectedRangeUpdate2.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate2.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate2.get(), 10) * parseFloat(selectedPremiumUpdate2.get(), 10);
+      template.$('input[name=computedPremium2]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium2]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate2]': function ( event, template ) {
     var effectivity2 = $( event.target ).val();
@@ -290,14 +417,48 @@ Template.productsAvailedUpdate2.events( {
   }
 } );
 
+Template.productsAvailedUpdate3.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {}).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({}).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailedUpdate3.events( {
   'change select[name=productName3]': function ( event, template ) {
-    selectedProductName3.set( $( event.target ).val() );
+    selectedProductNameUpdate3.set( $( event.target ).val() );
+  },
+  'change select[name=premium3]': function( event ) {
+    selectedPremiumUpdate3.set( $( event.target).val() );
+  },
+   'change select[name=productOffering3]': function( event, template ){
+    var childrenVal = template.$('input[name="children"]').val();
+    if ( childrenVal === '' || childrenVal === null ) {
+      alert("No Children enrolled");
+    }
   },
   'change select[name=productRange3]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange3]' ).val( rangeValue );
+    var premiumVal = template.$('select[name="premium3"]').val();
+    var selectRange = selectedRangeUpdate3.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate3.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate3.get(), 10) * parseFloat(selectedPremiumUpdate3.get(), 10);
+      template.$('input[name=computedPremium3]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium3]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate3]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -318,14 +479,42 @@ Template.productsAvailedUpdate3.events( {
   }
 } );
 
+Template.productsAvailedUpdate4.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {}).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({}).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailedUpdate4.events( {
   'change select[name=productName4]': function ( event, template ) {
-    selectedProductName4.set( $( event.target ).val() );
+    selectedProductNameUpdate4.set( $( event.target ).val() );
+  },
+  'change select[name=premium4]': function( event ) {
+    selectedPremiumUpdate4.set( $( event.target).val() );
   },
   'change select[name=productRange4]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange4]' ).val( rangeValue );
+    var premiumVal = template.$('select[name="premium4"]').val();
+    var selectRange = selectedRangeUpdate4.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate4.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate4.get(), 10) * parseFloat(selectedPremiumUpdate4.get(), 10);
+      template.$('input[name=computedPremium4]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium4]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate4]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -346,14 +535,42 @@ Template.productsAvailedUpdate4.events( {
   }
 } );
 
+Template.productsAvailedUpdate5.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {}).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({}).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailedUpdate5.events( {
   'change select[name=productName5]': function ( event, template ) {
-    selectedProductName5.set( $( event.target ).val() );
+    selectedProductNameUpdate5.set( $( event.target ).val() );
+  },
+  'change select[name=premium5]': function( event ) {
+    selectedPremiumUpdate5.set( $( event.target).val() );
   },
   'change select[name=productRange5]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange5]' ).val( rangeValue );
+    var premiumVal = template.$('select[name="premium5"]').val();
+    var selectRange = selectedRangeUpdate5.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate5.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate5.get(), 10) * parseFloat(selectedPremiumUpdate5.get(), 10);
+      template.$('input[name=computedPremium5]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium5]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate5]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -374,14 +591,42 @@ Template.productsAvailedUpdate5.events( {
   }
 } );
 
+Template.productsAvailedUpdate6.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {}).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({}).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailedUpdate6.events( {
   'change select[name=productName6]': function ( event, template ) {
-    selectedProductName6.set( $( event.target ).val() );
+    selectedProductNameUpdate6.set( $( event.target ).val() );
+  },
+  'change select[name=premium6]': function( event ) {
+    selectedPremiumUpdate6.set( $( event.target).val() );
   },
   'change select[name=productRange6]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange6]' ).val( rangeValue );
+    var premiumVal = template.$('select[name="premium6"]').val();
+    var selectRange = selectedRangeUpdate6.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate6.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate6.get(), 10) * parseFloat(selectedPremiumUpdate6.get(), 10);
+      template.$('input[name=computedPremium6]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium6]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate6]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -402,14 +647,42 @@ Template.productsAvailedUpdate6.events( {
   }
 } );
 
+Template.productsAvailedUpdate7.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {}).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({}).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailedUpdate7.events( {
   'change select[name=productName7]': function ( event, template ) {
-    selectedProductName7.set( $( event.target ).val() );
+    selectedProductNameUpdate7.set( $( event.target ).val() );
+  },
+  'change select[name=premium7]': function( event ) {
+    selectedPremiumUpdate7.set( $( event.target).val() );
   },
   'change select[name=productRange7]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange7]' ).val( rangeValue );
+    var premiumVal = template.$('select[name="premium7"]').val();
+    var selectRange = selectedRangeUpdate7.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate7.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate7.get(), 10) * parseFloat(selectedPremiumUpdate7.get(), 10);
+      template.$('input[name=computedPremium7]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium7]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate7]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -430,14 +703,42 @@ Template.productsAvailedUpdate7.events( {
   }
 } );
 
+Template.productsAvailedUpdate8.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {}).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({}).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailedUpdate8.events( {
   'change select[name=productName8]': function ( event, template ) {
-    selectedProductName8.set( $( event.target ).val() );
+    selectedProductNameUpdate8.set( $( event.target ).val() );
+  },
+  'change select[name=premium8]': function( event ) {
+    selectedPremiumUpdate8.set( $( event.target).val() );
   },
   'change select[name=productRange8]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange8]' ).val( rangeValue );
+    var premiumVal = template.$('select[name="premium8"]').val();
+    var selectRange = selectedRangeUpdate8.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate8.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate8.get(), 10) * parseFloat(selectedPremiumUpdate8.get(), 10);
+      template.$('input[name=computedPremium8]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium8]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate8]': function ( event, template ) {
     var effectivity = $( event.target ).val();
@@ -458,19 +759,48 @@ Template.productsAvailedUpdate8.events( {
   }
 } );
 
+Template.productsAvailedUpdate9.helpers( {
+  productOfferingOptionUpdate: function(){
+    return Products.find( {}).map( function ( name ) {
+      return {
+        label: name.productOffering,
+        value: name.productOffering
+      };
+    } );
+  },
+  premiumOptionUpdate: function () {
+    return Products.find({}).map( function ( prem ) {
+      return {
+        label: prem.premium,
+        value: prem.premium
+      };
+    } );
+  }
+} );
+
 Template.productsAvailedUpdate9.events( {
   'change select[name=productName9]': function ( event, template ) {
-    selectedProductName9.set( $( event.target ).val() );
+    selectedProductNameUpdate9.set( $( event.target ).val() );
+  },
+  'change select[name=premium9]': function( event ) {
+    selectedPremiumUpdate9.set( $( event.target).val() );
   },
   'change select[name=productRange9]': function ( event, template ) {
-    var currentTarget = event.currentTarget;
-    var rangeValue = currentTarget.options[ currentTarget.selectedIndex ].value;
-    template.$( 'input[name=productRange9]' ).val( rangeValue );
+    var premiumVal = $( 'select[name="premium9"]' ).val();
+    var selectRange = selectedRangeUpdate9.set( $(event.target).val());
+    var setPremium = parseInt(selectedRangeUpdate9.get(), 10) * parseFloat(premiumVal, 10);
+    if ( premiumVal === "" || premiumVal === null ) {
+      var nullPremium = parseInt(selectedRangeUpdate9.get(), 10) * parseFloat(selectedPremiumUpdate9.get(), 10);
+      template.$('input[name=computedPremium9]').val(nullPremium.toFixed(2),10);
+    } else {
+      template.$('input[name=computedPremium9]').val(setPremium.toFixed(2),10);
+    }
   },
   'change input[name=effectivityDate9]': function ( event, template ) {
     var effectivity = $( event.target ).val();
     var range = ( $( 'select[name=productRange9]' ).val() );
     var duration = moment.duration( parseInt( range, 10 ), 'months' );
+    var value = moment( new Date( effectivity ) ).add( duration ).format( 'MM-DD-YYYY' );
     if ( effectivity ) {
       $( 'input[name=maturityDate9]' ).datepicker( 'update', new Date( value ) );
       template.$( 'input[name=maturityDate9]' ).val( value );
@@ -507,10 +837,11 @@ Template.registerHelper( "spouseOptionUpdate", function () {
 } );
 
 Template.registerHelper( "parentsOptionUpdate", function () {
-  parents = [
+  var parents = [
     $( 'input[name=parentName]' ).val(),
     $( 'input[name=parent2Name]' ).val()
   ];
+  console.log("list of parents", parents);
   return _.map( parents, function ( parentsname ) {
     return {
       label: parentsname,
@@ -532,6 +863,7 @@ Template.registerHelper( "childrenOptionUpdate", function () {
     $( 'input[name=children9Name]' ).val(),
     $( 'input[name=children10Name]' ).val()
   ];
+  console.log(listOfChildren);
   return _.map( listOfChildren, function ( child ) {
     return {
       label: child,
@@ -542,7 +874,7 @@ Template.registerHelper( "childrenOptionUpdate", function () {
 
 
 Template.registerHelper( "siblingsOptionUpdate", function () {
-  siblings = [
+  var siblings = [
     $( 'input[name=siblingName]' ).val(),
     $( 'input[name=sibling2Name]' ).val(),
     $( 'input[name=sibling3Name]' ).val(),
@@ -554,6 +886,7 @@ Template.registerHelper( "siblingsOptionUpdate", function () {
     $( 'input[name=sibling9Name]' ).val(),
     $( 'input[name=sibling10Name]' ).val()
   ];
+  console.log("List of siblings", siblings);
   return _.map( siblings, function ( sibs ) {
     return {
       label: sibs,
@@ -562,416 +895,39 @@ Template.registerHelper( "siblingsOptionUpdate", function () {
   } );
 } );
 
-Template.enrollmentsUpdate.helpers( {
-  enrolleePremium: function () {
-    totalPremium = [
-      $( 'select[name=premium]' ).val(),
-      $( 'select[name=premium1]' ).val(),
-      $( 'select[name=premium2]' ).val(),
-      $( 'select[name=premium3]' ).val(),
-      $( 'select[name=premium4]' ).val(),
-      $( 'select[name=premium5]' ).val(),
-      $( 'select[name=premium6]' ).val(),
-      $( 'select[name=premium7]' ).val(),
-      $( 'select[name=premium8]' ).val(),
-      $( 'input[name=premium9]' ).val()
-    ];
-
-    return _.map( totalPremium, function ( prems ) {
-      console.log( totalPremium );
-      return {
-        label: prems,
-        value: prems
-      };
-    } );
-  }
-} );
-
 Tracker.autorun( function () {
   function add( x, y ) {
     return x + y;
   }
 } );
 
-Template.registerHelper('productsAvailedUpdate', function(){
-  return Products.find().map( function ( offer ) {
-      return {
-        label: offer.productOffering,
-        value: offer.productOffering
-      };
-    } );
-});
-
-Template.registerHelper('productNameOption', function(){
-  return Products.find().map( function ( product ) {
-      return {
-        label: product.name,
-        value: product._id
-      };
-    } );
-});
-
-Template.registerHelper('premiumOption', function(){
-  return Products.find().map( function ( prem ) {
-      return {
-        label: prem.premium,
-        value: prem.premium
-      };
-    } );
-});
-
-Template.registerHelper('productRangeOption', function(){
-  return Products.find().map( function ( range ) {
-      return {
-        label: range.productRange,
-        value: range.productRange
-      };
-    } );
-});
-
-// Template.productsAvailedUpdate.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
+// Template.registerHelper('productsAvailed', function(){
+//   return Products.find({},{sort:{"productOffering": 1}}).map( function ( offer ) {
 //       return {
 //         label: offer.productOffering,
 //         value: offer.productOffering
 //       };
 //     } );
-//   },
-//   productNameOption: function ( productName ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );
+// });
 
-// Template.productsAvailedUpdate1.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName1 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
+// Template.registerHelper('premiumOption', function(){
+//   return Products.find({},{sort:{"premium":1}}).map( function ( prem ) {
 //       return {
 //         label: prem.premium,
 //         value: prem.premium
 //       };
 //     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );
+// });
 
-// Template.productsAvailedUpdate2.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName2 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
+// Template.registerHelper('productRangeOption', function(){
+//   return Products.find({},{sort:{"productRange":1}}).map( function ( range ) {
 //       return {
 //         label: range.productRange,
 //         value: range.productRange
 //       };
 //     } );
-//   }
+// });
 
-// } );
-// Template.productsAvailedUpdate3.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName3 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );
-// Template.productsAvailedUpdate4.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName4 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );
-// Template.productsAvailedUpdate5.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName5 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );
-// Template.productsAvailedUpdate6.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName6 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );
 
-// Template.productsAvailedUpdate7.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName7 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );
 
-// Template.productsAvailedUpdate8.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName8 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );
 
-// Template.productsAvailedUpdate9.helpers( {
-//   productOption: function () {
-//     return Products.find().map( function ( offer ) {
-//       return {
-//         label: offer.productOffering,
-//         value: offer.productOffering
-//       };
-//     } );
-//   },
-//   productNameOption: function ( productName9 ) {
-//     return Products.find().map( function ( product ) {
-//       return {
-//         label: product.name,
-//         value: product._id
-//       };
-//     } );
-//   },
-//   premiumOption: function () {
-//     return Products.find().map( function ( prem ) {
-//       return {
-//         label: prem.premium,
-//         value: prem.premium
-//       };
-//     } );
-//   },
-//   productRangeOption: function () {
-//     return Products.find().map( function ( range ) {
-//       return {
-//         label: range.productRange,
-//         value: range.productRange
-//       };
-//     } );
-//   }
-// } );

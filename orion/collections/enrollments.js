@@ -720,7 +720,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
-  }, 
+  },
   productOffering3: {
     type: String,
     label: "Relationship",
@@ -904,12 +904,21 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium1: {
     type: Number,
@@ -917,12 +926,21 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium1:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium2: {
     type: Number,
@@ -930,12 +948,23 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
+      // type: "selectize",
+      // firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium2:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium3: {
     type: Number,
@@ -943,12 +972,23 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
+      // type: "selectize",
+      // firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium3:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium4: {
     type: Number,
@@ -956,12 +996,23 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
+      // type: "selectize",
+      // firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium4:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium5: {
     type: Number,
@@ -969,12 +1020,23 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
+      // type: "selectize",
+      // firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium5:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium6: {
     type: Number,
@@ -982,12 +1044,23 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
+      // type: "selectize",
+      // firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium6:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium7: {
     type: Number,
@@ -995,12 +1068,23 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
+      // type: "selectize",
+      // firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium7:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium8: {
     type: Number,
@@ -1008,12 +1092,23 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
+      // type: "selectize",
+      // firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
+  },
+  computedPremium8:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
   },
   premium9: {
     type: Number,
@@ -1021,20 +1116,73 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoform: {
-      type: "selectize",
-      firstOption: "Select Premium",
+      // type: "selectize",
+      // firstOption: "Select Premium",
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
     },
   },
+computedPremium9:{
+    type: Number,
+    label: "Computed Premium",
+    optional: true,
+    decimal: true,
+    autoform: {
+      afFormGroup: {
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
+      }
+    }
+  },
   productRange: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1042,11 +1190,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange1: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1054,11 +1244,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange2: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1066,11 +1298,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange3: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1078,11 +1352,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange4: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1090,11 +1406,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange5: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1102,11 +1460,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange6: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1114,11 +1514,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange7: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1126,11 +1568,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange8: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1138,11 +1622,53 @@ Enrollments.attachSchema( new SimpleSchema( {
   },
   productRange9: {
     type: Number,
-    label: "Product Range",
+    label: "Range",
     optional: true,
+    allowedValues: [
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12
+    ],
     autoform: {
-      type: "selectize",
-      firstOption: "Select Range",
+      
+      firstOption: 'Select',
+      options: function () {
+        return [ {
+          label: '1',
+          value: 1
+        }, {
+          label: '2',
+          value: 2
+        }, {
+          label: '3',
+          value: 3
+        }, {
+          label: '4',
+          value: 4
+        }, {
+          label: '5',
+          value: 5
+        }, {
+          label: '6',
+          value: 6
+        }, {
+          label: '7',
+          value: 7
+        }, {
+          label: '8',
+          value: 8
+        }, {
+          label: '9',
+          value: 9
+        }, {
+          label: '10',
+          value: 10
+        }, {
+          label: '11',
+          value: 11
+        }, {
+          label: '12',
+          value: 12
+        }];
+      },
       afFormGroup: {
         'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
       }
@@ -1268,7 +1794,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1282,7 +1808,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1296,7 +1822,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1310,7 +1836,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1324,7 +1850,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1338,7 +1864,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1352,7 +1878,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1366,7 +1892,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1380,7 +1906,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1394,7 +1920,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1408,7 +1934,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1423,7 +1949,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         daysOfWeekDisabled: [ 0, 6 ],
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1437,7 +1963,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         format: 'mm-dd-yyyy'
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1452,7 +1978,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         daysOfWeekDisabled: [ 0, 6 ],
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1467,7 +1993,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         daysOfWeekDisabled: [ 0, 6 ],
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1483,7 +2009,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         forceParse: false
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1498,7 +2024,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         daysOfWeekDisabled: [ 0, 6 ],
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1513,7 +2039,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         daysOfWeekDisabled: [ 0, 6 ],
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1528,7 +2054,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         daysOfWeekDisabled: [ 0, 6 ],
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1543,7 +2069,7 @@ Enrollments.attachSchema( new SimpleSchema( {
         daysOfWeekDisabled: [ 0, 6 ],
       },
       afFormGroup: {
-        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-1'
+        'formgroup-class': 'col-xs-4 col-sm-4 col-lg-2'
       }
     }
   },
@@ -1673,28 +2199,28 @@ Enrollments.attachSchema( new SimpleSchema( {
     optional: true,
     decimal: true,
     autoValue: function () {
-      var prem = this.siblingField( 'premium' ).value;
-      var prem1 = this.siblingField( 'premium1' ).value;
-      var prem2 = this.siblingField( 'premium2' ).value;
-      var prem3 = this.siblingField( 'premium3' ).value;
-      var prem4 = this.siblingField( 'premium4' ).value;
-      var prem5 = this.siblingField( 'premium5' ).value;
-      var prem6 = this.siblingField( 'premium6' ).value;
-      var prem7 = this.siblingField( 'premium7' ).value;
-      var prem8 = this.siblingField( 'premium8' ).value;
-      var prem9 = this.siblingField( 'premium9' ).value;
+      var prem = this.siblingField( 'computedPremium' ).value;
+      var prem1 = this.siblingField( 'computedPremium1' ).value;
+      var prem2 = this.siblingField( 'computedPremium2' ).value;
+      var prem3 = this.siblingField( 'computedPremium3' ).value;
+      var prem4 = this.siblingField( 'computedPremium4' ).value;
+      var prem5 = this.siblingField( 'computedPremium5' ).value;
+      var prem6 = this.siblingField( 'computedPremium6' ).value;
+      var prem7 = this.siblingField( 'computedPremium7' ).value;
+      var prem8 = this.siblingField( 'computedPremium8' ).value;
+      var prem9 = this.siblingField( 'computedPremium9' ).value;
       var sumOfPrem = _.filter( [ prem, prem1, prem2, prem3, prem4, prem5,
         prem6, prem7, prem8, prem9
       ], Boolean );
       var sumPremium = sumOfPrem.reduce( function add( a, b ) {
         return a + b;
       }, 0 );
-      return sumPremium;
+      return parseFloat(sumPremium.toFixed(3), 10);
     }
   },
-  efffectiveDates: {
+  effectiveDates: {
     type: [ String ],
-    label: "Efffective Dates",
+    label: "Effective Dates",
     optional: true,
     autoValue: function () {
       var effectiveDate = this.siblingField( 'effectiveDate' ).value;
@@ -1712,7 +2238,7 @@ Enrollments.attachSchema( new SimpleSchema( {
       ], Boolean );
     }
   },
-  
+
   spouseName: {
     type: String,
     label: "Spouse Name",
@@ -1945,7 +2471,7 @@ Enrollments.attachSchema( new SimpleSchema( {
       }
     }
   },
-  
+
   children2Name: {
     type: String,
     label: "Children Name",
@@ -2037,7 +2563,7 @@ Enrollments.attachSchema( new SimpleSchema( {
       }
     }
   },
-  
+
   children3Name: {
     type: String,
     label: "Children Name",

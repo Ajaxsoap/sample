@@ -38,8 +38,8 @@
                       {{> afQuickField name="centerNumber" }}
                       {{> afQuickField name="fullName" disabled=true}}
                       {{> afQuickField name="tin" data-mask="99-9999999" disabled=true}}
-                      {{> afQuickField name="birthDate" disabled=true}}
-                      {{> afQuickField name="ageOfEnrollee" disabled=true}}
+                      {{> afQuickField name="birthDate" }}
+                      {{> afQuickField name="ageOfEnrollee" }}
                     </fieldset>
                     <fieldset>
                       {{> afQuickField name="phone" }}
@@ -129,6 +129,9 @@
                     {{#if afFieldValueIs name="productsAvailed" value="One Product"}}
                       {{> productsAvailedUpdate}}
                     {{/if}}
+                    {{#if afFieldValueIs name="productsAvailed" value=""}}
+                      {{> productsAvailed}}
+                    {{/if}}
                     {{#if afFieldValueIs name="productsAvailed" value="Two Products"}}
                       {{> productsAvailedUpdate1}}
                     {{/if}}
@@ -190,9 +193,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName" options=productNameOption }}
-      {{> afQuickField name="productOffering" options=productOption }}
-      {{> afQuickField name="premium" id="premium" options=premiumOption}}
-      {{> afQuickField name="productRange" options=productRangeOption}}
+      {{> afQuickField name="productOffering" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange" }}
       {{#if afFieldValueIs name="productOffering" value="Principal"}}
       {{> afQuickField name="insuredName" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -211,6 +214,7 @@
       {{> afQuickField name="effectivityDate" }}
       {{> afQuickField name="maturityDate"}}
       {{> afQuickField name="loanCycle" id="loanCycle" defaultValue=1}}
+      {{> afQuickField name="computedPremium" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn" name="renew" >Renew</button>
@@ -226,9 +230,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName1" options=productNameOption}}
-      {{> afQuickField name="productOffering1" options=productOption }}
-      {{> afQuickField name="premium1" options=premiumOption}}
-      {{> afQuickField name="productRange1" options=productRangeOption }}
+      {{> afQuickField name="productOffering1" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium1" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange1" }}
       {{#if afFieldValueIs name="productOffering1" value="Principal"}}
       {{> afQuickField name="insuredName1" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -247,6 +251,7 @@
       {{> afQuickField name="effectivityDate1" }}
       {{> afQuickField name="maturityDate1" }}
       {{> afQuickField name="loanCycle1" id="loanCycle1" defaultValue=1}}
+      {{> afQuickField name="computedPremium1" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="loanCycle">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn1" name="renew" >Renew</button>
@@ -262,9 +267,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName2" options=productNameOption}}
-      {{> afQuickField name="productOffering2" options=productOption}}
-      {{> afQuickField name="premium2" options=premiumOption}}
-      {{> afQuickField name="productRange2" options=productRangeOption}}
+      {{> afQuickField name="productOffering2" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium2" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange2" }}
       {{#if afFieldValueIs name="productOffering2" value="Principal"}}
       {{> afQuickField name="insuredName2" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -283,6 +288,7 @@
       {{> afQuickField name="effectivityDate2" }}
       {{> afQuickField name="maturityDate2" }}
       {{> afQuickField name="loanCycle2" id="loanCycle2" defaultValue=1}}
+      {{> afQuickField name="computedPremium2" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn2" name="renew" >Renew</button>
@@ -298,9 +304,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName3" options=productNameOption}}
-      {{> afQuickField name="productOffering3" options=productOption}}
-      {{> afQuickField name="premium3" options=premiumOption}}
-      {{> afQuickField name="productRange3" options=productRangeOption}}
+      {{> afQuickField name="productOffering3" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium3" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange3" }}
       {{#if afFieldValueIs name="productOffering3" value="Principal"}}
       {{> afQuickField name="insuredName3" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -319,6 +325,7 @@
       {{> afQuickField name="effectivityDate3" }}
       {{> afQuickField name="maturityDate3" }}
       {{> afQuickField name="loanCycle3" id="loanCycle3" defaultValue=1}}
+      {{> afQuickField name="computedPremium3" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn3" name="renew" >Renew</button>
@@ -333,9 +340,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName4" options=productNameOption}}
-      {{> afQuickField name="productOffering4" options=productOption}}
-      {{> afQuickField name="premium4" options=premiumOption}}
-      {{> afQuickField name="productRange4" options=productRangeOption}}
+      {{> afQuickField name="productOffering4" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium4" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange4" }}
       {{#if afFieldValueIs name="productOffering4" value="Principal"}}
       {{> afQuickField name="insuredName4" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -355,7 +362,7 @@
       {{> afQuickField name="effectivityDate4" }}
       {{> afQuickField name="maturityDate4"}}
       {{> afQuickField name="loanCycle4" id="loanCycle4" defaultValue=1}}
-
+      {{> afQuickField name="computedPremium4" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn4" name="renew" >Renew</button>
@@ -370,9 +377,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName5" options=productNameOption}}
-      {{> afQuickField name="productOffering5" options=productOption}}
-      {{> afQuickField name="premium5" options=premiumOption}}
-      {{> afQuickField name="productRange5" options=productRangeOption}}
+      {{> afQuickField name="productOffering5" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium5" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange5" }}
       {{#if afFieldValueIs name="productOffering5" value="Principal"}}
       {{> afQuickField name="insuredName5" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -391,6 +398,7 @@
       {{> afQuickField name="effectivityDate5" }}
       {{> afQuickField name="maturityDate5"}}
       {{> afQuickField name="loanCycle5" id="loanCycle5" defaultValue=1}}
+      {{> afQuickField name="computedPremium5" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn5" name="renew" >Renew</button>
@@ -405,9 +413,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName6" options=productNameOption}}
-      {{> afQuickField name="productOffering6" options=productOption}}
-      {{> afQuickField name="premium6" options=premiumOption}}
-      {{> afQuickField name="productRange6" options=productRangeOption}}
+      {{> afQuickField name="productOffering6" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium6" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange6" }}
       {{#if afFieldValueIs name="productOffering6" value="Principal"}}
       {{> afQuickField name="insuredName6" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -426,6 +434,7 @@
       {{> afQuickField name="effectivityDate6" }}
       {{> afQuickField name="maturityDate6"}}
       {{> afQuickField name="loanCycle6" id="loanCycle6" defaultValue=1}}
+      {{> afQuickField name="computedPremium6" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn6" name="renew" >Renew</button>
@@ -440,9 +449,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName7" options=productNameOption}}
-      {{> afQuickField name="productOffering7" options=productOption}}
-      {{> afQuickField name="premium7" options=premiumOption}}
-      {{> afQuickField name="productRange7" options=productRangeOption}}
+      {{> afQuickField name="productOffering7" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium7" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange7" }}
       {{#if afFieldValueIs name="productOffering7" value="Principal"}}
       {{> afQuickField name="insuredName7" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -462,6 +471,7 @@
       {{> afQuickField name="effectivityDate7" }}
       {{> afQuickField name="maturityDate7"}}
       {{> afQuickField name="loanCycle7" id="loanCycle7" defaultValue=1}}
+      {{> afQuickField name="computedPremium7" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn7" name="renew" >Renew</button>
@@ -476,9 +486,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName8" options=productNameOption}}
-      {{> afQuickField name="productOffering8" options=productOption}}
-      {{> afQuickField name="premium8" options=premiumOption}}
-      {{> afQuickField name="productRange8" options=productRangeOption}}
+      {{> afQuickField name="productOffering8" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium8" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange8" }}
       {{#if afFieldValueIs name="productOffering8" value="Principal"}}
       {{> afQuickField name="insuredName8" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -498,6 +508,7 @@
       {{> afQuickField name="effectivityDate8" }}
       {{> afQuickField name="maturityDate8"}}
       {{> afQuickField name="loanCycle8" id="loanCycle8" defaultValue=1}}
+      {{> afQuickField name="computedPremium8" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn8" name="renew" >Renew</button>
@@ -512,9 +523,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName9" options=productNameOption}}
-      {{> afQuickField name="productOffering9" options=productOption}}
-      {{> afQuickField name="premium9" options=premiumOption}}
-      {{> afQuickField name="productRange9" options=productRangeOption}}
+      {{> afQuickField name="productOffering9" options=productOfferingOptionUpdate}}
+      {{> afQuickField name="premium9" options=premiumOptionUpdate}}
+      {{> afQuickField name="productRange9" }}
       {{#if afFieldValueIs name="productOffering9" value="Principal"}}
       {{> afQuickField name="insuredName9" options=principalOptionUpdate type="selectize"}}
       {{/if}}
@@ -534,6 +545,7 @@
       {{> afQuickField name="effectivityDate9" }}
       {{> afQuickField name="maturityDate9"}}
       {{> afQuickField name="loanCycle9" id="loanCycle9" defaultValue=1}}
+      {{> afQuickField name="computedPremium9" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
       <div class="form-group col-xs-1 col-sm-1">
         <label for="renew">&nbsp;</label><br>
         <button id="renew" class="btn btn-warning renew-btn9" name="renew" >Renew</button>

@@ -32,7 +32,7 @@ Meteor.methods({
 								return {createdBy: user._id};
 						} else if (Roles.userHasRole(user._id, 'insurer')) {
 								return {insurer: user.profile.insurer[0]};
-						} else 
+						} else
 								return "Error";
 						}
 				;
@@ -173,6 +173,26 @@ Meteor.methods({
 						"maturityDate7",
 						"maturityDate8",
 						"maturityDate9",
+						"premium",
+						"computedPremium",
+						"premium1",
+						"computedPremium1",
+						"premium2",
+						"computedPremium2",
+						"premium3",
+						"computedPremium3",
+						"premium4",
+						"computedPremium4",
+						"premium5",
+						"computedPremium5",
+						"premium6",
+						"computedPremium6",
+						"premium7",
+						"computedPremium7",
+						"premium8",
+						"computedPremium8",
+						"premium9",
+						"computedPremium"
 				];
 
 				var data = [];
@@ -314,10 +334,28 @@ Meteor.methods({
 								date(c.maturityDate7),
 								date(c.maturityDate8),
 								date(c.maturityDate9),
+								c.premium,
+								c.computedPremium,
+								c.premium1,
+								c.computedPremium1,
+								c.premium2,
+								c.computedPremium2,
+								c.premium3,
+								c.computedPremium3,
+								c.premium4,
+								c.computedPremium4,
+								c.premium5,
+								c.computedPremium5,
+								c.premium6,
+								c.computedPremium6,
+								c.premium7,
+								c.computedPremium7,
+								c.premium8,
+								c.computedPremium8,
+								c.premium9,
+								c.computedPremium9
 						]);
 				});
-
 				return {fields: fields, data: data, delimiter: delimiter};
-
 		}
 });

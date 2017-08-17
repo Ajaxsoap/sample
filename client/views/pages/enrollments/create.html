@@ -137,27 +137,29 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName" options=productNameOption}}
-      {{> afQuickField name="productOffering" options=productOption}}
-      {{> afQuickField name="premium" options=premiumOptions }}
-      {{> afQuickField name="productRange" options=productRange}}
+      {{> afQuickField name="productOffering" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium" options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange" }}
       {{#if afFieldValueIs name="productOffering" value="Principal" }}
-      {{> afQuickField name="insuredName" options=principalOption type="selectize" }}
+      {{> afQuickField name="insuredName" options=principalOption type="selectize"}}
       {{/if}}
       {{#if afFieldValueIs name="productOffering" value="Dependent-Spouse" }}
-      {{> afQuickField name="insuredName" options=spouseOption type="selectize" }}
+      {{> afQuickField name="insuredName" options=spouseOption  type="selectize"}}
       {{/if}}
       {{#if afFieldValueIs name="productOffering" value="Dependent-Parent" }}
-      {{> afQuickField name="insuredName" options=parentsOption type="selectize" }}
+      {{> afQuickField name="insuredName" options=parentsOption  type="selectize"}}
       {{/if}}
       {{#if afFieldValueIs name="productOffering" value="Dependent-Children" }}
       {{> afQuickField name="insuredName" options=childrenOption type="selectize" }}
       {{/if}}
       {{#if afFieldValueIs name="productOffering" value="Dependent-Sibling" }}
-      {{> afQuickField name="insuredName" options=siblingsOption type="selectize" }}
+      {{> afQuickField name="insuredName" options=siblingsOption  type="selectize"}}
       {{/if}}
       {{> afQuickField name="effectivityDate" }}
       {{> afQuickField name="maturityDate" }}
       {{> afQuickField name="loanCycle" value=cycle  }}
+      {{> afQuickField name="computedPremium" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
+
     </fieldset>
   </div> 
   {{/if}}
@@ -169,9 +171,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName1" options=productNameOption}}
-      {{> afQuickField name="productOffering1" options=productOption}}
-      {{> afQuickField name="premium1"  options=premiumOptions }}
-      {{> afQuickField name="productRange1" options=productRange}}
+      {{> afQuickField name="productOffering1" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium1" options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange1" }}
       {{#if afFieldValueIs name="productOffering1" value="Principal"}}
       {{> afQuickField name="insuredName1" options=principalOption type="selectize"}}
       {{/if}}
@@ -190,6 +192,7 @@
       {{> afQuickField name="effectivityDate1" }}
       {{> afQuickField name="maturityDate1" }}
       {{> afQuickField name="loanCycle1" value=cycle1 }}
+      {{> afQuickField name="computedPremium1" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
     </fieldset>
   </div>
 {{/if}}
@@ -201,9 +204,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName2" options=productNameOption}}
-      {{> afQuickField name="productOffering2" options=productOption}}
-      {{> afQuickField name="premium2"  options=premiumOptions }}
-      {{> afQuickField name="productRange2" options=productRange}}
+      {{> afQuickField name="productOffering2" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium2"  options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange2" }}
       {{#if afFieldValueIs name="productOffering2" value="Principal"}}
       {{> afQuickField name="insuredName2" options=principalOption type="selectize"}}
       {{/if}}
@@ -223,6 +226,7 @@
       {{> afQuickField name="effectivityDate2" }}
       {{> afQuickField name="maturityDate2" }}
       {{> afQuickField name="loanCycle3" value=cycle2 }}
+      {{> afQuickField name="computedPremium2" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
     </fieldset>
   </div>
 {{/if}}
@@ -234,11 +238,11 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName3" options=productNameOption}}
-      {{> afQuickField name="productOffering3" options=productOption}}
-      {{> afQuickField name="premium3"  options=premiumOptions }}
-      {{> afQuickField name="productRange3" options=productRange}}
+      {{> afQuickField name="productOffering3" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium3" options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange3" }}
       {{#if afFieldValueIs name="productOffering3" value="Principal"}}
-      {{> afQuickField name="insuredName3" options=principalOption}}
+      {{> afQuickField name="insuredName3" options=principalOption type="selectize"}}
       {{/if}}
       {{#if afFieldValueIs name="productOffering3" value="Dependent-Spouse"}}
       {{> afQuickField name="insuredName3" options=spouseOption type="selectize"}}
@@ -256,6 +260,7 @@
       {{> afQuickField name="effectivityDate3" }}
       {{> afQuickField name="maturityDate3"  }}
       {{> afQuickField name="loanCycle3" value=cycle3 }}
+      {{> afQuickField name="computedPremium3" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
     </fieldset>
   </div>
 {{/if}}
@@ -266,9 +271,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName4" options=productNameOption}}
-      {{> afQuickField name="productOffering4" options=productOption}}
-      {{> afQuickField name="premium4" options=premiumOptions }}
-      {{> afQuickField name="productRange4" options=productRange}}
+      {{> afQuickField name="productOffering4" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium4" options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange4" }}
       {{#if afFieldValueIs name="productOffering4" value="Principal"}}
       {{> afQuickField name="insuredName4" options=principalOption type="selectize"}}
       {{/if}}
@@ -288,6 +293,7 @@
       {{> afQuickField name="effectivityDate4" }}
       {{> afQuickField name="maturityDate4"  }}
       {{> afQuickField name="loanCycle4" value=cycle4 }}
+      {{> afQuickField name="computedPremium4" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
     </fieldset>
   </div>
   {{/if}}
@@ -298,9 +304,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName5" options=productNameOption}}
-      {{> afQuickField name="productOffering5" options=productOption}}
-      {{> afQuickField name="premium5" options=premiumOptions }}
-      {{> afQuickField name="productRange5" options=productRange}}
+      {{> afQuickField name="productOffering5" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium5" options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange5" }}
       {{#if afFieldValueIs name="productOffering5" value="Principal"}}
       {{> afQuickField name="insuredName5" options=principalOption type="selectize"}}
       {{/if}}
@@ -319,6 +325,7 @@
       {{> afQuickField name="effectivityDate5" }}
       {{> afQuickField name="maturityDate5"  }}
       {{> afQuickField name="loanCycle5" value=cycle5 }}
+      {{> afQuickField name="computedPremium5" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
     </fieldset>
   </div>
 {{/if}}
@@ -329,9 +336,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName6" options=productNameOption}}
-      {{> afQuickField name="productOffering6" options=productOption}}
-      {{> afQuickField name="premium6"  options=premiumOptions }}
-      {{> afQuickField name="productRange6" options=productRange}}
+      {{> afQuickField name="productOffering6" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium6"  options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange6" }}
       {{#if afFieldValueIs name="productOffering6" value="Principal"}}
       {{> afQuickField name="insuredName6" options=principalOption type="selectize"}}
       {{/if}}
@@ -351,6 +358,7 @@
       {{> afQuickField name="effectivityDate6" }}
       {{> afQuickField name="maturityDate6"  }}
       {{> afQuickField name="loanCycle6" value=cycle6 }}
+      {{> afQuickField name="computedPremium6" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
     </fieldset>
   </div>
 {{/if}}
@@ -361,9 +369,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName7" options=productNameOption}}
-      {{> afQuickField name="productOffering7" options=productOption}}
-      {{> afQuickField name="premium7"  options=premiumOptions }}
-      {{> afQuickField name="productRange7" options=productRange}}
+      {{> afQuickField name="productOffering7" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium7"  options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange7" }}
       {{#if afFieldValueIs name="productOffering7" value="Principal"}}
       {{> afQuickField name="insuredName7" options=principalOption type="selectize"}}
       {{/if}}
@@ -383,6 +391,7 @@
       {{> afQuickField name="effectivityDate7" }}
       {{> afQuickField name="maturityDate7"  }}
       {{> afQuickField name="loanCycle7" value=cycle7 }}
+      {{> afQuickField name="computedPremium7" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
     </fieldset>
   </div>
   {{/if}}
@@ -393,9 +402,9 @@
   <div class="lightGray">
     <fieldset>
       {{> afQuickField name="productName8" options=productNameOption}}
-      {{> afQuickField name="productOffering8" options=productOption}}
-      {{> afQuickField name="premium8"  options=premiumOptions }}
-      {{> afQuickField name="productRange8" options=productRange}}
+      {{> afQuickField name="productOffering8" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium8"  options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange8" }}
       {{#if afFieldValueIs name="productOffering8" value="Principal"}}
       {{> afQuickField name="insuredName8" options=principalOption type="selectize"}}
       {{/if}}
@@ -415,6 +424,7 @@
       {{> afQuickField name="effectivityDate8" }}
       {{> afQuickField name="maturityDate8" }}
       {{> afQuickField name="loanCycle8" value=cycle8 }}
+      {{> afQuickField name="computedPremium8" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
 
     </fieldset>
   </div>
@@ -426,9 +436,9 @@
   <div class="oddEnrolled">
     <fieldset>
       {{> afQuickField name="productName9" options=productNameOption}}
-      {{> afQuickField name="productOffering9" options=productOption}}
-      {{> afQuickField name="premium9"  options=premiumOptions }}
-      {{> afQuickField name="productRange9" options=productRange}}
+      {{> afQuickField name="productOffering9" options=productOfferingOptionCreate}}
+      {{> afQuickField name="premium9" options=premiumOptionsCreate }}
+      {{> afQuickField name="productRange9" }}
       {{#if afFieldValueIs name="productOffering9" value="Principal"}}
       {{> afQuickField name="insuredName9" options=principalOption type="selectize"}}
       {{/if}}
@@ -448,6 +458,7 @@
       {{> afQuickField name="effectivityDate9" }}
       {{> afQuickField name="maturityDate9" }}
       {{> afQuickField name="loanCycle9" value=cycle9 }}
+      {{> afQuickField name="computedPremium9" data-placement="top" data-toggle="tooltip" title="Computed Premium = Premium * Range" }}
     </fieldset>
   </div>
   {{/if}}

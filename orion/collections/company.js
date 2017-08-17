@@ -118,6 +118,7 @@ Products.attachSchema( new SimpleSchema( {
   netPremium: {
     type: Number,
     label: "Net",
+    optional: true,
     decimal: true,
     autoform: {
       afFormGroup: {
@@ -128,6 +129,7 @@ Products.attachSchema( new SimpleSchema( {
   grossProfit: {
     type: Number,
     label: "Gross",
+    optional: true,
     decimal: true,
     autoform: {
       afFormGroup: {
@@ -138,6 +140,7 @@ Products.attachSchema( new SimpleSchema( {
   premium: {
     type: Number,
     label: 'Premium',
+    optional: true,
     decimal: true,
     autoform: {
       afFormGroup: {

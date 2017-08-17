@@ -48,36 +48,36 @@ Meteor.publish( "KMBIEnrollmentPremiums", function () {
     fields: {
       dateEnrolled: 1,
       totalPremium: 1,
+      insuredName: 1,
+      productOffering: 1,
       insuredName1: 1,
       productOffering1: 1,
-      premium: 1,
+      computedPremium: 1,
       insuredName2: 1,
       productOffering2: 1,
-      premium2: 1,
+      computedPremium2: 1,
       insuredName3: 1,
       productOffering3: 1,
-      premium3: 1,
+      computedPremium3: 1,
       insuredName4: 1,
       productOffering4: 1,
-      premium4: 1,
+      computedPremium4: 1,
       insuredName5: 1,
       productOffering5: 1,
-      premium5: 1,
+      computedPremium5: 1,
       insuredName6: 1,
       productOffering6: 1,
-      premium6: 1,
+      computedPremium6: 1,
       insuredName7: 1,
       productOffering7: 1,
-      premium7: 1,
+      computedPremium7: 1,
       insuredName8: 1,
       productOffering8: 1,
-      premium8: 1,
+      computedPremium8: 1,
       insuredName9: 1,
       productOffering9: 1,
-      premium9: 1,
-      insuredName10: 1,
-      productOffering10: 1,
-      premium10: 1,
+      computedPremium9: 1
+       
     }
   });
 } );
@@ -961,7 +961,7 @@ Meteor.publish( "TotalPrincipalPremium", function () {
       year: {
         $year: "$effectivityDate"
       },
-      premium: "$premium",
+      premium: "$computedPremium",
     }
   }, {
     $group: {
@@ -1020,7 +1020,7 @@ Meteor.publish( "TotalPrincipalPremium1", function () {
       year: {
         $year: "$effectivityDate1"
       },
-      premium: "$premium1"
+      premium: "$computedPremium1"
     }
   }, {
     $group: {
@@ -1079,7 +1079,7 @@ Meteor.publish( "TotalPrincipalPremium2", function () {
       year: {
         $year: "$effectivityDate2"
       },
-      premium: "$premium2"
+      premium: "$computedPremium2"
     }
   }, {
     $group: {
@@ -1138,7 +1138,7 @@ Meteor.publish( "TotalPrincipalPremium3", function () {
       year: {
         $year: "$effectivityDate3"
       },
-      premium: "$premium3"
+      premium: "$computedPremium3"
     }
   }, {
     $group: {
@@ -1197,7 +1197,7 @@ Meteor.publish( "TotalPrincipalPremium4", function () {
       year: {
         $year: "$effectivityDate4"
       },
-      premium: "$premium4"
+      premium: "$computedPremium4"
     }
   }, {
     $group: {
@@ -1256,7 +1256,7 @@ Meteor.publish( "TotalPrincipalPremium5", function () {
       year: {
         $year: "$effectivityDate5"
       },
-      premium: "$premium5"
+      premium: "$computedPremium5"
     }
   }, {
     $group: {
@@ -1315,7 +1315,7 @@ Meteor.publish( "TotalPrincipalPremium6", function () {
       year: {
         $year: "$effectivityDate6"
       },
-      premium: "$premium6"
+      premium: "$computedPremium6"
     }
   }, {
     $group: {
@@ -1374,7 +1374,7 @@ Meteor.publish( "TotalPrincipalPremium7", function () {
       year: {
         $year: "$effectivityDate7"
       },
-      premium: "$premiu7"
+      premium: "$computedPremium7"
     }
   }, {
     $group: {
@@ -1433,7 +1433,7 @@ Meteor.publish( "TotalPrincipalPremium8", function () {
       year: {
         $year: "$effectivityDate8"
       },
-      premium: "$premium8"
+      premium: "$computedPremium8"
     }
   }, {
     $group: {
@@ -1492,7 +1492,7 @@ Meteor.publish( "TotalPrincipalPremium9", function () {
       year: {
         $year: "$effectivityDate9"
       },
-      premium: "$premium9"
+      premium: "$computedPremium9"
     }
   }, {
     $group: {
@@ -1586,7 +1586,7 @@ Meteor.publish( "TotalChildrenPremium", function () {
       year: {
         $year: "$effectivityDate"
       },
-      premium: "$premium"
+      premium: "$computedPremium"
     }
   }, {
     $group: {
@@ -1645,7 +1645,7 @@ Meteor.publish( "TotalChildrenPremium1", function () {
       year: {
         $year: "$effectivityDate1"
       },
-      premium: "$premium1"
+      premium: "$computedPremium1"
     }
   }, {
     $group: {
@@ -1704,7 +1704,7 @@ Meteor.publish( "TotalChildrenPremium2", function () {
       year: {
         $year: "$effectivityDate2"
       },
-      premium: "$premium2"
+      premium: "$computedPremium2"
     }
   }, {
     $group: {
@@ -1763,7 +1763,7 @@ Meteor.publish( "TotalChildrenPremium3", function () {
       year: {
         $year: "$effectivityDate3"
       },
-      premium: "$premium3"
+      premium: "$computedPremium3"
     }
   }, {
     $group: {
@@ -1822,7 +1822,7 @@ Meteor.publish( "TotalChildrenPremium4", function () {
       year: {
         $year: "$effectivityDate4"
       },
-      premium: "$premium4"
+      premium: "$computedPremium4"
     }
   }, {
     $group: {
@@ -1881,7 +1881,7 @@ Meteor.publish( "TotalChildrenPremium5", function () {
       year: {
         $year: "$effectivityDate5"
       },
-      premium: "$premium5"
+      premium: "$computedPremium5"
     }
   }, {
     $group: {
@@ -1940,7 +1940,7 @@ Meteor.publish( "TotalChildrenPremium6", function () {
       year: {
         $year: "$effectivityDate6"
       },
-      premium: "$premium6"
+      premium: "$computedPremium6"
     }
   }, {
     $group: {
@@ -1999,7 +1999,7 @@ Meteor.publish( "TotalChildrenPremium7", function () {
       year: {
         $year: "$effectivityDate7"
       },
-      premium: "$premium7"
+      premium: "$computedPremium7"
     }
   }, {
     $group: {
@@ -2058,7 +2058,7 @@ Meteor.publish( "TotalChildrenPremium8", function () {
       year: {
         $year: "$effectivityDate8"
       },
-      premium: "$premium8"
+      premium: "$computedPremium8"
     }
   }, {
     $group: {
@@ -2117,7 +2117,7 @@ Meteor.publish( "TotalChildrenPremium9", function () {
       year: {
         $year: "$effectivityDate9"
       },
-      premium: "$premium9"
+      premium: "$computedPremium9"
     }
   }, {
     $group: {
@@ -2177,7 +2177,7 @@ Meteor.publish( "TotalSpousePremium", function () {
       year: {
         $year: "$effectivityDate"
       },
-      premium: "$premium"
+      premium: "$computedPremium"
     }
   }, {
     $group: {
@@ -2236,7 +2236,7 @@ Meteor.publish( "TotalSpousePremium1", function () {
       year: {
         $year: "$effectivityDate1"
       },
-      premium: "$premium1"
+      premium: "$computedPremium1"
     }
   }, {
     $group: {
@@ -2295,7 +2295,7 @@ Meteor.publish( "TotalSpousePremium2", function () {
       year: {
         $year: "$effectivityDate2"
       },
-      premium: "$premium2"
+      premium: "$computedPremium2"
     }
   }, {
     $group: {
@@ -2354,7 +2354,7 @@ Meteor.publish( "TotalSpousePremium3", function () {
       year: {
         $year: "$effectivityDate3"
       },
-      premium: "$premium3"
+      premium: "$computedPremium3"
     }
   }, {
     $group: {
@@ -2413,7 +2413,7 @@ Meteor.publish( "TotalSpousePremium4", function () {
       year: {
         $year: "$effectivityDate4"
       },
-      premium: "$premium4"
+      premium: "$computedPremium4"
     }
   }, {
     $group: {
@@ -2472,7 +2472,7 @@ Meteor.publish( "TotalSpousePremium5", function () {
       year: {
         $year: "$effectivityDate5"
       },
-      premium: "$premium5"
+      premium: "$computedPremium5"
     }
   }, {
     $group: {
@@ -2531,7 +2531,7 @@ Meteor.publish( "TotalSpousePremium6", function () {
       year: {
         $year: "$effectivityDate6"
       },
-      premium: "$premium6"
+      premium: "$computedPremium6"
     }
   }, {
     $group: {
@@ -2590,7 +2590,7 @@ Meteor.publish( "TotalSpousePremium7", function () {
       year: {
         $year: "$effectivityDate7"
       },
-      premium: "$premium7"
+      premium: "$computedPremium7"
     }
   }, {
     $group: {
@@ -2649,7 +2649,7 @@ Meteor.publish( "TotalSpousePremium8", function () {
       year: {
         $year: "$effectivityDate8"
       },
-      premium: "$premium8"
+      premium: "$computedPremium8"
     }
   }, {
     $group: {
@@ -2708,7 +2708,7 @@ Meteor.publish( "TotalSpousePremium9", function () {
       year: {
         $year: "$effectivityDate9"
       },
-      premium: "$premium9"
+      premium: "$computedPremium9"
     }
   }, {
     $group: {
@@ -2768,7 +2768,7 @@ Meteor.publish( "TotalSiblingsPremium", function () {
       year: {
         $year: "$effectivityDate"
       },
-      premium: "$premium"
+      premium: "$computedPremium"
     }
   }, {
     $group: {
@@ -2827,7 +2827,7 @@ Meteor.publish( "TotalSiblingsPremium1", function () {
       year: {
         $year: "$effectivityDate1"
       },
-      premium: "$premium1"
+      premium: "$computedPremium1"
     }
   }, {
     $group: {
@@ -2886,7 +2886,7 @@ Meteor.publish( "TotalSiblingsPremium2", function () {
       year: {
         $year: "$effectivityDate2"
       },
-      premium: "$premium2"
+      premium: "$computedPremium2"
     }
   }, {
     $group: {
@@ -2945,7 +2945,7 @@ Meteor.publish( "TotalSiblingsPremium3", function () {
       year: {
         $year: "$effectivityDate3"
       },
-      premium: "$premium3"
+      premium: "$computedPremium3"
     }
   }, {
     $group: {
@@ -3004,7 +3004,7 @@ Meteor.publish( "TotalSiblingsPremium4", function () {
       year: {
         $year: "$effectivityDate4"
       },
-      premium: "$premium4"
+      premium: "$computedPremium4"
     }
   }, {
     $group: {
@@ -3063,7 +3063,7 @@ Meteor.publish( "TotalSiblingsPremium5", function () {
       year: {
         $year: "$effectivityDate5"
       },
-      premium: "$premium5"
+      premium: "$computedPremium5"
     }
   }, {
     $group: {
@@ -3122,7 +3122,7 @@ Meteor.publish( "TotalSiblingsPremium6", function () {
       year: {
         $year: "$effectivityDate6"
       },
-      premium: "$premium6"
+      premium: "$computedPremium6"
     }
   }, {
     $group: {
@@ -3181,7 +3181,7 @@ Meteor.publish( "TotalSiblingsPremium7", function () {
       year: {
         $year: "$effectivityDate7"
       },
-      premium: "$premium7"
+      premium: "$computedPremium7"
     }
   }, {
     $group: {
@@ -3240,7 +3240,7 @@ Meteor.publish( "TotalSiblingsPremium8", function () {
       year: {
         $year: "$effectivityDate8"
       },
-      premium: "$premium8"
+      premium: "$computedPremium8"
     }
   }, {
     $group: {
@@ -3299,7 +3299,7 @@ Meteor.publish( "TotalSiblingsPremium9", function () {
       year: {
         $year: "$effectivityDate9"
       },
-      premium: "$premium9"
+      premium: "$computedPremium9"
     }
   }, {
     $group: {
@@ -3359,7 +3359,7 @@ Meteor.publish( "TotalParentsPremium", function () {
       year: {
         $year: "$effectivityDate"
       },
-      premium: "$premium"
+      premium: "$computedPremium"
     }
   }, {
     $group: {
@@ -3418,7 +3418,7 @@ Meteor.publish( "TotalParentsPremium1", function () {
       year: {
         $year: "$effectivityDate1"
       },
-      premium: "$premium1"
+      premium: "$computedPremium1"
     }
   }, {
     $group: {
@@ -3477,7 +3477,7 @@ Meteor.publish( "TotalParentsPremium2", function () {
       year: {
         $year: "$effectivityDate2"
       },
-      premium: "$premium2"
+      premium: "$computedPremium2"
     }
   }, {
     $group: {
@@ -3536,7 +3536,7 @@ Meteor.publish( "TotalParentsPremium3", function () {
       year: {
         $year: "$effectivityDate3"
       },
-      premium: "$premium3"
+      premium: "$computedPremium3"
     }
   }, {
     $group: {
@@ -3595,7 +3595,7 @@ Meteor.publish( "TotalParentsPremium4", function () {
       year: {
         $year: "$effectivityDate4"
       },
-      premium: "$premium4"
+      premium: "$computedPremium4"
     }
   }, {
     $group: {
@@ -3654,7 +3654,7 @@ Meteor.publish( "TotalParentsPremium5", function () {
       year: {
         $year: "$effectivityDate5"
       },
-      premium: "$premium5"
+      premium: "$computedPremium5"
     }
   }, {
     $group: {
@@ -3713,7 +3713,7 @@ Meteor.publish( "TotalParentsPremium6", function () {
       year: {
         $year: "$effectivityDate6"
       },
-      premium: "$premium6"
+      premium: "$computedPremium6"
     }
   }, {
     $group: {
@@ -3772,7 +3772,7 @@ Meteor.publish( "TotalParentsPremium7", function () {
       year: {
         $year: "$effectivityDate7"
       },
-      premium: "$premium7"
+      premium: "$computedPremium7"
     }
   }, {
     $group: {
@@ -3831,7 +3831,7 @@ Meteor.publish( "TotalParentsPremium8", function () {
       year: {
         $year: "$effectivityDate8"
       },
-      premium: "$premium8"
+      premium: "$computedPremium8"
     }
   }, {
     $group: {
@@ -3890,7 +3890,7 @@ Meteor.publish( "TotalParentsPremium9", function () {
       year: {
         $year: "$effectivityDate9"
       },
-      premium: "$premium9"
+      premium: "$computedPremium9"
     }
   }, {
     $group: {
