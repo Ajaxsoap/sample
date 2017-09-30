@@ -175,6 +175,16 @@ Meteor.publish( "enrollments", function ( limit ) {
         sibling8Name: 1,
         sibling9Name: 1,
         sibling10Name: 1,
+        effectivityDate: 1,
+        effectivityDate1: 1,
+        effectivityDate2: 1,
+        effectivityDate3: 1,
+        effectivityDate4: 1,
+        effectivityDate5: 1,
+        effectivityDate6: 1,
+        effectivityDate7: 1,
+        effectivityDate8: 1,
+        effectivityDate9: 1
       }
     } );
   }

@@ -3,12 +3,36 @@ Template.enrollmentsIndex.onCreated( function () {
   this.subscribe( "companies" );
   this.subscribe( "branches" );
   btnClass = new ReactiveVar();
+
   Template.instance().uploading = new ReactiveVar( false );
 } );
 
-Template.enrollmentsTable.onRendered( function () {
-  $('input[name="daterange"]').daterangepicker();
+var startDate = new ReactiveVar( moment( new Date() ) );
+var endDate = new ReactiveVar( moment( new Date()).add(30, "days") );
 
+Template.enrollmentsIndex.onRendered( function() {
+  $('input[name="daterange"]').daterangepicker({
+    startDate: startDate.set(),
+    endDate: endDate.set(),
+    dateLimit: {
+      "days": 30
+    }, function( start, end, label ){
+      this.startDate(start);
+      this.endDate(end)
+    }
+  })
+  // this.autorun( function() {
+  //   var dateEnrollee = Enrollments.find({
+  //     "effectivityDate": {
+  //       $gte: new Date(this.startDate),
+  //       $lte: new Date(this.endDate)
+  //   }
+  //   });
+    // console.log('Dates:', dateEnrollee);
+  // })
+});
+
+Template.enrollmentsTable.onRendered( function () {
   this.autorun( function () {
     $( '#enrolleeTable tfoot th' ).each( function () {
       var title = $( this ).text();
@@ -49,6 +73,13 @@ Template.enrollmentsTable.events( {
     Router.go( 'collections.enrollments.update', {
       _id: this._id
     } );
+  },
+  'change input[name=daterange]': function( event ) {
+    var target = $(event.target).value();
+    var start = startDate.get();
+    var end = endDate.get();
+    console.log(start);
+
   }
 } );
 
@@ -71,14 +102,14 @@ Template.enrollmentsTable.helpers( {
   },
   datell: function ( val, type, doc ) {
     if ( val instanceof Date ) {
-      return moment( val ).format( 'll' );
+      return moment(val).format( 'll' );
     } else {
       return "No Date";
     }
   },
   datelll: function ( val, type, doc ) {
     if ( val instanceof Date ) {
-      return moment( val ).format( 'lll' );
+      return moment(val).format( 'lll' );
     } else {
       return "No Date";
     }
@@ -157,6 +188,7 @@ Template.enrollmentsIndex.events( {
     } );
   }
 } );
+
 
 Template.enrollmentsIndex.onRendered( function () {
   this.autorun( function () {

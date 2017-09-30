@@ -72,9 +72,18 @@ Enrollments = new orion.collection( 'enrollments', {
 
 
 Enrollments.attachSchema( new SimpleSchema( {
+  sysntemId: {
+    type: String,
+    optional: true
+  },
+  versionToken: {
+    type: new String,
+    optional: true
+  },
   dateEnrolled: {
     type: Date,
     label: "Date Enrolled",
+    optional: true,
     autoform: {
       type: 'bootstrap-datepicker',
       datePickerOptions: {
@@ -119,19 +128,11 @@ Enrollments.attachSchema( new SimpleSchema( {
     },
     autoValue: function () {
       if ( this.isInsert ) {
-        var user = Meteor.users.findOne( {
-          "_id": this.userId
-        }, {
-          fields: {
-            "profile": 1
-          }
-        } );
-        if ( user ) {
-          return user && user.profile.company;
-        }
+        return Meteor.call('companyValue');
       } else {
-        this.unset(); // Prevent user from supplying their own value
+        this.unset();
       }
+      
     }
   },
   branch: {
@@ -144,18 +145,9 @@ Enrollments.attachSchema( new SimpleSchema( {
     },
     autoValue: function () {
       if ( this.isInsert ) {
-        var user = Meteor.users.findOne( {
-          "_id": this.userId
-        }, {
-          fields: {
-            "profile": 1
-          }
-        } );
-        if ( user ) {
-          return user && user.profile.branch;
-        }
+        return Meteor.call('branchValue')
       } else {
-        this.unset(); // Prevent user from supplying their own value
+        this.unset();
       }
     }
   },
@@ -167,17 +159,7 @@ Enrollments.attachSchema( new SimpleSchema( {
     },
     autoValue: function () {
       if ( this.isInsert ) {
-        var user = Meteor.users.findOne( {
-          "_id": this.userId
-        }, {
-          fields: {
-            "profile": 1
-          }
-        } );
-        var insurerName = user.profile.insurer;
-        if ( insurerName ) {
-          return insurerName;
-        }
+        return Meteor.call('insurerValue');
       } else {
         this.unset(); // Prevent user from supplying their own value
       }
